@@ -7,3 +7,7 @@ APS-002
 install:
 + bootstrap@4.1.3
 + fancybox@3.0.1
+
+APS-003
+add font icons in assets/fonts 
+you must change the path in scss files
