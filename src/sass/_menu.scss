@@ -1,0 +1,559 @@
+@import "mixins";
+.logo {}
+
+nav {
+  position: fixed;
+  height: 100%;
+  z-index: 2;
+  left: 0;
+  width: 245px;
+  background: green;
+
+  @include breakpoint(small-portrait) {
+    left: -1024px;
+    transform: skew(0deg);
+    width: 100%;
+    max-width: 100%;
+    background: yellow;
+  }
+  @include breakpoint(small-landscape) {
+    left: -1024px;
+    transform: skew(0deg);
+    width: 100%;
+    max-width: 100%;
+    background: yellowgreen;
+  }
+
+  @include breakpoint(large) {
+    left: 0px;
+    transform: skew(0deg);
+    width: 100%;
+    max-width: 100%;
+    width: 245px;
+    background: darkslategray;
+  }
+
+  @include breakpoint(medium-portrait) {
+    left: -1024px;
+    transform: skew(0deg);
+    width: 100%;
+    max-width: 100%;
+    background: palegreen;
+  }
+
+  @include breakpoint(medium-portrait-pixel-ratio-two) {
+    left: -1024px;
+    transform: skew(0deg);
+    width: 100%;
+    max-width: 100%;
+    background: palegoldenrod;
+  }
+
+  @include breakpoint(medium-landscape) {
+    left: 0px;
+    transform: skew(0deg);
+    width: 245px;
+    background: pink;
+  }
+
+  @include breakpoint(extralarge) {
+    left: 0px;
+    transform: skew(0deg);
+    width: 100%;
+    max-width: 100%;
+    width: 245px;
+    background: black;
+  }
+
+
+  &:after {
+    background: #fff;
+    bottom: 0;
+    content: '';
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: -1;
+    @include breakpoint(small-portrait) {
+      width: 100%;
+      max-width: 100%;
+    }
+    @include breakpoint(medium-portrait) {
+      width: 100%;
+      max-width: 100%;
+    }
+    @include breakpoint(medium-landscape) {
+      width: 100%;
+      max-width: 100%;
+    }
+    @include breakpoint(large) {
+      width: 100%;
+    }
+  }
+}
+
+.menu {
+  position: relative;
+  left: 10%;
+  margin: 0 auto;
+  top: 11vh;
+  left: 10%;
+  width: auto;
+
+  @include breakpoint(small-portrait) {
+    left: 0px;
+    top: 11%;
+    width: 35%;
+    margin: 0 auto;
+  }
+  @include breakpoint(small-landscape) {
+    top: 15%;
+    left: 0;
+    width: auto;
+  }
+  @include breakpoint(medium-portrait) {
+    top: 11vh;
+    left: 0;
+    width: auto;
+  }
+  @include breakpoint(medium-landscape) {
+    top: 11%;
+    left: 10%;
+    width: auto;
+  }
+  @include breakpoint(medium-portrait-pixel-ratio-two) {
+    left: 0%;
+    top: 20%;
+    width: auto;
+    margin: 0 auto;
+  }
+  @include breakpoint(medium-landscape-pixel-ratio-two) {
+    left: 155px;
+    top: 10vh;
+    width: 34%;
+    margin: 0 auto;
+    background: yellowgreen;
+  }
+
+
+
+  &__item {
+    display: block;
+    width: 100%;
+    text-transform: capitalize;
+    cursor: pointer;
+
+    @include breakpoint(small-portrait) {
+      padding: 9px 0px 9px 0px;
+      text-align: center;
+    }
+    @include breakpoint(small-landscape) {
+      padding: 5px 0px 5px 0px;
+      text-align: center;
+    }
+    @include breakpoint(iphone6plusportrait) {
+      padding: 12px 0px 12px 0px;
+      text-align: center;
+    }
+    @include breakpoint(medium-portrait) {
+      padding: 10px 0px 10px 0px;
+      text-align: center;
+    }
+    @include breakpoint( medium-portrait-pixel-ratio-two) {
+      padding: 30px 0px 10px 0px;
+      text-align: center;
+    }
+    @include breakpoint(medium-landscape) {
+      padding: 10px 0px 10px 0px;
+      text-align: center;
+    }
+    @include breakpoint(android) {
+      padding: 15px 0px 15px 0px;
+      text-align: center;
+    }
+    @include breakpoint(large) {
+      padding: 10px 0px 10px 0px;
+      text-align: left;
+    }
+  }
+
+  &__sub {
+    display: none;
+
+    &--active {
+      display: block;
+      cursor: default;
+    }
+
+    &-item {
+      width: 100%;
+      padding: 10px 0px 10px 0px;
+      text-transform: capitalize;
+    }
+
+    li:last-of-type {
+      margin-bottom: -16px;
+    }
+  }
+
+  &__link {
+    color: #c59844; //#C89E2E;
+    display: block;
+    font-size: 25px;
+    width: 100%;
+
+    @include breakpoint(small-portrait) {
+      font-size: 20px;
+    }
+    @include breakpoint(small-landscape) {
+      font-size: 20px;
+    }
+    @include breakpoint(iphone6plusportrait) {
+      font-size: 26px;
+    }
+    @include breakpoint(medium-portrait) {
+      font-size: 32px;
+    }
+    @include breakpoint(medium-portrait-pixel-ratio-two) {
+      font-size: 52px;
+      text-align: center;
+    }
+    @include breakpoint(medium-landscape) {
+      font-size: 22px;
+    }
+    @include breakpoint(android) {
+      font-size: 41px;
+    }
+
+    &--secondary {
+      color: #C5AF86; //#C5AF86;
+      @include breakpoint(small-portrait) {
+        font-size: 15px;
+      }
+      @include breakpoint(small-landscape) {
+        font-size: 20px;
+      }
+      @include breakpoint(iphone6plusportrait) {
+        font-size: 20px;
+      }
+      @include breakpoint(medium-portrait) {
+        font-size: 30px;
+      }
+      @include breakpoint(medium-landscape) {
+        font-size: 30px;
+      }
+      @include breakpoint(large) {
+        font-size: 21px;
+      }
+      @include breakpoint(android) {
+        font-size: 30px;
+      }
+    }
+
+    &--active {
+      color: #dcd0af !important;
+      cursor: default;
+    }
+  }
+}
+
+.language {
+  position: absolute;
+  bottom: 21%;
+  font-size: 1.1em;
+  width: 51%;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+
+  @include breakpoint(small-portrait) {
+    bottom: 15%;
+    font-size: 15px; //left: 31%;
+    width: 38%;
+    text-align: center;
+  }
+  @include breakpoint(small-landscape) {
+    bottom: 11%;
+    font-size: 15px; //left: 31%;
+    width: 38%;
+    text-align: center;
+  }
+  @include breakpoint(medium-portrait) {
+    bottom: 21%;
+    font-size: 20px; //left: 32vw;
+    width: 34vw;
+    text-align: center;
+  }
+  @include breakpoint(medium-portrait-pixel-ratio-two) {
+    bottom: 21%;
+    ;
+    left: 0;
+    font-size: 2em;
+    width: 100%;
+  }
+  @include breakpoint(medium-landscape) {
+    bottom: 21%;
+    ;
+    font-size: 1.3em;
+    width: 60%;
+    text-align: left;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  @include breakpoint(android) {
+    bottom: 10vh;
+    font-size: 26px;
+    left: 31vw;
+    width: 40vw;
+    text-align: center;
+  }
+
+  &__link {
+    color: #c59844;
+    &:hover {
+      color: #222;
+    }
+
+    &--active {
+      color: #dcd0af;
+
+      &:hover {
+        color: #dcd0af;
+        cursor: default;
+      }
+    }
+  }
+}
+
+.social-icon {
+  position: absolute;
+  bottom: 14%;
+  width: 55%;
+  text-align: center;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+
+  .icon {
+    font-size: 32px;
+  }
+
+  @include breakpoint(small-portrait) {
+    bottom: 9%;
+    width: 36%;
+    text-align: center;
+    .icon {
+      font-size: 25px;
+    }
+  }
+  @include breakpoint(small-landscape) {
+    bottom: 2%;
+    width: 23%;
+    text-align: center;
+    .icon {
+      font-size: 23px;
+    }
+  }
+  @include breakpoint(medium-portrait) {
+    bottom: 19vw;
+    text-align: center;
+    .icon {
+      font-size: 40px;
+    }
+  }
+  @include breakpoint(medium-portrait-pixel-ratio-two) {
+    bottom: 14%;
+    left: 0;
+    width: 100%;
+  }
+  @include breakpoint(medium-landscape) {
+    bottom: 14%;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  @include breakpoint(android) {
+    bottom: 3vh;
+    left: 32vw;
+    width: 36vw;
+    text-align: center;
+    .icon {
+      font-size: 40px;
+    }
+  }
+
+  &__link {
+    color: #C5AF86; //#C89E2E;
+    padding: 5px;
+  }
+
+  .icon:hover {
+    color: #C59B6E;
+  }
+}
+
+.ornament-line {
+  height: 100vh;
+  left: 554px;
+  position: absolute;
+  top: 0px;
+  width: 3px;
+
+
+  &:after {
+    content: '';
+    background-color: rgba(255, 255, 255, 0.5);
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    top: 0;
+    transform: skewX(-10deg);
+    z-index: 9;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*      *** Menu Mobile ***      */
+
+.menu--xs {
+  height: 26px;
+  display: none;
+  width: 100%;
+  padding: 5px 0px 0px 5px;
+  position: fixed;
+  top: 0px;
+  z-index: 100;
+  left: 0;
+
+  @include breakpoint(small-portrait) {
+    display: inline-block;
+    background: green;
+
+    &:after {
+      background: #fff;
+      -webkit-box-shadow: 0px 4px 11px -2px rgba(150, 150, 150, 1);
+      -moz-box-shadow: 0px 4px 11px -2px rgba(150, 150, 150, 1);
+      box-shadow: 0px 4px 11px -2px rgba(150, 150, 150, 1);
+      height: 42px;
+    }
+    .icon {
+      font-size: 34px;
+      color: rgb(53, 51, 51);
+    }
+  }
+  @include breakpoint(small-landscape) {
+    display: inline-block;
+
+    &:after {
+      background: #fff;
+      -webkit-box-shadow: 0px 4px 11px -2px rgba(150, 150, 150, 1);
+      -moz-box-shadow: 0px 4px 11px -2px rgba(150, 150, 150, 1);
+      box-shadow: 0px 4px 11px -2px rgba(150, 150, 150, 1);
+      height: 35px;
+    }
+    .icon {
+      font-size: 36px;
+      color: rgb(53, 51, 51);
+      line-height: 0.7;
+    }
+  }
+  @include breakpoint(medium-portrait) {
+    display: inline-block;
+    background: black;
+    &:after {
+      background: #fff;
+      -webkit-box-shadow: 0px 4px 11px -2px rgba(150, 150, 150, 1);
+      -moz-box-shadow: 0px 4px 11px -2px rgba(150, 150, 150, 1);
+      box-shadow: 0px 4px 11px -2px rgba(150, 150, 150, 1);
+      height: 50px;
+    }
+    .icon {
+      font-size: 36px;
+      color: rgb(53, 51, 51);
+    }
+  }
+  @include breakpoint(medium-landscape) {
+    &:after {
+      display: none;
+    }
+    .icon {
+      font-size: 30px;
+      color: rgb(53, 51, 51);
+      line-height: 0.7;
+    }
+  }
+
+  @include breakpoint(medium-portrait-pixel-ratio-two) {
+    display: inline-block;
+
+    &:after {
+      background: #fff;
+      -webkit-box-shadow: 0px 4px 11px -2px rgba(150, 150, 150, 1);
+      -moz-box-shadow: 0px 4px 11px -2px rgba(150, 150, 150, 1);
+      box-shadow: 0px 4px 11px -2px rgba(150, 150, 150, 1);
+      height: 50px;
+    }
+    .icon {
+      font-size: 36px;
+      color: rgb(53, 51, 51);
+    }
+  }
+  @include breakpoint(medium-landscape-pixel-ratio-two) {
+    //display: none;
+    background: yellow;
+  }
+}
+
+.logo-xs {}

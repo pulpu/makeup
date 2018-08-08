@@ -23,9 +23,15 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "../node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "../node_modules/fancybox/dist/css/jquery.fancybox.css",
+              "src/sass/master.css"
             ],
-            "scripts": []
+            "scripts": [
+              "../node_modules/jquery/dist/jquery.min.js",
+              "../node_modules/fancybox/dist/js/jquery.fancybox.js",
+              "main.js"
+            ]
           },
           "configurations": {
             "production": {

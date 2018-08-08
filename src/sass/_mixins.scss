@@ -1,0 +1,264 @@
+/*.tooltip {
+    cursor: pointer;
+    font-weight: 400;
+    line-height: $line-height-small;
+
+    &:hover {
+        &:before {
+            border: solid;
+            border-color: $dialogs-tooltip-hover-before-border;
+            border-width: 6px 6px 0 6px;
+            content: "";
+        }
+
+        &:after {
+            background: #333; //need to be checked
+            background: rgba(0,0,0,.8);
+            color: $dialogs-tooltip-hover-after-color;
+            content: attr(data-tool);
+            white-space: nowrap;
+        }
+    }
+}
+
+<a data-tool="Pellentesque vestibulum" class="tooltip-left">Hover me!</a>
+
+
+*/
+
+// =============================================================================
+// Breakpoint
+// =============================================================================
+
+@mixin breakpoint($point){
+    @if $point == small-portrait {
+      @media  only screen
+      and (min-device-width: 320px)
+      and (max-device-width: 736px)
+      and (orientation: portrait) {
+        @content;
+      }
+    }
+    @if $point == small-landscape {
+      @media  only screen
+      and (min-device-width: 320px)
+      and (max-device-width: 736px)
+      and (orientation: landscape) {
+        @content;
+      }
+    }
+    @if $point == iphone6pluslandscape {
+      @media only screen
+      and (min-device-width : 414px)
+      and (max-device-width : 736px)
+      and (orientation : landscape)
+      and (-webkit-min-device-pixel-ratio : 3) {
+        @content;
+      }
+    }
+    @if $point == iphone6plusportrait {
+      @media only screen
+      and (min-device-width : 414px)
+      and (max-device-width : 736px)
+      and (device-width : 414px)
+      and (device-height : 736px)
+      and (orientation : portrait)
+      and (-webkit-min-device-pixel-ratio : 3)
+      and (-webkit-device-pixel-ratio : 3) {
+        @content;
+      }
+    }
+    @if $point == medium-portrait {
+      @media only screen
+      and (min-device-width: 768px)
+      and (max-device-width: 1280px)
+      and (orientation: portrait) {
+        @content;
+      }
+    }
+    @if $point == medium-landscape {
+      @media only screen
+      and (min-device-width: 768px)
+      and (max-device-width: 1280px)
+      and (orientation: landscape)  {
+        @content;
+      }
+    }
+  
+    @if $point == medium-portrait-pixel-ratio-two {
+      @media  only screen
+      and (min-device-width: 1024px)
+      and (max-device-width: 1336px)
+      and (orientation: portrait)
+      and (-webkit-min-device-pixel-ratio: 2){
+        @content;
+      }
+    }
+  
+    @if $point == medium-landscape-pixel-ratio-two {
+      @media only screen
+      and (min-device-width: 1366px)
+      and (max-device-width: 1024px)
+      and (orientation: landscape)
+      and (-webkit-min-device-pixel-ratio: 2){
+        @content;
+      }
+    }
+    @if $point == android{
+      @media only screen and (width : 600px)
+      and (orientation: portrait){
+        @content;
+      }
+    }
+  
+    @if $point == large{
+      @media (min-width: 992px) {
+        @content;
+      }
+    }
+  
+  @if $point == extralarge{
+    @media (min-width: 1600px){
+      @content;
+    }
+  }
+  
+  }
+  
+  
+  
+  
+  
+  // =============================================================================
+  // Prefixes - can be use for other mixins too
+  // =============================================================================
+  
+  $prefixes: -webkit-, -moz-, -o-, "";
+  
+  // =============================================================================
+  // Border
+  // =============================================================================
+  @mixin border($color, $coordinates...) {
+    @if $color != "" {
+  
+      @if ($coordinates == "") {
+        border-color: $color;
+      }
+    }
+    @else {
+      @include customBorder($coordinates...);
+    }
+  }
+  //EX:  @include border(3px 4px 5px 1px, red, dashed);
+  //Output: border-top: 3px dashed red;
+  //        border-right: 4px dashed red;
+  //        border-bottom: 5px dashed red;
+  //        border-left: 1px dashed red;
+  @mixin customBorder( $coordinates: 0 0 0 0, $colour: #000000, $style: solid ) {
+    $top: nth($coordinates, 1);
+    $right: nth($coordinates, 2);
+    $bottom: nth($coordinates, 3);
+    $left: nth($coordinates, 4);
+  
+    @if not(unitless($top)) {
+      border-top: $top $style $colour;
+    }
+    @if not(unitless($right)) {
+      border-right: $right $style $colour;
+    }
+    @if not(unitless($bottom)) {
+      border-bottom: $bottom $style $colour;
+    }
+    @if not(unitless($left)) {
+      border-left: $left $style $colour;
+    }
+  }
+  
+  // =============================================================================
+  // Border Radius
+  // =============================================================================
+  
+  //Ex:  @include border-radius(25px);
+  //Output: border-radius:25px;
+  //     @include border-radius(25px 32px 12px 5px);
+  //Output: border-radius 25px 32px 12px 5px;
+  @mixin border-radius($size...) {
+    @if length($size) == 1 {
+      @each $prefix in $prefixes {
+        #{$prefix}border-radius: $size;
+      }
+    } @else {
+      @include customBorderRadius($size...);
+    }
+  }
+  
+  
+  // Ex: @include custom-border-radius(4px, 5px, 8px, 11px);
+  // Output:  border-top-left-radius: 4px;
+  //          border-top-right-radius: 5px;
+  //          border-bottom-right-radius: 8px;
+  //          border-bottom-left-radius: 11px;
+  @mixin custom-border-radius($topLeft: 0, $topRight: 0, $bottomRight: 0, $bottomLeft: 0) {
+    @each $prefix in $prefixes {
+      @if $prefix == "-moz-" {
+        @if $topLeft != 0 { -moz-border-radius-topleft: $topLeft; }
+        @if $topRight != 0 { -moz-border-radius-topright: $topRight; }
+        @if $bottomRight != 0 { -moz-border-radius-bottomright: $bottomRight; }
+        @if $bottomLeft != 0 { -moz-border-radius-bottomleft: $bottomLeft; }
+      } @else {
+        @if $topLeft != 0 { #{$prefix}border-top-left-radius: $topLeft; }
+        @if $topRight != 0 { #{$prefix}border-top-right-radius: $topRight; }
+        @if $bottomRight != 0 { #{$prefix}border-bottom-right-radius: $bottomRight; }
+        @if $bottomLeft != 0 { #{$prefix}border-bottom-left-radius: $bottomLeft; }
+      }
+    }
+  }
+  
+  // =============================================================================
+  // transition
+  // =============================================================================
+  // Ex: @include transition(all, 0.2s, ease-in-out);
+  // Output: transition: all, 0.2s, ease-in-out
+  @mixin transition($transition-property, $transition-time, $method) {
+    @each $prefix in $prefixes {
+      #{$prefix}transition: $transition-property, $transition-time, $method;
+    }
+  }
+  
+  // =============================================================================
+  // Transform mixins transform: rotate, scale, skew, translate
+  // =============================================================================
+  
+  //Ex: @include transform-rotate(10);
+  //Output: transform: rotate(10deg);
+  @mixin transform-rotate($val){
+    @if($val != null){
+      @each $prefix in $prefixes {
+        #{$prefix}transform: rotate($val + deg);
+      }
+    }
+  }
+  
+  //Ex: @include transform-scale(1, 2);
+  //Output: transform: scale(1,2);
+  @mixin transform-scale($x:1, $y:1){
+    @each $prefix in $prefixes {
+      #{$prefix}transform: scale($x, $y);
+    }
+  }
+  
+  //Ex: @include transform-skew(10, 7);
+  //Output: transform: skew(10deg, 7deg);
+  @mixin transform-skew($x:0, $y:0){
+    @each $prefix in $prefixes {
+      #{$prefix}transform: skew($x + deg, $y + deg);
+    }
+  }
+  
+  //Ex: @include transform-translate(2, 1);
+  //Output: transform: translate(2em, 1em);
+  @mixin transform-translate($x, $y){
+    @each $prefix in $prefixes {
+      #{$prefix}transform: translate($x + em, $y + em);
+    }
+  }

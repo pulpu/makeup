@@ -1,0 +1,190 @@
+@import "mixins";
+
+.board-cut {
+  position: fixed;
+  transform: skewX(-10deg);
+  width: 100vw;
+  height: 100vh;
+  background: #fff;
+  right: 110vw;
+  top: 0px;
+}
+.mask {
+  background: rgba(250, 235, 215, 0.9) none repeat scroll 0 0;
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+  transition: left 0.8s ease-in;
+  -ms-transition: left 0.8s ease-in;
+  -moz-transition: left 0.8s ease-in;
+  -webkit-transition: left 0.8s ease-in;
+
+  &--minimize {
+	left: calc(-100% + 300px);
+	left: -moz-calc(-100% + 300px);
+	left: -webkit-calc(-100% + 300px);
+
+	@include breakpoint(small-portrait) {
+	  left: calc(-100%);
+	  left: -moz-calc(-100%);
+	  left: -webkit-calc(-100%);
+	  transition: left 0.8s ease-in;
+	  -ms-transition: left 0.8s ease-in;
+	  -moz-transition: left 0.8s ease-in;
+	  -webkit-transition: left 0.8s ease-in;
+	}
+
+	@include breakpoint(small-landscape) {
+	  left: calc(-100%);
+	  left: -moz-calc(-100%);
+	  left: -webkit-calc(-100%);
+	  transition: left 0.8s ease-in;
+	  -ms-transition: left 0.8s ease-in;
+	  -moz-transition: left 0.8s ease-in;
+	  -webkit-transition: left 0.8s ease-in;
+	}
+
+	@include breakpoint(medium-landscape) {
+	  left: calc(-95% + 235px);
+	  left: -moz-calc(-95% + 235px);
+	  left: -webkit-calc(-95% + 235px);
+	  transition: left 0.8s ease-in;
+	  -ms-transition: left 0.8s ease-in;
+	  -moz-transition: left 0.8s ease-in;
+	  -webkit-transition: left 0.8s ease-in;
+	}
+
+	@include breakpoint(medium-portrait) {
+	  left: calc(-100%);
+	  left: -moz-calc(-100%);
+	  left: -webkit-calc(-100%);
+	  transition: left 0.8s ease-in;
+	  -ms-transition: left 0.8s ease-in;
+	  -moz-transition: left 0.8s ease-in;
+	  -webkit-transition: left 0.8s ease-in;
+	}
+
+	@include breakpoint(medium-portrait-pixel-ratio-two) {
+	  left: calc(-100%);
+	  left: -moz-calc(-100%);
+	  left: -webkit-calc(-100%);
+	  transition: left 0.8s ease-in;
+	  -ms-transition: left 0.8s ease-in;
+	  -moz-transition: left 0.8s ease-in;
+	  -webkit-transition: left 0.8s ease-in;
+	}
+  }
+}
+
+.paragraph {
+
+  &__wrapper {
+	margin: 10% auto 0 30%;
+
+	@include breakpoint(small-portrait) {
+	  margin: 15% auto 0 5%;
+	  width: 80%;
+	}
+	@include breakpoint(small-landscape) {
+	  margin: 10% auto 0 10%;
+	  width: 80%
+	}
+	@include breakpoint(medium-portrait) {
+	  margin: 20% auto 0 15%;
+	  width: 70%;
+	}
+	background: none;
+	padding: 15px;
+	width: 50%;
+
+  }
+
+  &__controller {
+
+	@include breakpoint(small-landscape) {
+	  top: 55px;
+	}
+	@include breakpoint(small-portrait) {
+	  top: 55px;
+	}
+	@include breakpoint(medium-portrait) {
+	  top: 70px;
+	}
+	@include breakpoint(medium-portrait-pixel-ratio-two) {
+	  top: 70px;
+	}
+
+	background: rgba(224, 215, 202, 1);
+	border: 1px solid #fff;
+	padding: 3px;
+	position: absolute;
+	right: 12px;
+	top: 12px;
+	cursor: pointer;
+	display: block;
+
+	&:hover {
+	  .icon {
+		color:#c5af86;
+		-webkit-transition: color 0.9s ease-out;
+		-moz-transition: color 0.9s ease-out;
+		-o-transition: color 0.9s ease-out;
+		transition: color 0.9s ease-out;
+
+	  }
+	}
+
+  }
+
+  &__content {
+	-webkit-transition-property: opacity; /* Safari */
+	-webkit-transition-duration: 1s; /* Safari */
+	-webkit-transition-delay: 0.7s; /* Safari */
+	transition-property: opacity;
+	transition-duration: 1s;
+	transition-delay: 0.7s;
+	opacity:1;
+
+	&--disable {
+
+	  -webkit-transition-property: opacity; /* Safari */
+	  -webkit-transition-duration: 1s; /* Safari */
+	  -webkit-transition-delay: 0s; /* Safari */
+	  transition-property: opacity;
+	  transition-duration: 1s;
+	  transition-delay: 0s;
+	  opacity:0;
+	}
+  }
+
+  &__title {
+	@include breakpoint(small-portrait) {
+	  font-size: 1.4em;
+	}
+	@include breakpoint(android) {
+	  font-size: 2.4em;
+	}
+  }
+
+  &__blockquote {
+	font-size: 1.4em;
+
+	@include breakpoint(small-portrait) {
+	  font-size: 1em;
+	}
+	@include breakpoint(small-landscape) {
+	  font-size: 1em;
+	}
+	@include breakpoint(medium-portrait) {
+	  font-size: 1.7em;
+	}
+	@include breakpoint(android) {
+	  font-size: 1.6em;
+	}
+
+  }
+
+}

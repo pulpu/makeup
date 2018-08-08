@@ -1,0 +1,38 @@
+@import "reset";
+
+@import "template";
+@import "typography";
+@import "icon";
+@import "mixins";
+@import "menu";
+@import "template_elements";
+@import "grid";
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.block {
+  display: block;
+  width: 100%;
+}
+
+.col {
+  display: table-cell;
+}
+
+.table {
+  display: table;
+}
+
+.clearfix {
+  clear: both;
+}
+
+.img-responsiv {
+  width: 100%;
+}

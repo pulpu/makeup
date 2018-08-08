@@ -1,0 +1,211 @@
+@import "mixins";
+
+.main {
+  position: absolute;
+  z-index: -10;
+  display: block;
+  width: -webkit-calc(99% - 330px);
+  width: -moz-calc(99% - 330px);
+  width: calc(99% - 330px);
+
+  @include breakpoint(small) {
+    width: -webkit-calc(99% - 290px);
+    width: -moz-calc(99% - 290px);
+    width: calc(99% - 290px);
+  }
+  right: 1%;
+}
+
+.grid-item {
+  overflow: hidden;
+}
+
+.fancybox {
+  display: inline-block;
+  float: left;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center top;
+  width: 100%;
+  height: 0;
+  padding-top: 150%;
+  position: relative;
+  overflow: hidden;
+
+  @include breakpoint(small-portrait) {
+    padding-top: 150%;
+  }
+  @include breakpoint(large) {
+    padding-top: 150%;
+  }
+
+  &--large {
+    padding-top: 71.6%;
+
+    @include breakpoint(small-portrait) {
+      padding-top: 150%;
+    }
+  }
+
+  &--video {
+    // padding-top: 85%;
+    @include breakpoint(small-portrait) {
+      padding-top: 85%;
+    }
+  }
+
+  &--video-large {
+    padding-top: 67.6%;
+
+    @include breakpoint(small-portrait) {
+      padding-top: 55%;
+    }
+  }
+}
+
+
+.figure {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background-size: cover;
+  top: 0;
+
+  &:hover figcaption {
+    transform: translate3d(0px, 0px, 0px);
+    opacity: 0.8;
+  }
+
+  &__action {
+    opacity: 0;
+    position: absolute;
+    transition: visibility 0s, opacity 0s linear;
+    visibility: hidden;
+  }
+
+  &:hover &__action {
+    display: block;
+    position: absolute;
+    bottom: -moz-calc(50% + 10px);
+    bottom: -webkit-calc(50% + 10px);
+    bottom: calc(50% + 10px);
+    opacity: 1;
+    right: 43%;
+    visibility: visible;
+
+
+    .icon {
+      &--play:before {
+        background-color: rgba(255, 255, 255, 0.5);
+        color: rgba(0, 0, 0, 0.5);
+        border-radius: 50%;
+        font-size: 40px;
+        opacity: 0.9;
+        -webkit-transition: opacity 0.5s ease-in-out;
+        -moz-transition: opacity 0.5s ease-in-out;
+        -o-transition: opacity 0.5s ease-in-out;
+        transition: opacity 0.5s ease-in-out;
+      }
+
+      &--zoom:before {
+        color: #ffc107;
+        font-size: 29px;
+        opacity: 0.9;
+        -webkit-transition: opacity 0.5s ease-in-out;
+        -moz-transition: opacity 0.5s ease-in-out;
+        -o-transition: opacity 0.5s ease-in-out;
+        transition: opacity 0.5s ease-in-out;
+      }
+    }
+  }
+}
+
+.figcaption {
+  background: rgba(58, 46, 10, 0.9) none repeat scroll 0 0;
+  bottom: 0;
+  color: #3c4a50;
+  position: absolute;
+  top: auto;
+  transform: translate3d(0px, 100%, 0px);
+  transition: transform 0.1s ease 0s;
+  width: 100%;
+  opacity: 0;
+  transition: opacity 0.1s ease 0s;
+
+  .icon {
+    color: #c5af86;
+    display: block;
+    float: left;
+    font-size: 15px;
+    line-height: inherit;
+    padding: 12px 10px 0px 10px;
+  }
+
+  &__author {
+    color: #948044;
+    text-transform: uppercase;
+    font-family: Arial;
+    font-size: 17px;
+    width: 64%;
+    text-align: right;
+    @include breakpoint(small) {
+      font-size: 7px;
+    }
+    @include breakpoint(medium) {
+      font-size: 9px;
+    }
+    @include breakpoint(large) {
+      font-size: 12px;
+    }
+    @include breakpoint(extralarge) {
+      font-size: 16px;
+    }
+    float: right;
+    font-style: normal;
+    padding: 12px 10px 0px 0px;
+  }
+
+  &__brand {
+    color: #c5af86;
+    float: left;
+    max-width: 80%;
+    text-align: left;
+    padding: 10px 0px 10px 10px;
+    @include breakpoint(small) {
+      font-size: 7px;
+    }
+    @include breakpoint(medium) {
+      font-size: 9px;
+    }
+    @include breakpoint(large) {
+      font-size: 12px;
+      margin: 0px;
+    }
+    @include breakpoint(extralarge) {
+      font-size: 14px;
+    }
+  }
+}
+
+.small-uppercase {
+  float: right;
+  text-transform: capitalize;
+  @include breakpoint(small) {
+    font-size: 3px;
+  }
+  @include breakpoint(medium) {
+    font-size: 6px;
+  }
+  @include breakpoint(large) {
+    font-size: 8px;
+  }
+  @include breakpoint(extralarge) {
+    font-size: 10px;
+  }
+  font-family: Arial;
+  color: #948044;
+  max-width: 50%;
+  text-align: right;
+  padding-right: 10px;
+  font-style: normal;
+}
