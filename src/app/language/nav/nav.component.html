@@ -1,0 +1,24 @@
+<nav class="menu--xs">
+  <a (click)="buttonHamburger()"><i class="icon icon--hamburger"></i></a>
+  <div class=".logo logo--xs"></div>
+</nav>
+<nav id="nav">
+  <div class="logo"></div>
+  <ul class="menu" id="menu">
+    <li class="menu__item" [attr.name]="title.title" *ngFor="let title of menu">
+      <a class="menu__link " [attr.data-colors]="title.title" (click)="onClick(title.title)" [ngClass]="{'menu__link--active': categoryid === title.title}">{{ title.title }}</a>
+      <ul class="menu__sub">
+        <li class="menu__sub-item" *ngFor="let subtitle of title.subMenu">
+          <a class="menu__link menu__link--secondary" [attr.data-colors]="subtitle" (click)="onClick(subtitle)" [ngClass]="{ 'menu__link--active': categoryid=== subtitle}">{{ subtitle }}</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <ng-content></ng-content>
+  <div class="social-icon ">
+    <a class="social-icon__link " href=" "><i class="icon icon--facebook "></i></a>
+    <a class="social-icon__link " href=" "><i class="icon icon--youtube "></i></a>
+    <a class="social-icon__link " href=" "><i class="icon icon--instagram "></i></a>
+  </div>
+  <div class="ornament-line"></div>
+</nav>

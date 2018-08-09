@@ -1,0 +1,27 @@
+<h1>  {{user}}</h1>
+<app-paragraph></app-paragraph>
+<div class="container-fluid">
+  <div class="row">
+    <div *ngFor="let item of server" [ngClass]="[item.orientation === 'portrait' ? 'mt-4 col-12 col-sm-6 col-md-3 grid-item' : 'mt-4 col-12 col-sm-12 col-md-6 grid-item']">
+      <a class="fancybox fancybox-imgw" [ngStyle]="{'background-image': 'url( /assets/images/' + item.img + ')'}" [href]="'/assets/images/' + item.smallimg">
+        <figure class="figure">
+          <span class="figure__action"><i class="icon icon--zoom"></i></span>
+          <figcaption class="figcaption ">
+            <div>
+              <div>
+                <i [ngClass]="[item.photographer ? 'icon icon--pictures' : 'icon icon--videos']"></i>
+                <span class="figcaption__author">{{item.photographer || item.director}}</span>
+              </div>
+              <div class="clearfix ">
+                <span class="figcaption__brand">{{item.company}}</span>
+                <span class="small-uppercase">{{item.kind}}</span>
+              </div>
+            </div>
+          </figcaption>
+        </figure>
+      </a>
+    </div>
+    <br>
+    <br>
+    <button class="btn btn-primary " (click)="ontest() ">Save on the database</button>
+    <button class="btn btn-primary " (click)="onGet() ">Get from database</button>
