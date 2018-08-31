@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-language',
@@ -7,9 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LanguageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
+
+  onSelect(language) {
+  	let currentUrl = this.router.url; /// this will give you current url
+              console.log("currentUrl: " + currentUrl)
+
+  	let res = currentUrl.split("/");
+  		  res[2] = language;
+              console.log("res: " + res)
+
+  	let newurl = res.join('').toString()
+              console.log("newurl: " + newurl)
+
+  	this.router.navigate( [ newurl]);
+  };
 
 }

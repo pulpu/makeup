@@ -14,3 +14,5 @@ you must change the path in scss files
 
 
 APS-05 instal firebase2 and configurate enviroment
+
+APS-06 made leanguage switch
