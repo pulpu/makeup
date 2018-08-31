@@ -5,18 +5,18 @@
 </nav>
 <nav id="nav">
   <div class="logo"></div>
-  <ul class="menu" id="menu" *ngFor="let menu of menuthree | async">
+  <ul class="menu" id="menu" *ngFor="let menu of menuthree.items | async">
     <li class="menu__item" *ngFor="let item of menu.items">
-      <a class="menu__link" (click)="onClick(item.title)" [ngClass]="{'menu__link--active': categoryid === item.title}">{{item.title}}</a>
+      <a class="menu__link " [attr.data-colors]="item.title" (click)="onClick(item.title)" [ngClass]="{'menu__link--active': categoryid === item.title}">{{item.title}}</a>
       <ul class="menu__sub">
-        <li class="menu__sub-item" *ngFor="let subtitle of item.subMenu">
-          <a class="menu__link menu__link--secondary" (click)="onClick(subtitle)" [ngClass]="{ 'menu__link--active': categoryid=== subtitle}">{{subtitle}}</a>
-        </li>
+        <!-- <li class="menu__sub-item" *ngFor="let subtitle of items.subMenu">
+          <a class="menu__link menu__link--secondary" [attr.data-colors]="subtitle" (click)="onClick(subtitle)" [ngClass]="{ 'menu__link--active': categoryid=== subtitle}">{{subtitle}}</a>
+        </li> -->
       </ul>
     </li>
   </ul>
   <ng-content></ng-content>
-  <div class="social-icon" >
+  <div class="social-icon" *ngFor="let subtitle of items.subMenu">
     <a class="social-icon__link " href=" "><i class="icon icon--facebook "></i></a>
     <a class="social-icon__link " href=" "><i class="icon icon--youtube "></i></a>
     <a class="social-icon__link " href=" "><i class="icon icon--instagram "></i></a>

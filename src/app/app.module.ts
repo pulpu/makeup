@@ -2,6 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import {HttpClientModule} from '@angular/common/http';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+
 
 import { AppComponent } from './app.component';
 import { LanguageComponent } from './language/language.component';
@@ -13,6 +16,8 @@ import { Error404Component } from './language/error404/error404.component';
 import { AdminComponent } from './language/nav/admin/admin.component';
 import { ParagraphComponent } from './language/nav/paragraph/paragraph.component';
 import { AppRouterModule } from './app-routing.module';
+import { environment} from '../environments/environment';
+
 
 @NgModule({
   declarations: [
@@ -30,7 +35,9 @@ import { AppRouterModule } from './app-routing.module';
     BrowserModule,
     AppRouterModule,
     HttpModule,
-    HttpClientModule
+    HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]

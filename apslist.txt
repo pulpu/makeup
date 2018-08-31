@@ -11,3 +11,6 @@ install:
 APS-003
 add font icons in assets/fonts 
 you must change the path in scss files
+
+
+APS-05 instal firebase2 and configurate enviroment
