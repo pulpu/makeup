@@ -16,3 +16,7 @@ you must change the path in scss files
 APS-05 instal firebase2 and configurate enviroment
 
 APS-06 made leanguage switch
+
+APS-08 listing is now working in 
+
+APS-09 in this branch must find a way to send pharagraph informatin from listing component to pharagraph component wihtout making the api call again

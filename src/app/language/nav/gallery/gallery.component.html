@@ -2,8 +2,8 @@
 <app-paragraph></app-paragraph>
 <div class="container-fluid">
   <div class="row">
-    <div *ngFor="let item of server" [ngClass]="[item.orientation === 'portrait' ? 'mt-4 col-12 col-sm-6 col-md-3 grid-item' : 'mt-4 col-12 col-sm-12 col-md-6 grid-item']">
-      <a class="fancybox fancybox-imgw" [ngStyle]="{'background-image': 'url( /assets/images/' + item.img + ')'}" [href]="'/assets/images/' + item.smallimg">
+    <div *ngFor="let item of items | async" [ngClass]="[item.orientation === 'portrait' ? 'mt-4 col-12 col-sm-6 col-md-3 grid-item' : 'mt-4 col-12 col-sm-12 col-md-6 grid-item']">
+      <a class="fancybox fancybox-imgw"  [style.backgroundImage]="'url('+ item.img +')'" [href]="item.smallImg">
         <figure class="figure">
           <span class="figure__action"><i class="icon icon--zoom"></i></span>
           <figcaption class="figcaption ">
@@ -14,7 +14,7 @@
               </div>
               <div class="clearfix ">
                 <span class="figcaption__brand">{{item.company}}</span>
-                <span class="small-uppercase">{{item.kind}}</span>
+                <span class="small-uppercase">{{item.agency}}</span>
               </div>
             </div>
           </figcaption>
