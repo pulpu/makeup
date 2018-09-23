@@ -12,6 +12,8 @@ import { pipe } from '@angular/core/src/render3/pipe';
   styleUrls: ['./gallery.component.css']
 })
 export class GalleryComponent implements OnInit {
+  database : Observable<any>;
+  paragraph : Observable<any>;
   items : Observable<any>;
 
   constructor(
@@ -19,11 +21,20 @@ export class GalleryComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.items = this.db
+    this.database = this.db
     .collection('data')
     .snapshotChanges()
     .pipe(map(docArray =>{
-      return docArray[0].payload.doc.data()['brides']['items']
+      return docArray[0].payload.doc.data()['brides']
     }))
+
+    this.database.subscribe(result => {
+      return this.paragraph = result.paragraph
+    })
+
+    this.database.subscribe(result => {
+      return this.items = result.items
+    })
   }
+
 }

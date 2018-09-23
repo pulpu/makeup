@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Response } from '@angular/http';
 
@@ -11,7 +11,8 @@ import { Response } from '@angular/http';
 export class ParagraphComponent implements OnInit {
   public animate = false; // this parameter must be send by
 	pagePath: string;
-    server: any[];
+    // server: any[];
+    @Input() paragraph: string
     
 
   onAnimate() {
@@ -41,7 +42,6 @@ export class ParagraphComponent implements OnInit {
        this.route.params.subscribe(
            (params: Params) => {
              this.pagePath = params['category'];
-             console.log(params['category'])
            }
          )    
  
