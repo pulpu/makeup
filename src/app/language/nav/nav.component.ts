@@ -3,6 +3,7 @@ import { AngularFirestore } from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Router, ActivatedRoute } from '@angular/router';
+import { CategoryService } from '../../category.service';
 
 
 @Component({
@@ -10,6 +11,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.css']
 })
+
 export class NavComponent implements OnInit {
   menuthree : Observable<any>;
   public categorys: any[];
@@ -19,7 +21,8 @@ export class NavComponent implements OnInit {
   constructor(
     private db: AngularFirestore,
     private router: Router, 
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private categoryservice: CategoryService,
   ) { }
 
   ngOnInit() {
@@ -35,11 +38,19 @@ export class NavComponent implements OnInit {
     }));
   }
 
+  sendCategory(path): void {
+    // send category to subscribers via observable subject
+    this.categoryservice.sendCategory(path);
+  }
 
+  clearCategory(): void {
+      // clear category
+      this.categoryservice.clearCategory();
+  }
   
   onClick(category) {
-
     let currentUrl = this.router.url; /// this will give you current url
+
     var res = currentUrl.split("/");
     console.log("res: ", res);
         res = res.slice(0, 3);

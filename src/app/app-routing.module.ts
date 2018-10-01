@@ -2,10 +2,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 
-import { AppComponent } from './app.component';
-import { LanguageComponent } from './language/language.component';
-import { NavComponent } from './language/nav/nav.component';
-import { ParagraphComponent } from './language/nav/paragraph/paragraph.component';
+// import { AppComponent } from './app.component';
+// import { LanguageComponent } from './language/language.component';
+// import { NavComponent } from './language/nav/nav.component';
+// import { ParagraphComponent } from './language/nav/paragraph/paragraph.component';
 import { AdminComponent } from './language/nav/admin/admin.component';
 import { GalleryComponent } from './language/nav/gallery/gallery.component';
 import { IntroComponent } from './language/nav/intro/intro.component';
@@ -21,7 +21,9 @@ const appRoutes: Routes = [
     { path: ':language/:category', component: GalleryComponent }, 
   ]}, 
 
-   {path: 'admin/ro/:id', component: AdminComponent, data: {message: 'Admin Page'}},
+   {path: 'admin/:ro/:id', component: AdminComponent, data: {message: 'Admin Page'},
+   {path: 'admin/:en/:id', component: AdminComponent, data: {message: 'Admin Page'}
+  },
 
     {path: '', redirectTo: '/home/ro', pathMatch: 'full'},
     // {path: '404', component: PageNotFoundComponent},

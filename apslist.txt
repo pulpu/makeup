@@ -20,3 +20,16 @@ APS-06 made leanguage switch
 APS-08 listing is now working in 
 
 APS-09 in this branch must find a way to send pharagraph informatin from listing component to pharagraph component wihtout making the api call again
+
+APS-10 I created a server service that is working fine in listing page and it must be importe it in navcomponent
+
+APS-11 (va fi vreat dupa ce se face importul sever servis in nav.component) must make the changes of the page on click on munu link
+
+------------------
+!!!!!!!!!!!! de refacut designul pentru pagina de listing
+!!!!!!!!!!!!!!!! cand schimbi categoriile pharagraph trebuie sa se deschida daca era inchis
+
+---------------
+momentan nu folosesc categori ervice
+---------------
+avem o eroare in router

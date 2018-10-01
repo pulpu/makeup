@@ -1,3 +1,26 @@
-<p>
-  admin works!
-</p>
+<app-language></app-language>
+<app-paragraph [paragraph]='paragraph'></app-paragraph>
+<div class="container-fluid">
+  <div class="row">
+    <div *ngFor="let item of items" [ngClass]="[item.orientation === 'portrait' ? 'mt-4 col-12 col-sm-6 col-md-3 grid-item' : 'mt-4 col-12 col-sm-12 col-md-6 grid-item']">
+      <a class="fancybox fancybox-imgw"  [style.backgroundImage]="'url('+ item.img +')'" [href]="item.smallImg">
+        <figure class="figure">
+          <span class="figure__action"><i class="icon icon--zoom"></i></span>
+          <figcaption class="figcaption ">
+            <div>
+              <div>
+                <i [ngClass]="[item.photographer ? 'icon icon--pictures' : 'icon icon--videos']"></i>
+                <span class="figcaption__campaign">{{item.company}}</span>
+                <span class="figcaption__author">{{item.photographer || item.director}}</span>
+              </div>
+              <div class="clearfix ">
+                <span class="figcaption__kind">{{item.kind}}</span>
+                <span class="figcaption__brand">{{item.agency}}</span>
+              </div>
+            </div>
+          </figcaption>
+        </figure>
+      </a>
+    </div>
+  </div>
+</div>

@@ -1615,12 +1615,10 @@ nav:after {
 }
 
 .figcaption__author {
-  color: #948044;
-  text-transform: uppercase;
-  font-family: Arial;
-  font-size: 17px;
-  width: 64%;
+  color: #d8c9af;
+  width: 100%;
   text-align: right;
+  padding: 0px 10px !important;
   float: right;
   font-style: normal;
   padding: 12px 10px 0px 0px;
@@ -1628,7 +1626,7 @@ nav:after {
 
 @media (min-width: 992px) {
   .figcaption__author {
-    font-size: 12px;
+    font-size: 15px;
   }
 }
 
@@ -1639,46 +1637,54 @@ nav:after {
 }
 
 .figcaption__brand {
-  color: #c5af86;
-  float: left;
-  max-width: 80%;
+  color: #dac6a2;
+  display: inline-block;
+  padding: 0 0 5px 10px;
+  width: 90%;
+  font-size: 16px;
   text-align: left;
-  padding: 10px 0px 10px 10px;
+}
+
+.figcaption__campaign {
+  color: #eadabc;
+  width: 88%;
+  text-align: center;
+  display: inline-block;
+  border-bottom: 1px solid #6f6c65;
+  font-size: 18px !important;
+  line-height: 1.5;
 }
 
 @media (min-width: 992px) {
-  .figcaption__brand {
+  .figcaption__campaign {
     font-size: 12px;
     margin: 0px;
   }
 }
 
 @media (min-width: 1600px) {
-  .figcaption__brand {
+  .figcaption__campaign {
     font-size: 14px;
   }
 }
 
-.small-uppercase {
-  float: right;
-  text-transform: capitalize;
-  font-family: Arial;
-  color: #948044;
-  max-width: 50%;
+.figcaption__kind {
+  color: #c7c4b8;
   text-align: right;
   padding-right: 10px;
-  font-style: normal;
+  width: 100%;
+  display: block;
 }
 
 @media (min-width: 992px) {
-  .small-uppercase {
-    font-size: 8px;
+  .figcaption__kind {
+    font-size: 10px;
   }
 }
 
 @media (min-width: 1600px) {
-  .small-uppercase {
-    font-size: 10px;
+  .figcaption__kind {
+    font-size: 12px;
   }
 }
 

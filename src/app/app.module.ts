@@ -1,10 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
-import {HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 
+import {  ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { LanguageComponent } from './language/language.component';
@@ -17,7 +18,7 @@ import { AdminComponent } from './language/nav/admin/admin.component';
 import { ParagraphComponent } from './language/nav/paragraph/paragraph.component';
 import { AppRouterModule } from './app-routing.module';
 import { environment} from '../environments/environment';
-
+import { NameEditorComponent } from './name-editor/name-editor.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { environment} from '../environments/environment';
     GalleryComponent,
     Error404Component,
     AdminComponent,
-    ParagraphComponent
+    ParagraphComponent,
+    NameEditorComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +39,8 @@ import { environment} from '../environments/environment';
     HttpModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -9,14 +9,17 @@
             <div>
               <div>
                 <i [ngClass]="[item.photographer ? 'icon icon--pictures' : 'icon icon--videos']"></i>
+                <span class="figcaption__campaign">{{item.company}}</span>
                 <span class="figcaption__author">{{item.photographer || item.director}}</span>
               </div>
               <div class="clearfix ">
-                <span class="figcaption__brand">{{item.company}}</span>
-                <span class="small-uppercase">{{item.agency}}</span>
+                <span class="figcaption__kind">{{item.kind}}</span>
+                <span class="figcaption__brand">{{item.agency}}</span>
               </div>
             </div>
           </figcaption>
         </figure>
       </a>
     </div>
+  </div>
+</div>
