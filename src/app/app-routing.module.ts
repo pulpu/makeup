@@ -21,8 +21,7 @@ const appRoutes: Routes = [
     { path: ':language/:category', component: GalleryComponent }, 
   ]}, 
 
-   {path: 'admin/:ro/:id', component: AdminComponent, data: {message: 'Admin Page'},
-   {path: 'admin/:en/:id', component: AdminComponent, data: {message: 'Admin Page'}
+   {path: 'admin/:ro/:id', component: AdminComponent, data: {message: 'Admin Page'}
   },
 
     {path: '', redirectTo: '/home/ro', pathMatch: 'full'},

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NameEditorComponent } from './name-editor.component';
+import { ListingEditorComponent } from './listing-editor.component';
 
-describe('NameEditorComponent', () => {
-  let component: NameEditorComponent;
-  let fixture: ComponentFixture<NameEditorComponent>;
+describe('ListingEditorComponent', () => {
+  let component: ListingEditorComponent;
+  let fixture: ComponentFixture<ListingEditorComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NameEditorComponent ]
+      declarations: [ ListingEditorComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NameEditorComponent);
+    fixture = TestBed.createComponent(ListingEditorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

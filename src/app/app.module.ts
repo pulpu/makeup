@@ -18,7 +18,7 @@ import { AdminComponent } from './language/nav/admin/admin.component';
 import { ParagraphComponent } from './language/nav/paragraph/paragraph.component';
 import { AppRouterModule } from './app-routing.module';
 import { environment} from '../environments/environment';
-import { NameEditorComponent } from './name-editor/name-editor.component';
+import { ListingEditorComponent } from './listing-editor/listing-editor.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +31,7 @@ import { NameEditorComponent } from './name-editor/name-editor.component';
     Error404Component,
     AdminComponent,
     ParagraphComponent,
-    NameEditorComponent
+    ListingEditorComponent,
   ],
   imports: [
     BrowserModule,

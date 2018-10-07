@@ -1,0 +1,59 @@
+<form [formGroup]="myForm"  (ngSubmit)="submitHandler()">
+
+  <div formArrayName="items">
+    <div *ngFor="let item of itemsForm.controls; let i=index" [formGroupName]="i">
+      <label>
+        agency:
+        <input type="text" formControlName="agency">
+      </label>
+    
+      <label>
+        company:
+        <input type="text" formControlName="company">
+      </label>
+      
+      <label>
+        director:
+        <input type="text" formControlName="director">
+      </label>
+    
+      <label>
+        img:
+        <input type="text" formControlName="img">
+      </label>
+  
+      <label>
+        kind:
+        <input type="text" formControlName="kind">
+      </label>
+  
+      <label>
+        orientation:
+        <input type="text" formControlName="orientation">
+      </label>
+  
+      <label>
+        photographer:
+        <input type="text" formControlName="photographer">
+      </label>
+  
+      <label>
+        smallImg:
+        <input type="text" formControlName="smallImg">
+      </label>
+
+      <button (click)=deleteItem(i)>Delete</button>
+      
+    </div>
+
+    <button (click)="addItem()">Add Item</button>
+  
+  </div>
+
+  <button [disabled]="myForm.invalid">Submit Form</button>
+
+</form>
+
+<div *ngIf="success">
+    Yay! We received your submission
+</div>
