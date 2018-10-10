@@ -12,12 +12,21 @@ export class ServerService {
     private db: AngularFirestore
   ) { }
 
-  getData(path): Observable<any> {
+  getData(docPath, ColectionPath): Observable<any> {
     return this.db
-    .collection('data')
+    .collection('data/' + docPath + '/' + ColectionPath)
     .snapshotChanges()
     .pipe(map(docArray =>{
-      return docArray[0].payload.doc.data()[path]
+      return  docArray.map(element=>{
+        console.log('element: ',element.payload.doc.data())
+         return  element.payload.doc.data()
+      })
     }))
+  };
+
+  getDataSnapshot(docPath, ColectionPath): Observable<any> {
+    return this.db
+    .collection('data/' + docPath + '/' + ColectionPath)
+    .valueChanges();
   }
 }

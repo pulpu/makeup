@@ -1,13 +1,12 @@
-<div class="mask" [ngClass]="[animate ? 'mask mask--minimize' : 'mask']">
-  <!--[@divState]="state" -->
-  <div class="paragraph paragraph__wrapper">
-    <div class="paragraph paragraph__controller" (click)="onAnimate()">
-      <i ng-class="icon" class="icon icon--light icon--maximize"></i>
-    </div>
-    <div class="paragraph__content paragraph__content" [ngClass]="[animate ? 'paragraph__content paragraph__content--disable' : 'paragraph__content']">
-      <h2 class="paragraph paragraph__title">{{pagePath}}</h2>
-      <blockquote class="paragraph paragraph__blockquote">{{paragraph}}</blockquote>
+  <div class="mask" [ngClass]="[animate ? 'mask mask--minimize' : 'mask']">
+    <div class="paragraph paragraph__wrapper" >
+      <div class="paragraph paragraph__controller" (click)="onAnimate()">
+        <i ng-class="icon" class="icon icon--light icon--maximize"></i>
+      </div>
+      <div class="paragraph__content paragraph__content" [ngClass]="[animate ? 'paragraph__content paragraph__content--disable' : 'paragraph__content']">
+        <h2 class="paragraph paragraph__title">{{pagePath}}</h2>
+        <blockquote class="paragraph paragraph__blockquote">{{ paragraphs[curentLang]}}</blockquote>
+      </div>
     </div>
   </div>
-</div>
-<!--mask--minimize-->
+  <!--mask--minimize-->

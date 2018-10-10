@@ -17,21 +17,18 @@ import { Subscription } from 'rxjs';
 })
 export class GalleryComponent implements OnInit {
   database : Observable<any>;
-  paragraph : Observable<any>;
+  paragraphs : Observable<any>;
   items : Observable<any>;
   category : string;
   language: string;
   subscription: Subscription;
   categorypath: any;
   constructor(
-    private router: Router,
     private route: ActivatedRoute,
     private serverservice: ServerService,
-    private categoryservice: CategoryService,
     location: Location,
   ) { 
-    //i dont use this for the moment
-    // this.subscription = this.categoryservice.getCategory().subscribe(categorypath => { this.categorypath = categorypath; });
+  
   }
 
   ngOnInit() {
@@ -45,17 +42,27 @@ export class GalleryComponent implements OnInit {
         console.log('::::',params['category'])
 
         //hier I give to de sever service the page categori to make the selection in db
-        this.database = this.serverservice.getData(this.category);
-      
+        this.database = this.serverservice.getData(this.category, 'items');
+        this.paragraphs = this.serverservice.getData(this.category, 'paragraph');
+
+        console.log('ffffff',this.paragraphs)
         //make the selection for paragraph
-        this.database.subscribe(result => {
-          return this.paragraph = result.lang[this.language]
+        this.paragraphs.subscribe(result => {
+          console.log('result',result)
+          return result.map(paragraph=>{
+            console.log('><><><><',paragraph.paragraph)
+            return this.paragraphs = paragraph.paragraph
+          })
         })
-      
+
+      // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!11 am schimbat paragraph in paragraphs !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
         // make the selection for the listing
-        this.database.subscribe(result => {
-          return this.items = result.items
-        })
+        console.log('database>>>',this.paragraphs)
+        // this.database.subscribe(result => {
+        //   console.log('..1...',result.valueChanges())
+        //   return result.valueChanges();
+        // })
       }
     )
   }

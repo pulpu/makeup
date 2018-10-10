@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore } from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { Router, ActivatedRoute } from '@angular/router';
-import { CategoryService } from '../../category.service';
+import { ServerService } from './../../server.service';
 
 
 @Component({
@@ -19,35 +17,17 @@ export class NavComponent implements OnInit {
   public menu;
 
   constructor(
-    private db: AngularFirestore,
     private router: Router, 
     private route: ActivatedRoute,
-    private categoryservice: CategoryService,
+    private serverservice: ServerService,
   ) { }
 
   ngOnInit() {
-    this.menuthree = this.db
-    .collection('data')
-    .snapshotChanges()
-    .pipe(map(docArray => {
-      return docArray.map(doc => {
-        return {
-          items: doc.payload.doc.data()['menu']
-        }
-      })
-    }));
+    //hier I give to de sever service the page categori to make the selection in db
+    this.menuthree = this.serverservice.getDataSnapshot('menu', 'en');
   }
 
-  sendCategory(path): void {
-    // send category to subscribers via observable subject
-    this.categoryservice.sendCategory(path);
-  }
-
-  clearCategory(): void {
-      // clear category
-      this.categoryservice.clearCategory();
-  }
-  
+   
   onClick(category) {
     let currentUrl = this.router.url; /// this will give you current url
 

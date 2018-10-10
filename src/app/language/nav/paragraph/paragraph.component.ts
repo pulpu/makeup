@@ -10,9 +10,10 @@ import { Response } from '@angular/http';
 })
 export class ParagraphComponent implements OnInit {
   public animate = false; // this parameter must be send by
-	pagePath: string;
+  pagePath: string;
+  curentLang :string;
     // server: any[];
-    @Input() paragraph: string
+    @Input() paragraphs: string
     
 
   onAnimate() {
@@ -20,21 +21,7 @@ export class ParagraphComponent implements OnInit {
     this.animate == false ? this.animate = true : this.animate = false;
   }
 
-  constructor(
-    private route: ActivatedRoute, 
-    private router: Router) {
-      // router.events.subscribe((val) => {
-      // // ----------------- for grid -------------
-      //    this.serverService.getServer()
-      //      .subscribe(
-      //          (server: any[]) => this.server = server[this.user]['paragraph'],
-      //          (error) => console.log(error)
-      //        );
-      //        this.animate = false; // PBI 0006
-      //    //-------------- end for grid  ------------
-      //    })
- 
-   }
+  constructor(private route: ActivatedRoute) { }
 
    ngOnInit() {
     this.pagePath = this.route.snapshot.params['category']
@@ -42,6 +29,7 @@ export class ParagraphComponent implements OnInit {
        this.route.params.subscribe(
            (params: Params) => {
              this.pagePath = params['category'];
+             this.curentLang = params['language'];
            }
          )    
  

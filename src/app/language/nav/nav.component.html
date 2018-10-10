@@ -5,13 +5,13 @@
 </nav>
 <nav id="nav">
   <div class="logo"></div>
-  <ul class="menu" id="menu" *ngFor="let menu of menuthree | async">
-    <li class="menu__item" *ngFor="let item of menu.items">
+  <ul class="menu" id="menu">
+    <li class="menu__item" *ngFor="let item of menuthree | async">
       <a class="menu__link" (click)="onClick(item.title)"  [ngClass]="{'menu__link--active': categoryid === item.title}">{{item.title}}</a>
       <ul class="menu__sub">
-        <li class="menu__sub-item" *ngFor="let subtitle of item.subMenu">
+        <!-- <li class="menu__sub-item" *ngFor="let subtitle of item.subMenu">
           <a class="menu__link menu__link--secondary" (click)="onClick(subtitle)" [ngClass]="{ 'menu__link--active': categoryid=== subtitle}">{{subtitle}}</a>
-        </li>
+        </li> -->
       </ul>
     </li>
   </ul>
