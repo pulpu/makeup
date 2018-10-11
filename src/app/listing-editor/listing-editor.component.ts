@@ -25,7 +25,7 @@ export class ListingEditorComponent implements OnInit {
     
   }
 
-  get itemsForm() {
+  get itemForms() {
     return this.myForm.get('items') as FormArray
   }
 
@@ -35,20 +35,14 @@ export class ListingEditorComponent implements OnInit {
           Validators.required,
         ]],
         company: [''],
-        director:[''],
-        img: [''],
-        kind: [''],
-        orientation: [''],
-        photographer: [''],
-        smallImg:['']
     })
 
-    this.itemsForm.push(item);
+    this.itemForms.push(item);
 
   }
 
   deleteItem(i) {
-    this.itemsForm.removeAt(i)
+    this.itemForms.removeAt(i)
   }
 
   async submitHandler() {
@@ -57,7 +51,7 @@ export class ListingEditorComponent implements OnInit {
     const test = this.myForm.value;
 
     try {
-      await  this.afs.collection('test').doc('category').update(test);
+      await  this.afs.collection('data/cover/items').doc('s85rC8poUEd9y4sSbfyS').update(test);
       this.success = true;
     } catch(err) {
       console.error(err)

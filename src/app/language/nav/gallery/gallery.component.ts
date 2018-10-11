@@ -26,7 +26,6 @@ export class GalleryComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private serverservice: ServerService,
-    location: Location,
   ) { 
   
   }
@@ -34,35 +33,24 @@ export class GalleryComponent implements OnInit {
   ngOnInit() {
     this.category = this.route.snapshot.params['category']    // hier I take the page categori form the page path
 
-      //this is a subscribe to the page path change
+    //this is a subscribe to the page path change
     this.route.params.subscribe(
       (params: Params) => {
         this.category = params['category'];
         this.language = params['language'];
-        console.log('::::',params['category'])
 
         //hier I give to de sever service the page categori to make the selection in db
         this.database = this.serverservice.getData(this.category, 'items');
         this.paragraphs = this.serverservice.getData(this.category, 'paragraph');
 
-        console.log('ffffff',this.paragraphs)
         //make the selection for paragraph
         this.paragraphs.subscribe(result => {
-          console.log('result',result)
           return result.map(paragraph=>{
-            console.log('><><><><',paragraph.paragraph)
             return this.paragraphs = paragraph.paragraph
           })
         })
 
-      // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!11 am schimbat paragraph in paragraphs !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-        // make the selection for the listing
-        console.log('database>>>',this.paragraphs)
-        // this.database.subscribe(result => {
-        //   console.log('..1...',result.valueChanges())
-        //   return result.valueChanges();
-        // })
       }
     )
   }

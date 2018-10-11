@@ -12,12 +12,11 @@ export class ParagraphComponent implements OnInit {
   public animate = false; // this parameter must be send by
   pagePath: string;
   curentLang :string;
-    // server: any[];
-    @Input() paragraphs: string
+
+  @Input() paragraphs: string
     
 
   onAnimate() {
-    // this.state == 'normal' ? this.state = 'highlighted' : this.state = 'normal';
     this.animate == false ? this.animate = true : this.animate = false;
   }
 
