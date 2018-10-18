@@ -1,6 +1,7 @@
 export class Item {
     public constructor(
         public id: string,
+        public order: string,
         public agency: string,
         public company: string,
         public kind: string,

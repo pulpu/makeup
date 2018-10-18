@@ -17,7 +17,7 @@ export class ServerService {
   constructor(
     public db: AngularFirestore
   ) { 
-    this.itemscollection = this.db.collection('data/brides/items', x => x.orderBy('company', 'asc'));
+    this.itemscollection = this.db.collection('data/brides/items', x => x.orderBy('order', 'asc'));
 
     this.items = this.itemscollection.snapshotChanges().map(
       changes => {

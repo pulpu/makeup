@@ -1,5 +1,5 @@
 <app-language></app-language>
-<!-- <app-paragraph [paragraphs]='paragraphs'></app-paragraph> -->
+<app-paragraph [paragraphs]='paragraphs'></app-paragraph>
 <!-- <div class="container-fluid" style="margin-left:300px">
   <div class="row">
     <div  Class="mt-4 col-12 col-sm-6 col-md-3 grid-item">
@@ -8,76 +8,122 @@
   </div>
 </div> -->
 
-
-<div class="container">
-  <h1>Add New User</h1>
-  <form (ngSubmit)="itemSubmit()" #addform="ngForm">
-    <div class="form-group">
-
-      <label for="agency">Agency</label>
-
-      <input type="text" [(ngModel)]="model.agency" name="agency" class="form-control" id="agency" required #agency="ngModel">
-
+<div class="layout">
+    <div class="container-fluid" *ngIf="arr.length>0;else noData">
+        <div class="row">
+          <div *ngFor="let item of arr" [ngClass]="[item.orientation === 'portrait' ? 'mt-4 col-12 col-sm-6 col-md-3 grid-item' : 'mt-4 col-12 col-sm-12 col-md-6 grid-item']">
+            <app-admin-modal [item]='item'></app-admin-modal>
+            <a class="fancybox fancybox-imgw"  [style.backgroundImage]="'url('+ item.img +')'" [href]="item.smallImg">
+              <figure class="figure">
+                <span class="figure__action"><i class="icon icon--zoom"></i></span>
+                <figcaption class="figcaption ">
+                  <div>
+                    <div>
+                      <i [ngClass]="[item.photographer ? 'icon icon--pictures' : 'icon icon--videos']"></i>
+                      <span class="figcaption__campaign">{{item.company}}</span>
+                      <span class="figcaption__author">{{item.photographer || item.director}}</span>
+                    </div>
+                    <div class="clearfix ">
+                      <span class="figcaption__kind">{{item.kind}}</span>
+                      <span class="figcaption__brand">{{item.agency}}</span>
+                    </div>
+                  </div>
+                </figcaption>
+              </figure>
+            </a>
+            <a (click)="onDelete(item)" >
+                <span class="glyphicon glyphicon-trash" aria-hidden="true">delete</span>
+              </a>
+              
+          <a (click)="onUpdate(item)" >
+            <span class="glyphicon glyphicon-trash" aria-hidden="true">update</span>
+          </a>
+          </div>
+          <div class="new-item mt-4 col-12 col-sm-6 col-md-3 grid-item">
+              <h1>Add New User</h1>
+              <form (ngSubmit)="itemSubmit()" #addform="ngForm">
+                <div class="form-group">
+                  <label for="order">order</label>
+                <div id="input_div">
+                    <input type="button" value="-" id="minus" (click)="minus()">
+                    <input type="text"  [(ngModel)]="model.order" name="order" class="form-control" id="order" required #order="ngModel" value="1" min="1" max="10">
+                    <input type="button" value="+" id="plus" (click)="plus()">
+                </div>
+                </div>
+                <div [hidden]="order.valid || order.pristine" class="alert alert-danger">
+                    order is required
+                </div>
+                
+                <div class="form-group">
+                  <label for="agency">Agency</label>
+                  <input type="text" [(ngModel)]="model.agency" name="agency" class="form-control" id="agency" required #agency="ngModel">
+                </div>
+                <div [hidden]="agency.valid || agency.pristine" class="alert alert-danger">
+                  Agency is required
+                </div>
+                <div class="form-group">
+                  <label for="company">Company</label>
+                  <input type="text" [(ngModel)]="model.company" name="company" class="form-control" id="company" required #company="ngModel">
+                </div>
+                <div [hidden]="company.valid || company.pristine" class="alert alert-danger">
+                  Company is required
+                </div>
+                <div class="form-group">
+                  <label for="kind">kind</label>
+                  <input type="text" [(ngModel)]="model.kind" name="kind" class="form-control" id="kind" required #kind="ngModel">
+                </div>
+                <div [hidden]="kind.valid || kind.pristine" class="alert alert-danger">
+                 Kind is required
+                </div>
+                <div class="form-group">
+                  <label for="photographer">photographer</label>
+                  <input type="text" [(ngModel)]="model.photographer" name="photographer" class="form-control" id="photographer" required #photographer="ngModel">
+                </div>
+                <div [hidden]="photographer.valid || photographer.pristine" class="alert alert-danger">
+                    photographer is required
+                </div>
+                <div class="form-group">
+                    <label for="director">director</label>
+                    <input type="text" [(ngModel)]="model.director" name="director" class="form-control" id="director" required #director="ngModel">
+                </div>
+                <div [hidden]="director.valid || director.pristine" class="alert alert-danger">
+                      director is required
+                </div>
+                <div class="form-group">
+                    <label for="orientation">orientation</label>
+                    <input type="text" [(ngModel)]="model.orientation" name="orientation" class="form-control" id="orientation" required #orientation="ngModel">
+                </div>
+                <div [hidden]="orientation.valid || orientation.pristine" class="alert alert-danger">
+                    orientation is required
+                </div>
+                <div class="form-group">
+                    <label for="img">img</label>
+                    <input type="text" [(ngModel)]="model.img" name="img" class="form-control" id="img" required #img="ngModel">
+                </div>
+                <div [hidden]="img.valid || img.pristine" class="alert alert-danger">
+                    img is required
+                </div>
+                <div class="form-group">
+                    <label for="smallImg">smallImg</label>
+                    <input type="text" [(ngModel)]="model.smallImg" name="smallImg" class="form-control" id="smallImg" required #smallImg="ngModel">
+                </div>
+                <div [hidden]="smallImg.valid || smallImg.pristine" class="alert alert-danger">
+                    smallImg is required
+                </div>
+                <button type="submit" class="btn btn-default form-control" [disabled]="!addform.form.valid">Add Item</button>
+                <br>  
+              </form>
+            </div>
+        </div>
+      </div>
+    
+    
+    
+    <div class="container">
+      <ng-template #noData>
+        <hr>
+        <h5>There are no items to display</h5>
+      </ng-template>
     </div>
-    <div [hidden]="agency.valid || agency.pristine" class="alert alert-danger">
-
-      Agency is required
-
-    </div>
-
-    <div class="form-group">
-
-      <label for="company">Company</label>
-
-      <input type="text" [(ngModel)]="model.company" name="company" class="form-control" id="company" required #company="ngModel">
-
-    </div>
-    <div [hidden]="company.valid || company.pristine" class="alert alert-danger">
-
-      Company is required
-
-    </div>
-    <div class="form-group">
-
-      <label for="kind">kind</label>
-      <input type="text" [(ngModel)]="model.kind" name="kind" class="form-control" id="kind" required #kind="ngModel">
-
-    </div>
-    <div [hidden]="kind.valid || kind.pristine" class="alert alert-danger">
-
-     Kind is required
-
-    </div>
-
-
-
-    <button type="submit" class="btn btn-default form-control" [disabled]="!addform.form.valid">Add Item</button>
-    <br>
-  
-  </form>
-</div>
-
-<hr>
-<div class="container" *ngIf="arr.length>0;else noData">
-  <ul *ngFor="let item of arr" class="list-group">
-    <li class="list-group-item">
-      <strong>{{item.agency}}{{item.company}}</strong> : {{item.photagrapher}}
-
-      <a (click)="onDelete(item)" >
-        <span class="glyphicon glyphicon-trash" aria-hidden="true">delete</span>
-      </a>
-<br/><hr/><br/>
-      <a (click)="onUpdate(item)" >
-        <span class="glyphicon glyphicon-trash" aria-hidden="true">update</span>
-      </a>
-    </li>
-
-  </ul>
-
-</div>
-<div class="container">
-  <ng-template #noData>
-    <hr>
-    <h5>There are no items to display</h5>
-  </ng-template>
+    
 </div>

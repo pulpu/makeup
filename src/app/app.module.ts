@@ -21,6 +21,7 @@ import { ParagraphComponent } from './language/nav/paragraph/paragraph.component
 import { AppRouterModule } from './app-routing.module';
 import { environment} from '../environments/environment';
 import { ListingEditorComponent } from './listing-editor/listing-editor.component';
+import { AdminModalComponent } from './language/nav/admin/admin-modal/admin-modal.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { ListingEditorComponent } from './listing-editor/listing-editor.componen
     AdminComponent,
     ParagraphComponent,
     ListingEditorComponent,
+    AdminModalComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ParagraphComponent } from './paragraph.component'; //probabil e o gresala si trebuie sters
+import { AdminModalComponent } from './admin-modal.component';
 
-describe('ParagraphComponent', () => {
-  let component: ParagraphComponent;
-  let fixture: ComponentFixture<ParagraphComponent>;
+describe('AdminModalComponent', () => {
+  let component: AdminModalComponent;
+  let fixture: ComponentFixture<AdminModalComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ParagraphComponent ]
+      declarations: [ AdminModalComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ParagraphComponent);
+    fixture = TestBed.createComponent(AdminModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

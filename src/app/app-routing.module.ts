@@ -12,6 +12,7 @@ import { IntroComponent } from './language/nav/intro/intro.component';
 //import { ThemeVideoComponent } from './language/nav/theme-video/theme-video.component';
 import { HomeComponent } from './language/home/home.component';
 import { Error404Component } from './language/error404/error404.component';
+import { AdminModalComponent } from './language/nav/admin/admin-modal/admin-modal.component';
 
 
 
@@ -21,9 +22,9 @@ const appRoutes: Routes = [
     { path: ':language/:category', component: GalleryComponent }, 
   ]}, 
 
-   {path: 'admin/:language/:id', component: AdminComponent, data: {message: 'Admin Page'}
+   {path: 'admin/:language/:category', component: AdminComponent, data: {message: 'Admin Page'}
   },
-
+    { path: 'modal', component: AdminModalComponent},
     {path: '', redirectTo: '/home/ro', pathMatch: 'full'},
     // {path: '404', component: PageNotFoundComponent},
     {path: '404', component: Error404Component, data: {message: 'Page not found!'}},
