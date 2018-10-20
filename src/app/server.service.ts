@@ -40,9 +40,18 @@ export class ServerService {
   deleteItem(item) {
     this.db.doc(`data/brides/items/${item.id}`).delete();
   }
-  updateItems(item) {
+  
+  updateItems(item, order, agency, company, kind, photographer, director, orientation, img, smallImg) {
     this.db.doc(`data/brides/items/${item.id}`).update({
-      agency:'xxxxxxxxxxxxx'
+      order: order,
+      agency: agency,
+      company: company,
+      kind: kind,
+      photographer: photographer,
+      director: director,
+      orientation: orientation,
+      img: img,
+      smallImg: smallImg
     })
   }
 
