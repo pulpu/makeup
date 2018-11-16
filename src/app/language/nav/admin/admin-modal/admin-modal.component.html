@@ -1,110 +1,31 @@
 <button class="btn btn-outline-primary mb-2 mr-2" (click)="openLg(content)">Large modal</button>
 <ng-template #content let-modal>
-    <div class="modal-header">
-      <h4 class="modal-title">Modal title</h4>
-      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-        <div>
-            <div class="container">
-              <div class="row">
-                <div class="col-12 col-xs-12 col-md-6 col-lg-6" [style.backgroundImage]="'url('+ item.img +')'" ></div>
-                <div class="col-12 col-xs-12 col-md-6 col-lg-6">
-          <div class="new-item col-12 grid-item">
-              <form (ngSubmit)="itemSubmit()" #addform="ngForm">
-                <div class="form-group">
-                  <label for="order">order</label>
-                <div id="input_div">
-                    <input type="button" value="-" id="minus" (click)="minus()">
-                    <input type="text"  [(ngModel)]="model.order" name="order" class="form-control" id="order" required #order="ngModel" value="1" min="1" max="10">
-                    <input type="button" value="+" id="plus" (click)="plus()">
-                </div>
-                </div>
-                <div [hidden]="order.valid || order.pristine" class="alert alert-danger">
-                    order is required
-                </div>
-                
-                <div class="form-group">
-                  <label for="agency">Agency</label>
-                  <input type="text" [(ngModel)]="model.agency" name="agency" class="form-control" id="agency" ng-value="model.agency" placeholder="{{item.agency}}" required #agency="ngModel">
-                </div>
-                <div [hidden]="agency.valid || agency.pristine" class="alert alert-danger">
-                  Agency is required
-                </div>
-                <div class="form-group">
-                  <label for="company">Company {{item.company}}</label>
-                  <input type="text" [(ngModel)]="model.company" name="company" class="form-control" id="company" required #company="ngModel">
-                </div>
-                <div [hidden]="company.valid || company.pristine" class="alert alert-danger">
-                  Company is required
-                </div>
-                <div class="form-group">
-                  <label for="kind">kind</label>
-                  <input type="text" [(ngModel)]="model.kind" name="kind" class="form-control" id="kind" required #kind="ngModel">
-                </div>
-                <div [hidden]="kind.valid || kind.pristine" class="alert alert-danger">
-                 Kind is required
-                </div>
-                <div class="form-group">
-                  <label for="photographer">photographer</label>
-                  <input type="text" [(ngModel)]="model.photographer" name="photographer" class="form-control" id="photographer" required #photographer="ngModel">
-                </div>
-                <div [hidden]="photographer.valid || photographer.pristine" class="alert alert-danger">
-                    photographer is required
-                </div>
-                <div class="form-group">
-                    <label for="director">director</label>
-                    <input type="text" [(ngModel)]="model.director" name="director" class="form-control" id="director" required #director="ngModel">
-                </div>
-                <div [hidden]="director.valid || director.pristine" class="alert alert-danger">
-                      director is required
-                </div>
-                <div class="form-group">
-                    <label for="orientation">orientation</label>
-                    <input type="text" [(ngModel)]="model.orientation" name="orientation" class="form-control" id="orientation" required #orientation="ngModel">
-                </div>
-                <div [hidden]="orientation.valid || orientation.pristine" class="alert alert-danger">
-                    orientation is required
-                </div>
-                <div class="form-group">
-                    <label for="img">img</label>
-                    <input type="text" [(ngModel)]="model.img" name="img" class="form-control" id="img" required #img="ngModel">
-                </div>
-                <div [hidden]="img.valid || img.pristine" class="alert alert-danger">
-                    img is required
-                </div>
-                <div class="form-group">
-                    <label for="smallImg">smallImg</label>
-                    <input type="text" [(ngModel)]="model.smallImg" name="smallImg" class="form-control" id="smallImg" required #smallImg="ngModel">
-                </div>
-                <div [hidden]="smallImg.valid || smallImg.pristine" class="alert alert-danger">
-                    smallImg is required
-                </div>
-                <div class="container">
-                  <div class="row">
-                    <div class="col-6">
-                        <a class="btn" (click)="onDelete(item)" >
-                            <span class="glyphicon glyphicon-trash" aria-hidden="true">delete</span>
-                          </a>
-                    </div>
-                    <div class="col-6">
-                        <a class="btn btn-primary" (click)="onUpdate(item, order.model, agency.model, company.model, kind.model, photographer.model, director.model, orientation.model, img.model, smallImg.model )" >
-                            <span class="glyphicon glyphicon-trash" aria-hidden="true">update</span>
-                          </a>
-                    </div>
+  <div class="modal-header">
+    <h4 class="modal-title">Modal title</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div>
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-xs-12 col-md-6 col-lg-6" [style.backgroundImage]="'url('+ item.img +')'"></div>
+          <div class="col-12 col-xs-12 col-md-6 col-lg-6">
+              <button (click)="updateValues()">Update Profile</button>
+              <form (ngSubmit)="itemSubmit()"  [formGroup]="customForm">                 
+                  <div class="form-group">
+                    <label for="agency">Agency</label>
+                    <input formControlName="agency" type="text" >
                   </div>
-                </div>
-                <br>  
-              </form>
-            </div>
-                </div>
-              </div>
-            </div>
+            
+                </form>
           </div>
+        </div>
+      </div>
     </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
-    </div>
-  </ng-template>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+  </div>
+</ng-template>

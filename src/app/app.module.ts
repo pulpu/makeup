@@ -21,7 +21,6 @@ import { AdminComponent } from './language/nav/admin/admin.component';
 import { ParagraphComponent } from './language/nav/paragraph/paragraph.component';
 import { AppRouterModule } from './app-routing.module';
 import { environment} from '../environments/environment';
-import { ListingEditorComponent } from './listing-editor/listing-editor.component';
 import { AdminModalComponent } from './language/nav/admin/admin-modal/admin-modal.component';
 
 @NgModule({
@@ -35,7 +34,6 @@ import { AdminModalComponent } from './language/nav/admin/admin-modal/admin-moda
     Error404Component,
     AdminComponent,
     ParagraphComponent,
-    ListingEditorComponent,
     AdminModalComponent,
   ],
   imports: [

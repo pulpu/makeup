@@ -2,7 +2,7 @@ import { Component, OnInit,Input,ViewEncapsulation  } from '@angular/core';
 import { Observable } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ServerService } from '../../../../server.service';
-import { Item } from '../../../../item';
+import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-admin-modal',
@@ -23,22 +23,42 @@ import { Item } from '../../../../item';
 })
 export class AdminModalComponent implements OnInit {
   @Input() item: {}
+  customForm: FormGroup;
 
-  arr: Item[] = [];
+  arr = this.customForm;
   model = { id:'',order:'', agency: '', company: '', kind: '', photographer: '', director:'', orientation:'',img:'', smallImg:'' };
  
   ngOnInit() {
-    this._data.getItems().subscribe(
-      (item: Item[]) => {
-        this.arr = item;
-        console.log(this.arr);
-      }
-    );
+    this.customForm = this.fb.group({
+      order: [''],
+      agency: [''],
+      company: [''],
+      kind: [''],
+      photographer: [''],
+      director: [''],
+      orientation: [''],
+      img: [''],
+      smallImg: [''],
+    })
+
   }
+
+  updateValues(dataObject: any) {
+    this.customForm.patchValue({
+      agency: "qsqsqsqsqsqsq11211"
+    });
+  }
+
+
   constructor(
     private modalService: NgbModal,
-    public _data: ServerService,
-    private serverservice: ServerService,) { }
+    private fb: FormBuilder,
+    public _data: ServerService) { }
+
+  openLg(content) {
+    this.modalService.open(content, { size: 'lg' });
+  }
+
   itemSubmit() {
     this._data.addItem(this.model);
     this.model.id = '';
@@ -59,10 +79,5 @@ export class AdminModalComponent implements OnInit {
   onUpdate(item, order, agency, company, kind, photographer, director, orientation, img, smallImg) {
     this._data.updateItems(item, order, agency, company, kind, photographer, director, orientation, img, smallImg);
   }
-
-  openLg(content) {
-    this.modalService.open(content, { size: 'lg' });
-  }
-
 
 }

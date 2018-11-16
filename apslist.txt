@@ -33,3 +33,9 @@ APS-11 (va fi vreat dupa ce se face importul sever servis in nav.component) must
 momentan nu folosesc categori ervice
 ---------------
 avem o eroare in router
+
+
+
+Documentation:
+
+admicomponents.html use server.service unde acum categoria brides este hardcodata trebue facuta dinamica

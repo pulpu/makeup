@@ -11,6 +11,7 @@ import { Item } from '../../../item';
 })
 export class AdminComponent implements OnInit {
   paragraphs : Observable<any>;
+  database : Observable<any>;
   category : string;
   language: string;
 
@@ -36,16 +37,14 @@ export class AdminComponent implements OnInit {
 
         //hier I give to de sever service the page categori to make the selection in db
         this.paragraphs = this.serverservice.getData(this.category, 'paragraph');
+        this.database = this.serverservice.getData(this.category, 'items');
 
         //make the selection for paragraph
         this.paragraphs.subscribe(result => {
           return result.map(paragraph=>{
-            console.log(":::::::::",paragraph)
             return this.paragraphs = paragraph.paragraph
           })
         })
-
-
       }
     )
   }
@@ -55,6 +54,8 @@ export class AdminComponent implements OnInit {
     private serverservice: ServerService,
     private route: ActivatedRoute,) { }
 
+
+    // ** start ** this is for admim page to add new items
   itemSubmit() {
     this._data.addItem(this.model);
     this.model.id = '';
@@ -69,30 +70,7 @@ export class AdminComponent implements OnInit {
     this.model.smallImg = '';
   }
   onDelete(item) {
-    console.log('item', item)
     this._data.deleteItem(item);
   }
-
-  onUpdate(item) {
-    this._data.updateItems(item);
-  }
-
-
-  //from hier are starting the methods for new item
-  count: number = 1;
-  countEl = (<HTMLInputElement>document.getElementById('order'));
-
-  plus(){
-    console.log(this)
-      this.count++;
-      console.log( this.countEl)
-      // this.countEl.value = '' + this.count;
-  }
-  minus(){
-    if (this.count > 1) {
-      this.count--;
-      this.countEl.value = '' + this.count;
-    }  
-  }
-
+// ** end **//
 }

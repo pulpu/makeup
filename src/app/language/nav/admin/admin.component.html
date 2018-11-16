@@ -33,13 +33,8 @@
             </a>
             <a (click)="onDelete(item)" >
                 <span class="glyphicon glyphicon-trash" aria-hidden="true">delete</span>
-              </a>
-              
-          <a (click)="onUpdate(item)" >
-            <span class="glyphicon glyphicon-trash" aria-hidden="true">update</span>
-          </a>
-
-          </div>
+            </a>
+         </div>
           <div class="new-item mt-4 col-12 col-sm-6 col-md-3 grid-item">
               <h1>Add New User</h1>
               <form (ngSubmit)="itemSubmit()" #addform="ngForm">

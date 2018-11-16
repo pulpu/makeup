@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ServerService } from '../../../server.service';
-import { CategoryService } from '../../../category.service';
 import { Subscription } from 'rxjs';
 
 // declare var jquery:any;
