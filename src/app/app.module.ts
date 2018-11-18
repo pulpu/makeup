@@ -8,6 +8,8 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 import {  ReactiveFormsModule } from '@angular/forms';
 import { FormsModule }   from '@angular/forms';
+import { MatButtonModule, MatFormFieldModule, MatInputModule, MatRippleModule } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 import { AppComponent } from './app.component';
@@ -22,6 +24,16 @@ import { ParagraphComponent } from './language/nav/paragraph/paragraph.component
 import { AppRouterModule } from './app-routing.module';
 import { environment} from '../environments/environment';
 import { AdminModalComponent } from './language/nav/admin/admin-modal/admin-modal.component';
+import { FireFormDirective } from './fire-form.directive';
+import { ModalComponent } from './language/nav/admin/modal/modal.component';
+
+
+const modules = [
+  MatButtonModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatRippleModule
+];
 
 @NgModule({
   declarations: [
@@ -35,6 +47,8 @@ import { AdminModalComponent } from './language/nav/admin/admin-modal/admin-moda
     AdminComponent,
     ParagraphComponent,
     AdminModalComponent,
+    FireFormDirective,
+    ModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,7 +59,12 @@ import { AdminModalComponent } from './language/nav/admin/admin-modal/admin-moda
     AngularFirestoreModule,
     ReactiveFormsModule,
     FormsModule,
+    BrowserAnimationsModule,
+    ...modules,
     NgbModule.forRoot()
+  ],
+  exports:[
+    ...modules
   ],
   providers: [],
   bootstrap: [AppComponent]

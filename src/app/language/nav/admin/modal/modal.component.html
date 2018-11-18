@@ -1,0 +1,48 @@
+<button class="btn btn-outline-primary mb-2 mr-2" (click)="openLg(content)">Large modal</button>
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Modal title</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div>
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-xs-12 col-md-6 col-lg-6" [style.backgroundImage]="'url('+ item.img +')'"></div>
+          <div class="col-12 col-xs-12 col-md-6 col-lg-6">
+              <div *ngIf="state === 'synced'" class="notification is-success">form is synced</div>
+              <div *ngIf="state === 'modified'" class="notification is-success">form is modified</div>
+              <div *ngIf="state === 'error'" class="notification is-success">form is error</div>
+              <div *ngIf="state === 'loading'" class="notification is-success">form is loading</div>
+              <form [formGroup]="myForm" fireForm path="data/brides/items/Cm7ZaSVkpXcwcTBjVDCF"
+              (stateChange)="changeHandler($event)">
+            
+               <mat-form-field class="m-right">
+                <input matInput placeholder="agency" formControlName="agency">
+              </mat-form-field>
+            
+              <!-- <mat-form-field>
+                <mat-select formControlName="career" placeholder="career">
+                    <mat-option value="Magician">magician</mat-option>
+                    <mat-option value="clown">clown</mat-option>
+                    <mat-option value="juggler">juggler</mat-option>
+                </mat-select>
+              </mat-form-field> -->
+            
+              <!-- <mat-form-field>
+                <textarea matInput placeholder="your bio" formControlName="bio"></textarea>
+              </mat-form-field> -->
+            
+            
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+  </div>
+</ng-template>
