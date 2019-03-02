@@ -1,20 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ServerService } from '../../../server.service';
 import { Subscription } from 'rxjs';
-
-// declare var jquery:any;
-// declare var $ :any;
+declare var jquery:any;
+declare var $ :any;
 
 @Component({
   selector: 'app-gallery',
   templateUrl: './gallery.component.html',
   styleUrls: ['./gallery.component.css']
 })
-export class GalleryComponent implements OnInit {
+export class GalleryComponent implements OnInit,DoCheck {
   database : Observable<any>;
   paragraphs : Observable<any>;
   items : Observable<any>;
@@ -54,10 +53,12 @@ export class GalleryComponent implements OnInit {
     )
   }
 
-// ngDoCheck() {
-//     $(".fancybox-imgw").fancybox();
-//     $(document).ready(function() {
-//       $(".fancybox-imgw").fancybox();
-//     });
-//   }
+
+
+ngDoCheck() {
+    $(".fancybox-imgw").fancybox();
+    $(document).ready(function() {
+      $(".fancybox-imgw").fancybox();
+    });
+  }
 }
