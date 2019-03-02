@@ -1,7 +1,7 @@
-<button class="btn btn-outline-primary mb-2 mr-2" (click)="openLg(content)">Large modal</button>
+<button class="btn btn-outline-primary mb-2 mr-2" (click)="openLg(content)">Edit</button>
 <ng-template #content let-modal>
   <div class="modal-header">
-    <h4 class="modal-title">Modal title</h4>
+    <h4 class="modal-title">Edit Picture Info</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -10,32 +10,81 @@
     <div>
       <div class="container">
         <div class="row">
-          <div class="col-12 col-xs-12 col-md-6 col-lg-6" [style.backgroundImage]="'url('+ item.img +')'"></div>
+          <div class="col-12 col-xs-12 col-md-6 col-lg-6 modal__image" [style.backgroundImage]="'url('+ item.img +')'"></div>
           <div class="col-12 col-xs-12 col-md-6 col-lg-6">
-              <div *ngIf="state === 'synced'" class="notification is-success">form is synced</div>
-              <div *ngIf="state === 'modified'" class="notification is-success">form is modified</div>
-              <div *ngIf="state === 'error'" class="notification is-success">form is error</div>
-              <div *ngIf="state === 'loading'" class="notification is-success">form is loading</div>
-              <form [formGroup]="myForm" fireForm path="data/brides/items/Cm7ZaSVkpXcwcTBjVDCF"
+              <div *ngIf="state === 'loading'" class="notification is-success mb-2">form is synced</div>
+              <div *ngIf="state === 'synced'" class="notification is-success mb-2">form is synced</div>
+              <div *ngIf="state === 'modified'" class="notification is-success mb-2">form is modified</div>
+              <div *ngIf="state === 'error'" class="notification is-success mb-2">form is error</div>
+              <form [formGroup]="myForm" fireForm path="{{ 'data/'+ category +'/items/' + item.id}}"
               (stateChange)="changeHandler($event)">
             
-               <mat-form-field class="m-right">
-                <input matInput placeholder="agency" formControlName="agency">
-              </mat-form-field>
+               <div class="m-left">
+                <label for="agency">agency name: </label>
+                <div>
+                    <input matInput placeholder="agency" formControlName="agency" class="modal__input">
+                </div>
+              </div>
+
+              <div class="m-left">
+                <label for="company">campaign name: </label>
+                <div>
+                    <input matInput placeholder="company" formControlName="company" class="modal__input">
+                </div>
+              </div>
+
+              <div class="m-left">
+                <label for="director">director or photographer: </label>
+                <div>
+                    <input matInput placeholder="director" formControlName="director" class="modal__input">
+                </div>
+              </div>
+
+              <div class="m-left">
+                <label for="img">pcture: </label>
+                <div>
+                    <input matInput placeholder="img" formControlName="img" class="modal__input">
+                </div>
+              </div>
+
+              <div>
+                <label for="smallImg">small picture: </label>
+                <div>
+                    <input matInput placeholder="smallImg" formControlName="smallImg" class="modal__input">
+                </div>
+              </div>
             
-              <!-- <mat-form-field>
-                <mat-select formControlName="career" placeholder="career">
-                    <mat-option value="Magician">magician</mat-option>
-                    <mat-option value="clown">clown</mat-option>
-                    <mat-option value="juggler">juggler</mat-option>
-                </mat-select>
-              </mat-form-field> -->
+              <div>
+                <label for="kind">kind: </label>
+                <div>
+                    <select formControlName="kind" placeholder="kind" class="modal__input">
+                        <option value="photographer">photographer</option>
+                        <option value="director">director</option>
+                    </select>
+                </div>
+              </div>
+
+              <div>
+                <label for="orientation">image orientation: </label>
+                <div>
+                    <select formControlName="orientation" placeholder="orientation" class="modal__input">
+                        <option value="portrait">portrait</option>
+                        <option value="landscape">landscape</option>
+                    </select>
+                </div>
+              </div>
             
-              <!-- <mat-form-field>
-                <textarea matInput placeholder="your bio" formControlName="bio"></textarea>
-              </mat-form-field> -->
-            
-            
+              <!-- <div>
+                  <label for="orientation">image orientation: </label>
+                  <input matInput placeholder="photographer" formControlName="photographer">
+              </div> -->
+
+              <div>
+                  <label for="order">image order: </label>
+                  <div>
+                      <input matInput placeholder="order" formControlName="order" class="modal__input mb-0">
+                  </div>
+              </div>
             </form>
           </div>
         </div>

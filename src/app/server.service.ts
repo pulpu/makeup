@@ -15,9 +15,12 @@ export class ServerService {
   constructor(
     public db: AngularFirestore
   ) { 
-    this.itemscollection = this.db.collection('data/brides/items', x => x.orderBy('order', 'asc'));
+   // this.itemscollection = this.db.collection('data/brides/items', x => x.orderBy('order', 'asc'));
 
-    this.items = this.itemscollection.snapshotChanges().map(
+  }
+
+  getItems(path) {
+        this.items = this.db.collection('data/' + path + '/items', x => x.orderBy('order', 'asc')).snapshotChanges().map(
       changes => {
         return changes.map(
           a => {
@@ -27,9 +30,6 @@ export class ServerService {
             return data;
           });
       });
-  }
-
-  getItems() {
     return this.items;
   }
   addItem(item) {
@@ -39,19 +39,19 @@ export class ServerService {
     this.db.doc(`data/brides/items/${item.id}`).delete();
   }
   
-  updateItems(item, order, agency, company, kind, photographer, director, orientation, img, smallImg) {
-    this.db.doc(`data/brides/items/${item.id}`).update({
-      order: order,
-      agency: agency,
-      company: company,
-      kind: kind,
-      photographer: photographer,
-      director: director,
-      orientation: orientation,
-      img: img,
-      smallImg: smallImg
-    })
-  }
+  // updateItems(item, order, agency, company, kind, photographer, director, orientation, img, smallImg) {
+  //   this.db.doc(`data/brides/items/${item.id}`).update({
+  //     order: order,
+  //     agency: agency,
+  //     company: company,
+  //     kind: kind,
+  //     photographer: photographer,
+  //     director: director,
+  //     orientation: orientation,
+  //     img: img,
+  //     smallImg: smallImg
+  //   })
+  // }
 
   getData(docPath, ColectionPath): Observable<any> {
     return this.db

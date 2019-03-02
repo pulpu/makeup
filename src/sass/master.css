@@ -1688,6 +1688,22 @@ nav:after {
   }
 }
 
+.modal__image {
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.modal__input {
+  border: none;
+  border-bottom: 1px solid #9c7120;
+  margin: 5px 0 10px 0px;
+  width: 100%;
+}
+
+.modal__input:focus {
+  outline: none;
+}
+
 .left {
   float: left;
 }

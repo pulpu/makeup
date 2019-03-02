@@ -8,7 +8,8 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 import {  ReactiveFormsModule } from '@angular/forms';
 import { FormsModule }   from '@angular/forms';
-import { MatButtonModule, MatFormFieldModule, MatInputModule, MatRippleModule } from '@angular/material';
+import { MatButtonModule, MatFormFieldModule, MatInputModule, MatRippleModule, MatSelectModule } from '@angular/material';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
@@ -32,7 +33,9 @@ const modules = [
   MatButtonModule,
   MatFormFieldModule,
   MatInputModule,
-  MatRippleModule
+  MatRippleModule,
+  MatSelectModule,
+
 ];
 
 @NgModule({

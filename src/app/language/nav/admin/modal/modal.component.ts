@@ -1,6 +1,7 @@
 import { Component, OnInit, Input  } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 
 @Component({
@@ -24,17 +25,34 @@ export class ModalComponent implements OnInit {
 
 myForm: FormGroup;
 state: string;
+category: string;
 
   constructor(    
     private modalService: NgbModal,
-    private fb: FormBuilder) { }
+    private fb: FormBuilder,
+    private route: ActivatedRoute) { }
+
+
 
   ngOnInit() {
     this.myForm = this.fb.group({
-      agency: ['', Validators.required],
-      career: [''],
-      bio: ['']
+      agency: [''],
+      company: [''],
+      director: [''],
+      img: [''],
+      smallImg: [''],
+      kind: [''],
+      order: [''],
+      orientation: [''],
+      photographer: [''],
     })
+
+    //this is a subscribe to the page category change
+    this.route.params.subscribe(
+      (params: Params) => {
+        this.category = params['category'];
+      }
+    )
   }
 
   openLg(content) {

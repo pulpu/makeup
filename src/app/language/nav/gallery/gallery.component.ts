@@ -30,7 +30,7 @@ export class GalleryComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.category = this.route.snapshot.params['category']    // hier I take the page categori form the page path
+    this.category = this.route.snapshot.params['category']    // here I take the page categori form the page path
 
     //this is a subscribe to the page path change
     this.route.params.subscribe(
