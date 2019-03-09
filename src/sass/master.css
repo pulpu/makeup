@@ -1124,8 +1124,8 @@ nav:after {
   }
   .menu--xs:after {
     background: #fff;
-    -webkit-box-shadow: 0px 4px 11px -2px #969696;
-    box-shadow: 0px 4px 11px -2px #969696;
+    -webkit-box-shadow: 0px 1px 1px -2px #969696;
+    box-shadow: 0px 1px 1px -2px #969696;
     height: 42px;
   }
   .menu--xs .icon {
@@ -1169,8 +1169,14 @@ nav:after {
 }
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1280px) and (orientation: landscape) {
+  .menu--xs {
+    display: inline-block;
+  }
   .menu--xs:after {
-    display: none;
+    background: #fff;
+    -webkit-box-shadow: 0px 4px 11px -2px #969696;
+    box-shadow: 0px 4px 11px -2px #969696;
+    height: 50px;
   }
   .menu--xs .icon {
     font-size: 30px;
@@ -1310,6 +1316,36 @@ nav:after {
     -ms-transition: left 0.8s ease-in;
     -moz-transition: left 0.8s ease-in;
     -webkit-transition: left 0.8s ease-in;
+  }
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 736px) and (orientation: landscape) {
+  .mask--minimize .paragraph__controller {
+    right: -40px;
+    transition: right 1.5s ease-out;
+    -ms-transition: right 1.5s ease-out;
+    -moz-transition: right 1.5s ease-out;
+    -webkit-transition: right 1.5s ease-out;
+  }
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 736px) and (orientation: portrait) {
+  .mask--minimize .paragraph__controller {
+    right: -40px;
+    transition: right 1.5s ease-out;
+    -ms-transition: right  1.5s ease-out;
+    -moz-transition: right  1.5s ease-out;
+    -webkit-transition: right 1.5s ease-out;
+  }
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1280px) and (orientation: portrait) {
+  .mask--minimize .paragraph__controller {
+    right: -40px;
+    transition: right 1.5s ease-out;
+    -ms-transition: right 1.5s ease-out;
+    -moz-transition: right 1.5s ease-out;
+    -webkit-transition: right 1.5s ease-out;
   }
 }
 

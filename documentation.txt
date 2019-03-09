@@ -28,3 +28,16 @@ move facybox
       $(".fancybox-imgw").fancybox();
   }
   from gallery.component.ts to nav nav.component.ts
+
+  /******************** APS-21 ********************/
+  install:
+  npm install ngx-device-detector --save
+  from: https://www.npmjs.com/package/ngx-device-detector
+
+  create a data servise to share data between components
+  data.service.ts
+  https://coursetro.com/posts/code/110/Creating-and-Using-Angular-5-Services
+
+  I put a condition that menu will slide left just if device !== that 'tablet'
+
+  /******************** APS-22 ********************/

@@ -11,7 +11,8 @@ import { FormsModule }   from '@angular/forms';
 import { MatButtonModule, MatFormFieldModule, MatInputModule, MatRippleModule, MatSelectModule } from '@angular/material';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { DeviceDetectorModule } from 'ngx-device-detector';
+import { DataService } from '../app/data.service';
 
 import { AppComponent } from './app.component';
 import { LanguageComponent } from './language/language.component';
@@ -62,6 +63,7 @@ const modules = [
     AngularFirestoreModule,
     ReactiveFormsModule,
     FormsModule,
+    DeviceDetectorModule.forRoot(),
     BrowserAnimationsModule,
     ...modules,
     NgbModule.forRoot()
@@ -69,7 +71,7 @@ const modules = [
   exports:[
     ...modules
   ],
-  providers: [],
+    providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

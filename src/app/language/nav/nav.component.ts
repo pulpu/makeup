@@ -1,8 +1,11 @@
-import { Component, OnInit, DoCheck } from '@angular/core';
+import { Component, OnInit, DoCheck, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ServerService } from './../../server.service';
 import { trigger, state, style, animate, transition } from '@angular/animations';
+import { DataService } from "../../data.service";
+
+
 declare var jquery:any;
 declare var $ :any;
 @Component({
@@ -15,7 +18,7 @@ declare var $ :any;
         left: '0px'
       })),
       state('final', style({
-        left: '-500px'
+        left: '-1100px'
       })),
       transition('initial=>final', animate('0.9s 500ms ease-in')),
       transition('final=>initial', animate('0.9s 500ms ease-out'))
@@ -29,28 +32,30 @@ export class NavComponent implements OnInit, DoCheck {
   public categoryid;
   public menu;
   currentState = 'initial';
-
+  isdevice:string;
 
   constructor(
     private router: Router, 
     private route: ActivatedRoute,
     private serverservice: ServerService,
+    private data: DataService
   ) { }
 
+
   changeState() {
-    console.log('>>>>', this.currentState)
-    this.currentState = this.currentState === 'initial' ? 'final' : 'initial';
-    console.log('<<<<<',this.currentState)
+    if(this.isdevice !== 'desktop') {
+      this.currentState = this.currentState === 'initial' ? 'final' : 'initial';
+    }
   }
 
-
   ngOnInit() {
-    //hier I give to de sever service the page categori to make the selection in db
     this.menuthree = this.serverservice.getDataSnapshot('menu', 'en');
+    this.data.currentdevice.subscribe(isdevice => this.isdevice = isdevice)
   }
 
    
   onClickCategory(category) {
+
     let currentUrl = this.router.url; /// this will give you current url
 
     var res = currentUrl.split("/");
@@ -75,18 +80,6 @@ export class NavComponent implements OnInit, DoCheck {
 
   }
 
-//   buttonHamburger() { // this is the hambuger button for mobile (hiding and showing the menu)
-//     console.log('asadsas')
-//     let nav: any = document.getElementById('nav');
-//     let test:number =Number(window.getComputedStyle(nav).left.replace('px', '')) ;
-//    let screenWith = document.documentElement.clientWidth;
-
-//    if (test === 0) {
-//           nav.style.left = test - screenWith + 'px' ;
-//        } else {
-//         nav.style.left = '-40px';
-//        }
-//  }
 ngDoCheck() {
     $(".fancybox-imgw").fancybox();
   }
