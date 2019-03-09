@@ -44,7 +44,6 @@ export class HomeComponent implements OnInit {
     this.epicFunction() === 'mobile' ? this.isMobile = true :  this.epicFunction() === 'tablet' ? this.isTablet = true : this.isDesktop = true; 
     this.data.currentdevice.subscribe(isdevice => this.isdevice = isdevice)
     this.setDevice(this.epicFunction());
-
   }
 
 }

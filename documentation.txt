@@ -44,4 +44,8 @@ move facybox
 
   fixed bugs about styling
 
-  /******************** APS-22 ********************/
+  /******************** APS-23 ********************/
+
+  made paragraph to open when change the category
+
+  /******************** APS-24 ********************/

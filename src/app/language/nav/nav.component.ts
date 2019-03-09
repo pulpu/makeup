@@ -32,7 +32,8 @@ export class NavComponent implements OnInit, DoCheck {
   public categoryid;
   public menu;
   currentState = 'initial';
-  isdevice:string;
+  ismask: boolean;
+  isdevice: string;
 
   constructor(
     private router: Router, 
@@ -46,11 +47,13 @@ export class NavComponent implements OnInit, DoCheck {
     if(this.isdevice !== 'desktop') {
       this.currentState = this.currentState === 'initial' ? 'final' : 'initial';
     }
+    this.data.changeMaskState(false) ;
   }
 
   ngOnInit() {
     this.menuthree = this.serverservice.getDataSnapshot('menu', 'en');
     this.data.currentdevice.subscribe(isdevice => this.isdevice = isdevice)
+    this.data.currentMaskState.subscribe(ismask => this.ismask = ismask)
   }
 
    
@@ -61,7 +64,7 @@ export class NavComponent implements OnInit, DoCheck {
     var res = currentUrl.split("/");
     console.log("res: ", res);
         res = res.slice(0, 3);
-              console.log("res2: ", res);
+    console.log("res2: ", res);
 
     var resUrl = res.join("/");
           console.log("resUrl: ", resUrl);

@@ -1,4 +1,4 @@
-  <div class="mask" [ngClass]="[animate ? 'mask mask--minimize' : 'mask']">
+  <div class="mask" [ngClass]="[ismask ? 'mask mask--minimize' : 'mask']">
     <div class="paragraph paragraph__wrapper" >
       <div class="paragraph paragraph__controller" (click)="onAnimate()">
         <i ng-class="icon" class="icon icon--light icon--maximize"></i>
