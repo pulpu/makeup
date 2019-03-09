@@ -1,19 +1,18 @@
-import { Component, OnInit, DoCheck } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ServerService } from '../../../server.service';
 import { Subscription } from 'rxjs';
-declare var jquery:any;
-declare var $ :any;
+
 
 @Component({
   selector: 'app-gallery',
   templateUrl: './gallery.component.html',
   styleUrls: ['./gallery.component.css']
 })
-export class GalleryComponent implements OnInit,DoCheck {
+export class GalleryComponent implements OnInit {
   database : Observable<any>;
   paragraphs : Observable<any>;
   items : Observable<any>;
@@ -29,6 +28,9 @@ export class GalleryComponent implements OnInit,DoCheck {
   }
 
   ngOnInit() {
+
+
+
     this.category = this.route.snapshot.params['category']    // here I take the page categori form the page path
 
     //this is a subscribe to the page path change
@@ -53,12 +55,4 @@ export class GalleryComponent implements OnInit,DoCheck {
     )
   }
 
-
-
-ngDoCheck() {
-    $(".fancybox-imgw").fancybox();
-    $(document).ready(function() {
-      $(".fancybox-imgw").fancybox();
-    });
-  }
 }

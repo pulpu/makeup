@@ -1,0 +1,30 @@
+/******************** APS-19 ********************/
+the admin page is working fine (in modal)
+- no firebase storage 
+- no logic to order images
+/******************** APS-19 ********************/
+npm install jquery -- save
+npm install @fancyapps/fancybox --save
+in angular.js 
+ "styles": [
+              "./node_modules/bootstrap/dist/css/bootstrap-reboot.css",
+              "./node_modules/bootstrap/dist/css/bootstrap-grid.css",
+              "./node_modules/bootstrap/dist/css/bootstrap.css",
+              "./node_modules/@fancyapps/fancybox/dist/jquery.fancybox.css",
+              "src/sass/master.css"
+            ],
+            "scripts": [
+              "./node_modules/jquery/dist/jquery.min.js",
+              "./node_modules/@fancyapps/fancybox/dist/jquery.fancybox.js"
+            ]
+
+/******************** APS-20 ********************/
+add animation for mobile menu 
+https://medium.freecodecamp.org/how-to-use-animation-with-angular-6-675b19bc3496
+
+fix bug from fancybox that cause the issue with firebase loading time
+move facybox 
+  ngDoCheck() {
+      $(".fancybox-imgw").fancybox();
+  }
+  from gallery.component.ts to nav nav.component.ts
