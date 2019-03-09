@@ -28,8 +28,8 @@ export class HomeComponent implements OnInit {
     public isTablet: Boolean = false; // false is init value
   
     epicFunction(): string  {
-      console.log('hello `Home` component');
       this.deviceInfo = this.deviceService.getDeviceInfo();
+      //console.log(this.deviceInfo);
       const isMobile = this.deviceService.isMobile();
       const isTablet = this.deviceService.isTablet();
      // const isDesktopDevice = this.deviceService.isDesktop();

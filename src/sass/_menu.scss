@@ -516,5 +516,17 @@ nav {
     background: yellow;
   }
 }
+.tablet {
+  .menu--xs {
+    display: none;
+  }
+}
+@include breakpoint(medium-portrait) {
+  .tablet {
+    .menu--xs {
+      display: block;
+    }
+  }
+}
 
 .logo-xs {}

@@ -41,3 +41,7 @@ move facybox
   I put a condition that menu will slide left just if device !== that 'tablet'
 
   /******************** APS-22 ********************/
+
+  fixed bugs about styling
+
+  /******************** APS-22 ********************/

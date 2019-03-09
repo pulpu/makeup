@@ -14,7 +14,7 @@
   height: 100%;
   left: 0;
   position: fixed;
-  top: 0;
+  top: 40px;
   width: 100%;
   z-index: 1;
   transition: left 0.8s ease-in;
@@ -101,6 +101,33 @@
 		}
   }
 }
+.desktop{
+	.mask {
+		top: 0px;
+	}
+}
+.tablet {
+	@include breakpoint(medium-landscape) {
+		.mask {
+			top: 0px;
+		}
+	}
+}
+.mobile {
+	.mask {
+		&--minimize {
+			@include breakpoint(medium-landscape) {
+				left: calc(-100% );
+				left: -moz-calc(-100%);
+				left: -webkit-calc(-100% );
+				transition: left 0.8s ease-in;
+				-ms-transition: left 0.8s ease-in;
+				-moz-transition: left 0.8s ease-in;
+				-webkit-transition: left 0.8s ease-in;
+			}
+		}
+	}
+}
 
 .paragraph {
 
@@ -128,16 +155,16 @@
   &__controller {
 
 	@include breakpoint(small-landscape) {
-	  top: 55px;
+	  top: 10px;
 	}
 	@include breakpoint(small-portrait) {
-	  top: 55px;
+	  top: 10px;
 	}
 	@include breakpoint(medium-portrait) {
-	  top: 70px;
+	  top: 10px;
 	}
 	@include breakpoint(medium-portrait-pixel-ratio-two) {
-	  top: 70px;
+	  top: 10px;
 	}
 
 	background: rgba(224, 215, 202, 1);
