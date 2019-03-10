@@ -49,3 +49,7 @@ move facybox
   made paragraph to open when change the category
 
   /******************** APS-24 ********************/
+
+  fix the urlParser function, which was crashing, when URL it was undefined
+
+  /******************** APS-25 ********************/

@@ -1,7 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { AngularFirestore } from 'angularfire2/firestore';
+import { Component, OnInit, ɵConsole } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Location } from '@angular/common';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ServerService } from '../../../server.service';
 import { Subscription } from 'rxjs';
@@ -23,13 +21,26 @@ export class GalleryComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private serverservice: ServerService,
-  ) { 
-  
+  ) { }
+
+  urlParser(url){
+    if(typeof url !== 'undefined') {
+      const regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+      let match = url.match(regExp);
+      if (match&&match[7].length==11){
+          let youtubeID=match[7];
+          return 'https://img.youtube.com/vi/'+ youtubeID + '/hqdefault.jpg'
+      }else{
+          return url;
+      }
+    } else {
+      return '';
+    }
+
   }
 
   ngOnInit() {
-
-
+    
 
     this.category = this.route.snapshot.params['category']    // here I take the page categori form the page path
 

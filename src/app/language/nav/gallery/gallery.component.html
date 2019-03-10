@@ -2,7 +2,7 @@
 <div class="container-fluid">
   <div class="row">
     <div *ngFor="let item of database | async" [ngClass]="[item.orientation === 'portrait' ? 'mt-4 col-12 col-sm-6 col-md-3 grid-item' : 'mt-4 col-12 col-sm-12 col-md-6 grid-item']">
-      <a class="fancybox fancybox-imgw"  [style.backgroundImage]="'url('+ item.img +')'" [href]="item.smallImg">
+      <a class="fancybox fancybox-imgw" data-fancybox="gallery" [style.backgroundImage]="'url('+ urlParser(item.img) +')'" [href]="item.smallImg">
         <figure class="figure">
           <span class="figure__action"><i class="icon icon--zoom"></i></span>
           <figcaption class="figcaption ">

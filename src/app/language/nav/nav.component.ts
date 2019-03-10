@@ -84,7 +84,21 @@ export class NavComponent implements OnInit, DoCheck {
   }
 
 ngDoCheck() {
-    $(".fancybox-imgw").fancybox();
+    $(".fancybox-imgw").fancybox({
+      media : {
+        youtube : {
+          params : {
+            autoplay : 0,
+            showinfo : 0
+          }
+        }
+      },
+      thumbs: {
+        autoStart: false, // Display thumbnails on opening
+        hideOnClose: true, // Hide thumbnail grid when closing animation starts
+      },
+    });
+
   }
 
 
