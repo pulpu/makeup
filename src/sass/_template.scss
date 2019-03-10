@@ -26,6 +26,10 @@ body {
 	display: block;
 }
 
+.bg-grey {
+	background: #eee;
+}
+
 .layout {
 	height: auto;
 	margin: auto 0;
@@ -64,7 +68,6 @@ body {
 }
 
 .hidden {
-
 	&--xs {
 		@include breakpoint(small-portrait) {
 			display: none !important;

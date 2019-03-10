@@ -8,9 +8,9 @@
           <figcaption class="figcaption ">
             <div>
               <div>
-                <i [ngClass]="[item.photographer ? 'icon icon--pictures' : 'icon icon--videos']"></i>
+                <i [ngClass]="[item.kind === 'photographer' ? 'icon icon--pictures' : 'icon icon--videos']"></i>
                 <span class="figcaption__campaign">{{item.company}}</span>
-                <span class="figcaption__author">{{item.photographer || item.director}}</span>
+                <span class="figcaption__author">{{item.photographer || item.director || item.author}}</span>
               </div>
               <div class="clearfix ">
                 <span class="figcaption__kind">{{item.kind}}</span>

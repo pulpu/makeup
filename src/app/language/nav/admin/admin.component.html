@@ -1,20 +1,12 @@
 <app-language></app-language>
 <app-paragraph [paragraphs]='paragraphs'></app-paragraph>
-<!-- <div class="container-fluid" style="margin-left:300px">
-  <div class="row">
-    <div  Class="mt-4 col-12 col-sm-6 col-md-3 grid-item">
-      <app-listing-editor></app-listing-editor>
-    </div>
-  </div>
-</div> -->
-
 <div class="layout">
     <div class="container-fluid" *ngIf="arr.length>0;else noData">
         <div class="row">
           <div *ngFor="let item of arr" [ngClass]="[item.orientation === 'portrait' ? 'mt-4 col-12 col-sm-6 col-md-3 grid-item' : 'mt-4 col-12 col-sm-12 col-md-6 grid-item']">
             <!-- <app-admin-modal [item]='item'></app-admin-modal> -->
             <app-modal [item]='item'></app-modal>
-            <a class="fancybox fancybox-imgw"  [style.backgroundImage]="'url('+ item.img +')'" [href]="item.smallImg">
+            <a class="fancybox fancybox-imgw"  [style.backgroundImage]="'url('+ urlParser(item.img) +')'" [href]="item.smallImg">
               <figure class="figure">
                 <span class="figure__action"><i class="icon icon--zoom"></i></span>
                 <figcaption class="figcaption ">
@@ -36,81 +28,78 @@
                 <button class="glyphicon glyphicon-trash btn btn-outline-danger mb-2 mr-2" aria-hidden="true">delete</button>
             </a>
          </div>
-          <div class="new-item mt-4 col-12 col-sm-6 col-md-3 grid-item">
-              <h1>Add New User</h1>
-              <form (ngSubmit)="itemSubmit()" #addform="ngForm">
+         <div class="d-flex justify-content-center col-12 bg-grey my-3">
+          <div class="admin-item mt-4 mt-4 col-12 col-sm-12 col-md-5 grid-item">
+              <h1>Add New Item</h1>
+              <form (ngSubmit)="itemSubmit()" #addform="ngForm"> 
+                <div class="row">
+                    <div class="form-group col-6" >
+                        <label for="agency">Agency</label>
+                        <input type="text" [(ngModel)]="model.agency" name="agency" class="form-control" id="agency" required #agency="ngModel">
+                        <div [hidden]="agency.valid || agency.pristine" class="alert alert-danger">
+                          Agency is required
+                        </div>
+                      </div>
+      
+                      <div class="form-group col-6">
+                        <label for="company">Company</label>
+                        <input type="text" [(ngModel)]="model.company" name="company" class="form-control" id="company" required #company="ngModel">
+                        <div [hidden]="company.valid || company.pristine" class="alert alert-danger">
+                          Company is required
+                        </div>
+                      </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-6">
+                        <label for="kind">kind: </label>
+                        <div>
+                            <select placeholder="kind" [(ngModel)]="model.kind" name="kind" class="form-control" id="kind" required #kind="ngModel">
+                                <option value="photographer">photographer</option>
+                                <option value="director">director</option>
+                            </select>
+                        </div>
+                        <div [hidden]="kind.valid || kind.pristine" class="alert alert-danger">
+                            Kind is required
+                        </div>
+                    </div>
+
+                    <div class="form-group col-6">
+                        <label for="orientation">image orientation: </label>
+                        <div>
+                            <select [(ngModel)]="model.orientation" name="orientation" id="orientation" placeholder="orientation" class="form-control" required #orientation="ngModel">
+                                <option value="portrait">portrait</option>
+                                <option value="landscape">landscape</option>
+                            </select>
+                        </div>
+                        <div [hidden]="orientation.valid || orientation.pristine" class="alert alert-danger">
+                            orientation is required
+                        </div>
+                    </div>
+                </div>             
+
                 <div class="form-group">
-                  <label for="order">order</label>
-                <div id="input_div">
-                    <input type="button" value="-" id="minus" (click)="minus()">
-                    <input type="text"  [(ngModel)]="model.order" name="order" class="form-control" id="order" required #order="ngModel" value="1" min="1" max="10">
-                    <input type="button" value="+" id="plus" (click)="plus()">
+                    <label for="authour">{{model.kind === 'director' ? 'director' : 'photographer'}}</label>
+                    <input type="text" [(ngModel)]="model.authour" name="authour" class="form-control" id="authour"  #director="ngModel">
                 </div>
-                </div>
-                <div [hidden]="order.valid || order.pristine" class="alert alert-danger">
-                    order is required
-                </div>
-                
+
                 <div class="form-group">
-                  <label for="agency">Agency</label>
-                  <input type="text" [(ngModel)]="model.agency" name="agency" class="form-control" id="agency" required #agency="ngModel">
-                </div>
-                <div [hidden]="agency.valid || agency.pristine" class="alert alert-danger">
-                  Agency is required
-                </div>
-                <div class="form-group">
-                  <label for="company">Company</label>
-                  <input type="text" [(ngModel)]="model.company" name="company" class="form-control" id="company" required #company="ngModel">
-                </div>
-                <div [hidden]="company.valid || company.pristine" class="alert alert-danger">
-                  Company is required
-                </div>
-                <div class="form-group">
-                  <label for="kind">kind</label>
-                  <input type="text" [(ngModel)]="model.kind" name="kind" class="form-control" id="kind" required #kind="ngModel">
-                </div>
-                <div [hidden]="kind.valid || kind.pristine" class="alert alert-danger">
-                 Kind is required
-                </div>
-                <div class="form-group">
-                  <label for="photographer">photographer</label>
-                  <input type="text" [(ngModel)]="model.photographer" name="photographer" class="form-control" id="photographer" required #photographer="ngModel">
-                </div>
-                <div [hidden]="photographer.valid || photographer.pristine" class="alert alert-danger">
-                    photographer is required
-                </div>
-                <div class="form-group">
-                    <label for="director">director</label>
-                    <input type="text" [(ngModel)]="model.director" name="director" class="form-control" id="director" required #director="ngModel">
-                </div>
-                <div [hidden]="director.valid || director.pristine" class="alert alert-danger">
-                      director is required
-                </div>
-                <div class="form-group">
-                    <label for="orientation">orientation</label>
-                    <input type="text" [(ngModel)]="model.orientation" name="orientation" class="form-control" id="orientation" required #orientation="ngModel">
-                </div>
-                <div [hidden]="orientation.valid || orientation.pristine" class="alert alert-danger">
-                    orientation is required
-                </div>
-                <div class="form-group">
-                    <label for="img">img</label>
+                    <label for="img">{{model.kind === 'director' ? 'youtube url': 'img'}}</label>
                     <input type="text" [(ngModel)]="model.img" name="img" class="form-control" id="img" required #img="ngModel">
-                </div>
-                <div [hidden]="img.valid || img.pristine" class="alert alert-danger">
-                    img is required
-                </div>
-                <div class="form-group">
+                    <div [hidden]="img.valid || img.pristine" class="alert alert-danger">
+                        img is required
+                    </div>
+                  </div>
+
+                <div [ngClass]="[model.kind === 'director' ? 'hidden--xs-up' : 'show form-group']" >
                     <label for="smallImg">smallImg</label>
-                    <input type="text" [(ngModel)]="model.smallImg" name="smallImg" class="form-control" id="smallImg" required #smallImg="ngModel">
+                    <input type="text" [(ngModel)]="model.smallImg" name="smallImg" class="form-control" id="smallImg"  #smallImg="ngModel">
                 </div>
-                <div [hidden]="smallImg.valid || smallImg.pristine" class="alert alert-danger">
-                    smallImg is required
-                </div>
-                <button type="submit" class="btn btn-default form-control" [disabled]="!addform.form.valid">Add Item</button>
+                <button type="submit" class="btn btn-primary form-control" [disabled]="!addform.form.valid">Add Item</button>
                 <br>  
               </form>
             </div>
+          </div>
         </div>
       </div>
     

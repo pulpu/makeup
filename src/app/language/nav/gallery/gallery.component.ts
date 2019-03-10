@@ -36,7 +36,6 @@ export class GalleryComponent implements OnInit {
     } else {
       return '';
     }
-
   }
 
   ngOnInit() {

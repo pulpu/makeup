@@ -53,3 +53,7 @@ move facybox
   fix the urlParser function, which was crashing, when URL it was undefined
 
   /******************** APS-25 ********************/
+
+  I finish admin area without the upload images part
+
+  /******************** APS-26 ********************/

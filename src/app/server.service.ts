@@ -15,8 +15,7 @@ export class ServerService {
   constructor(
     public db: AngularFirestore
   ) { 
-   // this.itemscollection = this.db.collection('data/brides/items', x => x.orderBy('order', 'asc'));
-
+    this.itemscollection = this.db.collection('data/brides/items', x => x.orderBy('order', 'asc'));
   }
 
   getItems(path) {
@@ -26,17 +25,19 @@ export class ServerService {
           a => {
             const data = a.payload.doc.data() as Item;
             data.id = a.payload.doc.id;
-            console.log('data',data)
+            console.log('data>',data)
             return data;
           });
       });
     return this.items;
   }
-  addItem(item) {
+  addItem(item, category) {
+    console.log('item', item)
+    this.itemscollection = this.db.collection(`data/${category}/items`, x => x.orderBy('order', 'asc'))
     this.itemscollection.add(item);
   }
-  deleteItem(item) {
-    this.db.doc(`data/brides/items/${item.id}`).delete();
+  deleteItem(item, category) {
+    this.db.doc(`data/${category}/items/${item.id}`).delete();
   }
   
   // updateItems(item, order, agency, company, kind, photographer, director, orientation, img, smallImg) {
@@ -53,9 +54,16 @@ export class ServerService {
   //   })
   // }
 
+  updateItemsOrder(id, order, category) {
+    this.db.doc(`data/${category}/items/${id}`).update({
+      order: order,
+    })
+  }
+
   getData(docPath, ColectionPath): Observable<any> {
+    console.log('docPath',docPath,'ColectionPath', ColectionPath)
     return this.db
-    .collection('data/' + docPath + '/' + ColectionPath)
+    .collection('data/' + docPath + '/' + ColectionPath, x => x.orderBy('order', 'asc'))
     .snapshotChanges()
     .pipe(map(docArray =>{
       return  docArray.map(element=>{

@@ -10,12 +10,14 @@
     <div>
       <div class="container">
         <div class="row">
-          <div class="col-12 col-xs-12 col-md-6 col-lg-6 modal__image" [style.backgroundImage]="'url('+ item.img +')'"></div>
-          <div class="col-12 col-xs-12 col-md-6 col-lg-6">
-              <div *ngIf="state === 'loading'" class="notification is-success mb-2">form is synced</div>
-              <div *ngIf="state === 'synced'" class="notification is-success mb-2">form is synced</div>
-              <div *ngIf="state === 'modified'" class="notification is-success mb-2">form is modified</div>
-              <div *ngIf="state === 'error'" class="notification is-success mb-2">form is error</div>
+          <div class="col-12 col-xs-12 col-md-8 col-lg-8 modal__image" [style.backgroundImage]="'url('+ urlParser(item.img) +')'"></div>
+          <div class="col-12 col-xs-12 col-md-4 col-lg-4">
+              <div>
+                  <div *ngIf="state === 'loading'" class="badge badge-light mb-2">form is synced</div>
+                  <div *ngIf="state === 'synced'" class="badge badge-success mb-2">form is synced</div>
+                  <div *ngIf="state === 'modified'" class="badge badge-warning mb-2">form is modified</div>
+                  <div *ngIf="state === 'error'" class="badge badge-danger mb-2">form is error</div>
+              </div>
               <form [formGroup]="myForm" fireForm path="{{ 'data/'+ category +'/items/' + item.id}}"
               (stateChange)="changeHandler($event)">
             
@@ -34,14 +36,14 @@
               </div>
 
               <div class="m-left">
-                <label for="director">director or photographer: </label>
+                <label for="authour">{{kind === 'director'? 'director': 'photographer'}}</label>
                 <div>
-                    <input matInput placeholder="director" formControlName="director" class="modal__input">
+                    <input matInput placeholder="authour" formControlName="authour" class="modal__input">
                 </div>
               </div>
 
               <div class="m-left">
-                <label for="img">pcture: </label>
+                <label for="img">picture: </label>
                 <div>
                     <input matInput placeholder="img" formControlName="img" class="modal__input">
                 </div>
@@ -73,17 +75,12 @@
                     </select>
                 </div>
               </div>
-            
-              <!-- <div>
-                  <label for="orientation">image orientation: </label>
-                  <input matInput placeholder="photographer" formControlName="photographer">
-              </div> -->
 
               <div>
-                  <label for="order">image order: </label>
-                  <div>
-                      <input matInput placeholder="order" formControlName="order" class="modal__input mb-0">
-                  </div>
+                <label for="order">image order: </label>
+                <div>
+                    <input (keyup)="onKey($event)" matInput placeholder="order" formControlName="order" class="modal__input mb-0">
+                </div>
               </div>
             </form>
           </div>
@@ -92,6 +89,6 @@
     </div>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    <button type="button" class="btn btn-light right" (click)="modal.close('Close click')">Close</button>
   </div>
 </ng-template>
