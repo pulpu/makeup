@@ -57,3 +57,5 @@ move facybox
   I finish admin area without the upload images part
 
   /******************** APS-26 ********************/
+  find a bug in grid, height for landscape was to big
+  I didn't fix the bug.

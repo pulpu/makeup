@@ -1558,6 +1558,10 @@ nav:after {
   overflow: hidden;
 }
 
+.grid-item--landscape .fancybox {
+  padding-top: 69%;
+}
+
 .admin-item {
   min-height: 450px;
 }

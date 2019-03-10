@@ -3,7 +3,7 @@
 <div class="layout">
     <div class="container-fluid" *ngIf="arr.length>0;else noData">
         <div class="row">
-          <div *ngFor="let item of arr" [ngClass]="[item.orientation === 'portrait' ? 'mt-4 col-12 col-sm-6 col-md-3 grid-item' : 'mt-4 col-12 col-sm-12 col-md-6 grid-item']">
+          <div *ngFor="let item of arr" [ngClass]="[item.orientation === 'portrait' ? 'mt-4 col-12 col-sm-6 col-md-3 grid-item' : 'mt-4 col-12 col-sm-12 col-md-6 grid-item grid-item--landscape']">
             <!-- <app-admin-modal [item]='item'></app-admin-modal> -->
             <app-modal [item]='item'></app-modal>
             <a class="fancybox fancybox-imgw"  [style.backgroundImage]="'url('+ urlParser(item.img) +')'" [href]="item.smallImg">

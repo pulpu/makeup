@@ -18,6 +18,12 @@
 
 .grid-item {
   overflow: hidden;
+
+  &--landscape {
+    .fancybox {
+      padding-top: 69%;
+    }
+  }
 }
 
 .admin-item {
