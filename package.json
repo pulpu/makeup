@@ -33,6 +33,7 @@
     "rxjs": "^6.0.0",
     "rxjs-compat": "^6.2.2",
     "save": "^2.3.3",
+    "shufflejs": "^5.2.1",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {

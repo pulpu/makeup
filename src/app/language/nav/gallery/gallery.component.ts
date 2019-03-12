@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ServerService } from '../../../server.service';
 import { Subscription } from 'rxjs';
+import Shuffle from 'shufflejs';
 
 
 @Component({
@@ -18,6 +19,9 @@ export class GalleryComponent implements OnInit {
   language: string;
   subscription: Subscription;
   categorypath: any;
+  element: any;
+  shuffleInstance: any;
+
   constructor(
     private route: ActivatedRoute,
     private serverservice: ServerService,
@@ -59,10 +63,15 @@ export class GalleryComponent implements OnInit {
             return this.paragraphs = paragraph.paragraph
           })
         })
-
-
       }
     )
+
+    //this part of code if for gallery
+    this.shuffleInstance  = new Shuffle(document.getElementById('grid'), {
+      itemSelector: '.picture-item',
+      sizer: '.my-sizer-element',
+      useTransforms: true,
+    });
   }
 
 }
