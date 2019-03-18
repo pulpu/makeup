@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ServerService } from '../../../server.service';
 import { Subscription } from 'rxjs';
-
+import { Masonry, MasonryGridItem } from 'ng-masonry-grid';
 
 @Component({
   selector: 'app-gallery',
@@ -18,6 +18,9 @@ export class GalleryComponent implements OnInit {
   language: string;
   subscription: Subscription;
   categorypath: any;
+  _masonry: Masonry;
+  masonryItems: any[]; // NgMasonryGrid Grid item list
+
   constructor(
     private route: ActivatedRoute,
     private serverservice: ServerService,
@@ -39,7 +42,8 @@ export class GalleryComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+
+
 
     this.category = this.route.snapshot.params['category']    // here I take the page categori form the page path
 
@@ -63,6 +67,11 @@ export class GalleryComponent implements OnInit {
 
       }
     )
+  }
+
+
+  onNgMasonryInit($event: Masonry) {
+    this._masonry = $event;
   }
 
 }

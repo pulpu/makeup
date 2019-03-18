@@ -13,6 +13,7 @@ import { MatButtonModule, MatFormFieldModule, MatInputModule, MatRippleModule, M
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DeviceDetectorModule } from 'ngx-device-detector';
 import { DataService } from '../app/data.service';
+import { NgMasonryGridModule } from 'ng-masonry-grid';
 
 import { AppComponent } from './app.component';
 import { LanguageComponent } from './language/language.component';
@@ -65,6 +66,7 @@ const modules = [
     FormsModule,
     DeviceDetectorModule.forRoot(),
     BrowserAnimationsModule,
+    NgMasonryGridModule,
     ...modules,
     NgbModule.forRoot()
   ],

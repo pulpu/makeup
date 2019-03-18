@@ -1,8 +1,14 @@
 <app-paragraph [paragraphs]='paragraphs'></app-paragraph>
 <div class="container-fluid">
-  <div class="row">
-    <div *ngFor="let item of database | async" [ngClass]="[item.orientation === 'portrait' ? 'mt-4 col-12 col-sm-6 col-md-3 grid-item' : 'mt-4 col-12 col-sm-12 col-md-6 grid-item grid-item--landscape']">
-      <a class="fancybox fancybox-imgw" data-fancybox="gallery" [style.backgroundImage]="'url('+ urlParser(item.img) +')'" [href]="item.smallImg">
+  <ng-masonry-grid
+    [masonryOptions]="{ gutter: 10, itemSelector: '.grid-item', columnWidth: 160,horizontalOrder: false, verticalOrder: true }" 
+    [useAnimation]="true"
+    [useImagesLoaded]="true"
+    [scrollAnimationOptions]="{ animationEffect: 'effect-4', minDuration : 0.4, maxDuration : 0.7 }">
+    <!-- Masonry Grid Item -->
+    <ng-masonry-grid-item id="{{'masonry-item-'+i}}" *ngFor="let item of database | async let i = index;"> 
+      <!-- Grid Content  -->
+      <a [ngClass]="item.classes" data-fancybox="gallery" [style.backgroundImage]="'url('+ urlParser(item.img) +')'" [href]="item.smallImg">
         <figure class="figure">
           <span class="figure__action"><i class="icon icon--zoom"></i></span>
           <figcaption class="figcaption ">
@@ -20,6 +26,6 @@
           </figcaption>
         </figure>
       </a>
-    </div>
-  </div>
+    </ng-masonry-grid-item>
+  </ng-masonry-grid>
 </div>

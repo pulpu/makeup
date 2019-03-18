@@ -59,3 +59,31 @@ move facybox
   /******************** APS-26 ********************/
   find a bug in grid, height for landscape was to big
   I didn't fix the bug.
+
+    /******************** APS-27 ********************/
+    I will change the grid whit the one from 
+    https://vestride.github.io/Shuffle/#features
+    https://codepen.io/Vestride/pen/ZVWmMX
+
+  -trebuie sa ma schim putin css-ul pentru picture-item--h2 ii trebuie 
+    .aspect--16x9 {
+      padding-bottom: 56.25%; - aici o valoare mai mare poate chiar in functie de rezolutie
+    }
+
+  - pe .picture-item img  de pus  object-position: 0 0;
+
+  -si de vazut daca se poate face in admin un image preview poate chiar pe pagina de admin.component
+  nu pe modal.component
+
+  - au mai aparut ceva buguri de css pentru ca am urcat css-ul de la noua galerie
+  - trebuie sters cssul de la vechea galerie
+
+  -de facut galeria dinamic acum e hardcodata
+  -paragraph pare sa nu mai aduca text din firebase
+
+    /******************** APS-28 ********************/
+
+                am schimbat galeria 
+
+    /******************** APS-29 ********************/
+
