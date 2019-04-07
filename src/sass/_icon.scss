@@ -115,3 +115,19 @@
   .icon--play:before {
     content: "\e609";
   }
+
+  .icon--rotate-left:before {
+    content: "\e967";
+  }
+
+  .icon--rotate-right:before {
+    content: "\e968";
+  }
+
+  .icon--flip-vertical:before {
+    content: "\e902";
+  }
+  
+  .icon--flip-horizontal:before {
+    content: "\e901";
+  }

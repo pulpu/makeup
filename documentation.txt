@@ -87,3 +87,5 @@ move facybox
 
     /******************** APS-29 ********************/
 
+   instal image copper
+   form : https://www.npmjs.com/package/ngx-image-cropper

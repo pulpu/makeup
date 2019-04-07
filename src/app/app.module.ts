@@ -5,10 +5,15 @@ import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireStorageModule } from 'angularfire2/storage';
+
 
 import {  ReactiveFormsModule } from '@angular/forms';
 import { FormsModule }   from '@angular/forms';
 import { MatButtonModule, MatFormFieldModule, MatInputModule, MatRippleModule, MatSelectModule } from '@angular/material';
+import { ImageCropperModule } from './language/nav/admin/image-cropper/image-cropper.module';
+
+
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DeviceDetectorModule } from 'ngx-device-detector';
@@ -61,11 +66,13 @@ const modules = [
     HttpModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
+    AngularFireStorageModule,
     AngularFirestoreModule,
     ReactiveFormsModule,
     FormsModule,
     DeviceDetectorModule.forRoot(),
     BrowserAnimationsModule,
+    ImageCropperModule,
     NgMasonryGridModule,
     ...modules,
     NgbModule.forRoot()
