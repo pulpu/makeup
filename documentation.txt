@@ -84,8 +84,21 @@ move facybox
     /******************** APS-28 ********************/
 
                 am schimbat galeria 
-
+      https://www.npmjs.com/package/ng-masonry-grid
+https://github.com/Shailu4u/ng-masonry-grid-demo/blob/master/src/app/app.component.ts
+ https://stackblitz.com/edit/angular-afvcbt?file=src%2Fapp%2Fapp.component.html
     /******************** APS-29 ********************/
 
    instal image copper
    form : https://www.npmjs.com/package/ngx-image-cropper
+
+   css for gallery is almost done
+   admin area is almost done 
+
+   /******************** APS-29 ********************/
+  fix Masonry Grid problem whene change the category
+
+   I will create a event-emitter.service.ts to pass function from a component to another component
+   https://www.c-sharpcorner.com/article/simple-way-to-execute-a-function-in-a-component-from-another-component/
+
+  /******************** APS-30 ********************/

@@ -85,7 +85,7 @@ export class AdminComponent implements OnInit {
           this.serverservice.getItems(this.category).subscribe(
             (item: Item[]) => {
               this.arr = item;
-              console.log('>>>>>',this.arr)
+            //  console.log('>>>>>',this.arr)
              this.model.order = String(this.arr.length + 1) 
           });
   
@@ -144,7 +144,7 @@ export class AdminComponent implements OnInit {
       const file = Math.random().toString(36).substring(2) + '__' + this.fileName['name'];
         this.ref = this.storage.ref('/images').child(file)
         this.ref.putString(base64result, 'base64', {contentType:'image/jpg'}).then(function(snapshot) {
-          console.log('Uploaded a base64 string!');
+         // console.log('Uploaded a base64 string!');
           self.task.snapshotChanges().pipe(
             finalize(() => {
               self.ref.getDownloadURL().subscribe(url => {  

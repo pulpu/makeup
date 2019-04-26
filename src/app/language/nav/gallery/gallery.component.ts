@@ -1,16 +1,19 @@
-import { Component, OnInit, ɵConsole } from '@angular/core';
+import { Component, OnInit, ɵConsole  } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ServerService } from '../../../server.service';
 import { Subscription } from 'rxjs';
 import { Masonry, MasonryGridItem } from 'ng-masonry-grid';
+import { ISubscription } from 'rxjs/Subscription';
+import { EventEmitterService } from '../../../event-emitter.service';    
+
 
 @Component({
   selector: 'app-gallery',
   templateUrl: './gallery.component.html',
   styleUrls: ['./gallery.component.css']
 })
-export class GalleryComponent implements OnInit {
+export class GalleryComponent implements OnInit  {
   database : Observable<any>;
   paragraphs : Observable<any>;
   items : Observable<any>;
@@ -18,12 +21,17 @@ export class GalleryComponent implements OnInit {
   language: string;
   subscription: Subscription;
   categorypath: any;
+  reRenderGrid: boolean = true;
+
   _masonry: Masonry;
-  masonryItems: any[]; // NgMasonryGrid Grid item list
+  private _removeAllSubscription: ISubscription;
+  private _removeItemSubscription: ISubscription;
+  private _removeFirstItemSubscription: ISubscription;
 
   constructor(
     private route: ActivatedRoute,
     private serverservice: ServerService,
+    private eventEmitterService: EventEmitterService
   ) { }
 
   urlParser(url){
@@ -42,8 +50,12 @@ export class GalleryComponent implements OnInit {
   }
 
   ngOnInit() {
-
-
+    if (this.eventEmitterService.reInitMasonryGrid==undefined) {    
+      this.eventEmitterService.reInitMasonryGrid = this.eventEmitterService.    
+      invokeFunction.subscribe((name:string) => {    
+        this.toggleMasonryGrid();    
+      });    
+    }    
 
     this.category = this.route.snapshot.params['category']    // here I take the page categori form the page path
 
@@ -56,26 +68,31 @@ export class GalleryComponent implements OnInit {
         //hier I give to de sever service the page categori to make the selection in db
         this.database = this.serverservice.getData(this.category, 'items');
         this.paragraphs = this.serverservice.getData(this.category, 'paragraph');
-        console.log('>>>>>>>>>>>>>>>>>>>>>>>>',this.database)
+        //console.log('>>>>>>>>>>>>>>>>>>>>>>>>',this.database)
         //make the selection for paragraph
         this.paragraphs.subscribe(result => {
           return result.map(paragraph=>{
             return this.paragraphs = paragraph.paragraph
           })
         })
-
-
-      }
+             }
     )
   }
-  reorderItems() {
-    if (this._masonry) {
-        this._masonry.reOrderItems();
-    }
+
+   
+  onNgMasonryInit($event: Masonry) {
+   console.log($event);
+   this._masonry = $event;
+   console.log('aici acum rerender ',this._masonry)
+
   }
 
-  onNgMasonryInit($event: Masonry) {
-    this._masonry = $event;
+
+  toggleMasonryGrid() {
+    this.reRenderGrid = false;
+    setTimeout(()=>{
+      this.reRenderGrid = true;
+    },0)
   }
 
 }

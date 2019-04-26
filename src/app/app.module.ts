@@ -13,6 +13,7 @@ import { FormsModule }   from '@angular/forms';
 import { MatButtonModule, MatFormFieldModule, MatInputModule, MatRippleModule, MatSelectModule } from '@angular/material';
 import { ImageCropperModule } from './language/nav/admin/image-cropper/image-cropper.module';
 
+import { EventEmitterService } from './event-emitter.service';
 
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -80,7 +81,7 @@ const modules = [
   exports:[
     ...modules
   ],
-    providers: [DataService],
+    providers: [DataService,EventEmitterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

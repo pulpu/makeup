@@ -17,14 +17,14 @@ constructor(private router: Router) { }
 
   onSelect(language) {
   	let currentUrl = this.router.url; /// this will give you current url
-              console.log("currentUrl: " + currentUrl)
+              //console.log("currentUrl: " + currentUrl)
 
   	let res = currentUrl.split("/");
   		  res[2] = language;
-              console.log("res: " + res)
+             // console.log("res: " + res)
 
   	let newurl = res.join('').toString()
-              console.log("newurl: " + newurl)
+            //console.log("newurl: " + newurl)
 
   	this.router.navigate( [ newurl]);
   };

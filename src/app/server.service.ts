@@ -25,14 +25,14 @@ export class ServerService {
           a => {
             const data = a.payload.doc.data() as Item;
             data.id = a.payload.doc.id;
-            console.log('data>',data)
+           // console.log('data>',data)
             return data;
           });
       });
     return this.items;
   }
   addItem(item, category) {
-    console.log('item', item)
+   // console.log('item', item)
     this.itemscollection = this.db.collection(`data/${category}/items`, x => x.orderBy('order', 'asc'))
     this.itemscollection.add(item);
   }
@@ -61,13 +61,13 @@ export class ServerService {
   }
 
   getData(docPath, ColectionPath): Observable<any> {
-    console.log('docPath',docPath,'ColectionPath', ColectionPath)
+    //console.log('docPath',docPath,'ColectionPath', ColectionPath)
     return this.db
     .collection('data/' + docPath + '/' + ColectionPath, x => x.orderBy('order', 'asc'))
     .snapshotChanges()
     .pipe(map(docArray =>{
       return  docArray.map(element=>{
-        console.log('element: ',element.payload.doc.data())
+        //console.log('element: ',element.payload.doc.data())
          return  element.payload.doc.data()
       })
     }))

@@ -5,7 +5,7 @@ import { ServerService } from './../../server.service';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { DataService } from "../../data.service";
 import { Masonry, MasonryGridItem } from 'ng-masonry-grid';
-
+import { EventEmitterService } from '../../event-emitter.service';
 
 declare var jquery:any;
 declare var $ :any;
@@ -41,7 +41,8 @@ export class NavComponent implements OnInit, DoCheck {
     private router: Router, 
     private route: ActivatedRoute,
     private serverservice: ServerService,
-    private data: DataService
+    private data: DataService,
+    private eventEmitterService: EventEmitterService
   ) { }
 
 
@@ -55,6 +56,11 @@ export class NavComponent implements OnInit, DoCheck {
       this.data.changeMaskState(false) ;
     }
   }
+
+
+  firstComponentFunction(){    
+    this.eventEmitterService.togleGrid();    
+  }  
 
   reorderItems() {
     if (this._masonry) {
@@ -74,12 +80,12 @@ export class NavComponent implements OnInit, DoCheck {
     let currentUrl = this.router.url; /// this will give you current url
 
     var res = currentUrl.split("/");
-    console.log("res: ", res);
+    //console.log("res: ", res);
         res = res.slice(0, 3);
-    console.log("res2: ", res);
+    //console.log("res2: ", res);
 
     var resUrl = res.join("/");
-          console.log("resUrl: ", resUrl);
+         // console.log("resUrl: ", resUrl);
 
 
    this.categorys = ["cover", "editorial", "video", "brides", "print", "backstage", "makingoff", "caracters", "contact"];
