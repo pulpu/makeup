@@ -81,7 +81,8 @@ body { font-family: sans-serif; }
 
 .grid {
   background: #EEE;
-  max-width: 1200px;
+  max-width: 100%;
+  width: 100%;
   counter-reset: grid-item;
 }
 
@@ -99,8 +100,8 @@ body { font-family: sans-serif; }
 /* ---- grid ---- */
 
 .grid {
-  background: #EEE;
-  max-width: 1200px;
+  background: #fff;
+ //  max-width: 100%;
   counter-reset: grid-item;
 }
 
@@ -114,35 +115,156 @@ body { font-family: sans-serif; }
 /* ---- grid-item ---- */
 
 .grid-item {
-  width: 160px;
-  height: 120px;
   float: left;
-  background: #D26;
-  border: 2px solid #333;
-  border-color: hsla(0, 0%, 0%, 0.5);
-  border-radius: 5px;
+  overflow: hidden;
   margin-bottom: 10px;
+  background-size: cover;
+  background-position: inherit;
+}
+.grid-item {
+  width: calc(100% - 100% / 1.32);
+  @include breakpoint(small-portrait) {
+    width: 100%;
+    background-size: cover !important;
+    background-position: center top !important;
+    }  
+    @include breakpoint(small-landscape) {
+      width: 48.5%;
+      background-size: cover !important;
+      background-position: center top !important;
+      } 
+      @include breakpoint(medium-landscape) {
+        width: 32%;
+        background-size: cover !important;
+        background-position: center top !important;
+        } 
+  }
+
+.grid-item--width2 {
+  width: calc(100% - 100% / 1.941);
+  @include breakpoint(small-portrait) {
+    background-size: cover !important;
+    width: 100% } 
+    @include breakpoint(small-landscape ) {
+      width: 48.5%;
+      background-size: cover !important;
+      }
+      @include breakpoint(medium-landscape) {
+        width: 65%;
+        } 
 }
 
-.grid-item--width2 { width: 330px; }
-.grid-item--width3 { width: 480px; }
-.grid-item--width4 { width: 720px; }
+.grid-item--height2 {
+   height: calc(100vh - 100vh / 1.32);
+   @include breakpoint(small-portrait) {
+    height: 50vh } 
+    @include breakpoint(small-landscape ) {
+      height: 50vh }
+      @include breakpoint(medium-landscape) {
+        height: 50vh ;
+        } 
+  }
+.grid-item--height3 { 
+  height: calc(100vh - 100vh / 1.941);
+  @include breakpoint(small-portrait ) {
+    height: 75vh } 
+    @include breakpoint(small-landscape) {
+      height: 100vh } 
+      @include breakpoint(medium-landscape) {
+        height: 75vh ;
+        }
+}
+.grid-item--height4 { 
+  height: calc(100vh - 100vh / 4); 
+  @include breakpoint(small-portrait) {
+    height: 74vh } 
+    @include breakpoint(small-landscape ) {
+      height: 100vh } 
+      @include breakpoint(medium-landscape) {
+        height: 100vh ;
+        }
+}
 
-.grid-item--height2 { height: 200px; }
-.grid-item--height3 { height: 260px; }
-.grid-item--height4 { height: 360px; }
-.grid-item--height5 { height: 460px; } 
+.grid-item--width2.grid-item--height3 {
+  @include breakpoint(small-portrait) {
+    background-position: center;
+    height: 25vh } 
+    @include breakpoint(small-landscape ) {
+      height: 49vh } 
+}
+
+
+.grid-item.grid-item-height2 {
+  width: calc(100% - 100% / 1.941);
+  height: calc(100vh - 100vh / 1.941);
+}
+
+.tablet {
+  .grid-item {
+      width: 48.5%;
+      background: #3c4a50;
+      background-size: cover !important;
+  }
+  .grid-item--width2.grid-item--height3 {
+      background-position: center;
+    //  width: 49%;
+      height: 50vh;
+      @include breakpoint(medium-portrait) {
+        height: 25vh;
+        } 
+  }
+  .grid-item--height2 {
+    @include breakpoint(small-portrait) {
+      height: 50vh;
+      } 
+    @include breakpoint(medium-landscape) {
+      height: 75vh;
+      } 
+      @include breakpoint(medium-portrait-pixel-ratio-two) {
+        height: 25vh;
+        } 
+        @include breakpoint(medium-landscape-pixel-ratio-two) {
+          height: 50vh;
+          } 
+  }
+  .grid-item.grid-item--height2 {
+    @include breakpoint(medium-landscape) {
+      width: 65%;
+      height: 50vh;
+      } 
+  }
+  .grid-item--height3 {
+    @include breakpoint(small-portrait) {
+      height: 50vh;
+      } 
+    @include breakpoint(medium-landscape) {
+      height: 50vh;
+      } 
+      @include breakpoint(medium-landscape-pixel-ratio-two) {
+        background-position: center center;
+        height: 75vh;
+        } 
+  }
+
+  .grid-item {
+    @include breakpoint(medium-landscape) {
+      width: 32%;
+      } 
+  }
+  .grid-item--width2 {
+    @include breakpoint(medium-landscape) {
+      width: 65%;
+      } 
+  }
+}
+
 .grid-item:before {
-  counter-increment: grid-item;
-  content: counter(grid-item);
   display: block;
   color: white;
   padding-top: 0.2em;
   text-align: center;
   font-size: 1.4rem;
 }
-
-
 
 .figure {
   height: 100%;

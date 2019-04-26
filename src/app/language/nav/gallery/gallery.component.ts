@@ -56,7 +56,7 @@ export class GalleryComponent implements OnInit {
         //hier I give to de sever service the page categori to make the selection in db
         this.database = this.serverservice.getData(this.category, 'items');
         this.paragraphs = this.serverservice.getData(this.category, 'paragraph');
-
+        console.log('>>>>>>>>>>>>>>>>>>>>>>>>',this.database)
         //make the selection for paragraph
         this.paragraphs.subscribe(result => {
           return result.map(paragraph=>{
@@ -68,7 +68,11 @@ export class GalleryComponent implements OnInit {
       }
     )
   }
-
+  reorderItems() {
+    if (this._masonry) {
+        this._masonry.reOrderItems();
+    }
+  }
 
   onNgMasonryInit($event: Masonry) {
     this._masonry = $event;

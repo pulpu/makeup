@@ -1,13 +1,24 @@
 @import "mixins";
-.logo {}
+.logo {
+  text-align: left;
+    margin: 20px;
+    font-size: 30px;
+}
 
+.tablet, .mobile {
+  .logo {
+    display: none;
+    @include breakpoint(medium-landscape-pixel-ratio-two) {
+      display: block;
+    }
+  }
+}
 nav {
   position: fixed;
   height: 100%;
   z-index: 2;
   left: 0;
   width: 245px;
-  background: green;
 
   @include breakpoint(small-portrait) {
     left: -1024px;
@@ -52,10 +63,11 @@ nav {
   }
 
   @include breakpoint(medium-landscape) {
-    left: 0px;
+    left: -1024px;
     transform: skew(0deg);
-    width: 245px;
-    background: pink;
+    width: 100%;
+    max-width: 100%;
+    background: palegreen;
   }
 
   @include breakpoint(extralarge) {
@@ -64,7 +76,6 @@ nav {
     width: 100%;
     max-width: 100%;
     width: 245px;
-    background: black;
   }
 
 
@@ -95,6 +106,17 @@ nav {
   }
 }
 
+.tablet {
+  .nav {
+    @include breakpoint(medium-landscape) {
+      display: block;
+    }
+    @include breakpoint(medium-landscape-ipad) {
+      display: block;
+    }
+  }
+}
+
 .menu {
   position: relative;
   left: 10%;
@@ -121,7 +143,7 @@ nav {
   }
   @include breakpoint(medium-landscape) {
     top: 11%;
-    left: 10%;
+    left: 0%;
     width: auto;
   }
   @include breakpoint(medium-portrait-pixel-ratio-two) {
@@ -131,11 +153,10 @@ nav {
     margin: 0 auto;
   }
   @include breakpoint(medium-landscape-pixel-ratio-two) {
-    left: 155px;
+    left: 0px;
     top: 10vh;
-    width: 34%;
+    width: 9%;
     margin: 0 auto;
-    background: yellowgreen;
   }
 
 
@@ -144,7 +165,6 @@ nav {
     display: block;
     width: 100%;
     text-transform: capitalize;
-    cursor: pointer;
 
     @include breakpoint(small-portrait) {
       padding: 9px 0px 9px 0px;
@@ -185,7 +205,6 @@ nav {
 
     &--active {
       display: block;
-      cursor: default;
     }
 
     &-item {
@@ -204,6 +223,7 @@ nav {
     display: block;
     font-size: 25px;
     width: 100%;
+    cursor: pointer;
 
     @include breakpoint(small-portrait) {
       font-size: 20px;
@@ -270,6 +290,7 @@ nav {
   margin-left: auto;
   margin-right: auto;
 
+
   @include breakpoint(small-portrait) {
     bottom: 15%;
     font-size: 15px; //left: 31%;
@@ -290,16 +311,14 @@ nav {
   }
   @include breakpoint(medium-portrait-pixel-ratio-two) {
     bottom: 21%;
-    ;
     left: 0;
     font-size: 2em;
     width: 100%;
   }
   @include breakpoint(medium-landscape) {
-    bottom: 21%;
-    ;
+    bottom: 30%;
     font-size: 1.3em;
-    width: 60%;
+    width: 17%;
     text-align: left;
     left: 0;
     right: 0;
@@ -315,6 +334,7 @@ nav {
   }
 
   &__link {
+    cursor: pointer;
     color: #c59844;
     &:hover {
       color: #222;
@@ -322,15 +342,22 @@ nav {
 
     &--active {
       color: #dcd0af;
+      cursor: default;
+
 
       &:hover {
         color: #dcd0af;
-        cursor: default;
       }
     }
   }
 }
-
+.tablet {
+  .language {
+    @include breakpoint(medium-landscape) {
+      width: 15%;
+    }
+  }
+}
 .social-icon {
   position: absolute;
   bottom: 14%;
@@ -374,7 +401,7 @@ nav {
     width: 100%;
   }
   @include breakpoint(medium-landscape) {
-    bottom: 14%;
+    bottom: 17%;
     left: 0;
     right: 0;
     margin-left: auto;
@@ -516,11 +543,7 @@ nav {
     background: yellow;
   }
 }
-.tablet {
-  .menu--xs {
-    display: none;
-  }
-}
+
 @include breakpoint(medium-portrait) {
   .tablet {
     .menu--xs {
@@ -529,4 +552,14 @@ nav {
   }
 }
 
-.logo-xs {}
+.logo--xs {
+  width: 29%;
+  padding-top: 8px;
+  margin: 0 auto;
+  display: block;
+  font-size: 17px;
+}
+
+.hamburger-wrapper {
+  float: left;
+}

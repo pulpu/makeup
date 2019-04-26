@@ -9,6 +9,9 @@ import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators/map';
 import { finalize } from 'rxjs/operators';
 
+import { Masonry, MasonryGridItem } from 'ng-masonry-grid';
+
+
 // You don't need to import firebase/app either since it's being imported above
 
 
@@ -38,16 +41,24 @@ export class AdminComponent implements OnInit {
   acceptImage = false;
   theImageIsLoaded: boolean = false;
   aspectRatioChecked: boolean = false;
+  Choosekind: string = 'photo';
+  displayRols: boolean = false;
+  test:boolean =false;
+  imageAccepted: boolean = false;
+  imageSmallAccepted: boolean = false;
 
 
+  _masonry: Masonry;
+  masonryItems: any[]; // NgMasonryGrid Grid item list
 
   arr: Item[] = [];
-  model = { id:'',order:'', agency: '', company: '', kind: 'photographer', authour: '', orientation:'',img:'', smallImg:'' };
+  model = { id:'',order:'', agency: '', company: '', kind: 'photo', authour: '', orientation:'',img:'', smallImg:'' };
+
 
   imageChangedEvent: any = '';
   croppedImage: any = '';
   showCropper = false;
-  aspectRatioValue: number = 3/4;
+  aspectRatioValue: string = '0.75';
 
   @ViewChild(ImageCropperComponent) imageCropper: ImageCropperComponent; // de vericat ce nu functineaza aici
 
@@ -74,6 +85,7 @@ export class AdminComponent implements OnInit {
           this.serverservice.getItems(this.category).subscribe(
             (item: Item[]) => {
               this.arr = item;
+              console.log('>>>>>',this.arr)
              this.model.order = String(this.arr.length + 1) 
           });
   
@@ -106,16 +118,30 @@ export class AdminComponent implements OnInit {
     // ** start ** this is for admim page to add new items
   itemSubmit() {
     this.serverservice.addItem(this.model, this.category);
+    this.imageAccepted = false;
+    this.imageSmallAccepted = false;
+
+    this.model.smallImg = '';
+    this.model.authour = '';
+    this.model.agency = '';
+    this.model.company = '';
+    this.model.img = '';
   }
-  onDelete(item) {
+  onDelete(item,event) {
     this.serverservice.deleteItem(item, this.category);
+    event.stopPropagation();
+  }
+
+  chooseWhatKind() {
+     this.model.kind = this.Choosekind;
+     return this.model.kind
   }
 
   addImageInFirebase():boolean {
     if(typeof this.croppedImage !== 'undefined') {
       var self = this;
       var base64result = this.croppedImage.split(',')[1];
-    const file = Math.random().toString(36).substring(2) + '__' + this.fileName['name'];
+      const file = Math.random().toString(36).substring(2) + '__' + this.fileName['name'];
         this.ref = this.storage.ref('/images').child(file)
         this.ref.putString(base64result, 'base64', {contentType:'image/jpg'}).then(function(snapshot) {
           console.log('Uploaded a base64 string!');
@@ -123,6 +149,7 @@ export class AdminComponent implements OnInit {
             finalize(() => {
               self.ref.getDownloadURL().subscribe(url => {  
                 self.model.smallImg = url;
+                self.imageSmallAccepted = true;
               },(error) => {
                 // Handle error here
                 // Show popup with errors or just console.error
@@ -132,7 +159,8 @@ export class AdminComponent implements OnInit {
           ).subscribe();
         });
     }
-    this.acceptImage = true
+    // this.acceptImage = true;
+    // this.displayRols = true;
     return this.acceptImage
   }
 
@@ -145,8 +173,7 @@ export class AdminComponent implements OnInit {
       }
   }
 
-  uploadOriginalImage(event) {
-    if(event.target.checked){
+  uploadOriginalImage() {
       this.ref = this.storage.ref('images/' + this.fileName['name']);
       this.task = this.ref.put(this.fileName);
       this.uploadState = this.task.snapshotChanges().pipe(map(s => s.state));
@@ -155,11 +182,10 @@ export class AdminComponent implements OnInit {
         finalize(() => {
           this.ref.getDownloadURL().subscribe(url => {
             this.model.img = url;
+            this.imageAccepted = true;
           });
         })
-      ).subscribe();
-    }
-    
+      ).subscribe();    
   }
   imageCropped(event: ImageCroppedEvent) {
     this.croppedImage = event.base64;
@@ -189,9 +215,13 @@ export class AdminComponent implements OnInit {
   }
 
   aspectRatio(value: string): void {
-    this.aspectRatioValue = Number(value);
+    this.aspectRatioValue = value;
     this.model.orientation = value;
     this.aspectRatioChecked = true;
+  }
+
+  onNgMasonryInit($event: Masonry) {
+    this._masonry = $event;
   }
 
 // ** end **//

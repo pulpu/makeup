@@ -84,23 +84,33 @@
         @content;
       }
     }
+
+    @if $point == medium-landscape-ipad {
+      @media only screen
+      and (min-device-width: 768px)
+      and (max-device-width: 1280px)
+      and (device-aspect-ratio: 4/3)
+      and (orientation: landscape)  {
+        @content;
+      }
+    }
   
     @if $point == medium-portrait-pixel-ratio-two {
       @media  only screen
-      and (min-device-width: 1024px)
-      and (max-device-width: 1336px)
-      and (orientation: portrait)
-      and (-webkit-min-device-pixel-ratio: 2){
+      and (min-width: 1024px) 
+      and (max-height: 1366px) 
+      and (orientation: portrait) 
+      and (-webkit-min-device-pixel-ratio: 1.5){
         @content;
       }
     }
   
     @if $point == medium-landscape-pixel-ratio-two {
       @media only screen
-      and (min-device-width: 1366px)
-      and (max-device-width: 1024px)
-      and (orientation: landscape)
-      and (-webkit-min-device-pixel-ratio: 2){
+      and (min-width: 1024px) 
+      and (max-height: 1366px) 
+      and (orientation: landscape) 
+      and (-webkit-min-device-pixel-ratio: 1.5){
         @content;
       }
     }

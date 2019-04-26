@@ -1,13 +1,14 @@
 <nav class="menu--xs">
-  <a (click)="changeState()"><i class="icon icon--hamburger" ></i></a>
-  <div class=".logo logo--xs" >Dora Codita</div>
+  <a (click)="changeState()" class="hamburger-wrapper" (click)="status=!status">
+    <i [ngClass]="status ? 'icon icon--cross' : 'icon icon--hamburger'"></i></a>
+  <div class="logo--xs" >Dora Codita</div>
 </nav>
 
 <nav id="nav" [@changeDivSize]=currentState>
   <div class="logo">Dora Codita</div>
   <ul  class="menu" id="menu">
     <li class="menu__item" *ngFor="let item of menuthree | async">
-      <a class="menu__link" (click)="[onClickCategory(item.title), changeState()]"  [ngClass]="{'menu__link--active': categoryid === item.title}">{{item.title}}</a>
+      <a class="menu__link" (click)="[onClickCategory(item.title), changeState(), reorderItems()]"  [ngClass]="{'menu__link--active': categoryid === item.title}">{{item.title}}</a>
       <ul class="menu__sub">
         <!-- <li class="menu__sub-item" *ngFor="let subtitle of item.subMenu">
           <a class="menu__link menu__link--secondary" (click)="onClick(subtitle)" [ngClass]="{ 'menu__link--active': categoryid=== subtitle}">{{subtitle}}</a>

@@ -109,6 +109,11 @@
 .tablet {
 	@include breakpoint(medium-landscape) {
 		.mask {
+			top: 50px;
+		}
+	}
+	@include breakpoint(medium-landscape-pixel-ratio-two) {
+		.mask {
 			top: 0px;
 		}
 	}

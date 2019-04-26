@@ -1,4 +1,4 @@
-<button class="btn btn-outline-primary mb-2 mr-2" (click)="openLg(content)">Edit</button>
+<button class="btn btn-outline-primary mb-2 mr-2" (click)="openLg(content,$event); false"><i class="icon icon--edit"></i></button>
 <ng-template #content let-modal>
   <div class="modal-header">
     <h4 class="modal-title">Edit Picture Info</h4>
@@ -70,8 +70,10 @@
                 <label for="orientation">image orientation: </label>
                 <div>
                     <select formControlName="orientation" placeholder="orientation" class="modal__input">
-                        <option value="portrait">portrait</option>
-                        <option value="landscape">landscape</option>
+                        <option value="1.77">1.77</option>
+                        <option value="1.33">1.33</option>
+                        <option value="1">1</option>
+                        <option value="0.66">0.66</option>
                     </select>
                 </div>
               </div>

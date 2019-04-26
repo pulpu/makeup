@@ -1,31 +1,39 @@
 <app-paragraph [paragraphs]='paragraphs'></app-paragraph>
-<div class="container-fluid">
-  <ng-masonry-grid
-    [masonryOptions]="{ gutter: 10, itemSelector: '.grid-item', columnWidth: 160,horizontalOrder: false, verticalOrder: true }" 
-    [useAnimation]="true"
-    [useImagesLoaded]="true"
-    [scrollAnimationOptions]="{ animationEffect: 'effect-4', minDuration : 0.4, maxDuration : 0.7 }">
-    <!-- Masonry Grid Item -->
-    <ng-masonry-grid-item id="{{'masonry-item-'+i}}" *ngFor="let item of database | async let i = index;"> 
-      <!-- Grid Content  -->
-      <a [ngClass]="item.classes" data-fancybox="gallery" [style.backgroundImage]="'url('+ urlParser(item.img) +')'" [href]="item.smallImg">
-        <figure class="figure">
-          <span class="figure__action"><i class="icon icon--zoom"></i></span>
-          <figcaption class="figcaption ">
+  <div class="container-fluid">
+    <ng-masonry-grid
+      [masonryOptions]="{ gutter: 10, itemSelector: '.grid-item', horizontalOrder: false, verticalOrder: true, useImagesLoaded:true }" 
+      [useAnimation]="true"
+      [useImagesLoaded]="true"
+      [scrollAnimationOptions]="{ animationEffect: 'effect-4', minDuration : 0.4, maxDuration : 0.7 }">
+      <!-- Masonry Grid Item -->
+        <ng-masonry-grid-item id="{{'masonry-item-'+i}}" *ngFor="let item of database | async let i = index;"> 
+            <!-- Grid Content  -->
             <div>
-              <div>
-                <i [ngClass]="[item.kind === 'photographer' ? 'icon icon--pictures' : 'icon icon--videos']"></i>
-                <span class="figcaption__campaign">{{item.company}}</span>
-                <span class="figcaption__author">{{item.photographer || item.director || item.author}}</span>
-              </div>
-              <div class="clearfix ">
-                <span class="figcaption__kind">{{item.kind}}</span>
-                <span class="figcaption__brand">{{item.agency}}</span>
-              </div>
+              <a [ngClass]="[item.orientation === '1.77' ? 'fancybox-imgw grid-item grid-item--width2 grid-item--height3': 
+               item.orientation === '1.33' ? 'fancybox-imgw grid-item grid-item--height2' :
+                item.orientation === '1' ? 'fancybox-imgw grid-item grid-item  grid-item--height2' : 'fancybox-imgw grid-item grid-item grid-item--height3']"
+                  data-fancybox="gallery" 
+                  [style.backgroundImage]="'url('+ urlParser(item.smallImg) +')'" 
+                  [href]="item.img">
+                <figure class="figure">
+                  <span class="figure__action"><i class="icon icon--zoom"></i></span>
+                  <figcaption class="figcaption ">
+                    <div>
+                      <div>
+                        <i [ngClass]="[item.kind === 'photographer' ? 'icon icon--pictures' : 'icon icon--videos']"></i>
+                        <span class="figcaption__campaign">{{item.company}}</span>
+                        <span class="figcaption__author">{{item.photographer || item.director || item.author}}</span>
+                      </div>
+                      <div class="clearfix ">
+                        <span class="figcaption__kind">{{item.kind}}</span>
+                        <span class="figcaption__brand">{{item.agency}}</span>
+                      </div>
+                    </div>
+                  </figcaption>
+                </figure>
+              </a>
             </div>
-          </figcaption>
-        </figure>
-      </a>
-    </ng-masonry-grid-item>
-  </ng-masonry-grid>
-</div>
+          </ng-masonry-grid-item>
+    </ng-masonry-grid>
+  </div>
+

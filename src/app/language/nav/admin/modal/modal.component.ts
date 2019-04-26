@@ -67,8 +67,11 @@ duplicateOrder: any
    
   }
 
-  openLg(content) {
+  openLg(content,event) {
+    
     this.modalService.open(content, { size: 'lg' });
+    event.stopPropagation();
+
   }
 
   changeHandler(e) {

@@ -1,181 +1,153 @@
 <app-language></app-language>
 <app-paragraph [paragraphs]='paragraphs'></app-paragraph>
 <div class="layout">
-    <div class="container-fluid" *ngIf="arr.length>0;else noData">
-        <div class="row">
-          <div *ngFor="let item of arr" [ngClass]="[item.orientation === 'portrait' ? 'mt-4 col-12 col-sm-6 col-md-3 grid-item' : 'mt-4 col-12 col-sm-12 col-md-6 grid-item grid-item--landscape']">
-            <!-- <app-admin-modal [item]='item'></app-admin-modal> -->
-            <app-modal [item]='item'></app-modal>
-            <a class="fancybox fancybox-imgw"  [style.backgroundImage]="'url('+ urlParser(item.img) +')'" [href]="item.smallImg">
-              <figure class="figure">
-                <span class="figure__action"><i class="icon icon--zoom"></i></span>
-                <figcaption class="figcaption ">
-                  <div>
+  <div class="container-fluid" >
+        <!-- <app-admin-modal [item]='item'></app-admin-modal> -->
+        <ng-masonry-grid
+          [masonryOptions]="{ gutter: 10, itemSelector: '.grid-item', horizontalOrder: false, verticalOrder: true }"
+          [useAnimation]="true" 
+          [useImagesLoaded]="true"
+          [scrollAnimationOptions]="{ animationEffect: 'effect-4', minDuration : 0.4, maxDuration : 0.7 }">
+          <!-- Masonry Grid Item -->
+          <ng-masonry-grid-item id="{{'masonry-item-'+i}}" *ngFor="let item of arr let i = index;"> 
+            <!-- Grid Content  -->
+            <div>
+              <a [ngClass]="[item.orientation === '1.77' ? 'fancybox-imgw grid-item grid-item--width2 grid-item--height3': 
+               item.orientation === '1.33' ? 'fancybox-imgw grid-item grid-item--height2' :
+                item.orientation === '1' ? 'fancybox-imgw grid-item grid-item  grid-item--height2' : 'fancybox-imgw grid-item grid-item grid-item--height3']"
+                data-fancybox="gallery" [style.backgroundImage]="'url('+ urlParser(item.smallImg) +')'" [href]="item.img">
+                <figure class="figure">
+                  <span class="figure__action"><i class="icon icon--zoom"></i></span>
+                  <figcaption class="figcaption ">
                     <div>
-                      <i [ngClass]="[item.photographer ? 'icon icon--pictures' : 'icon icon--videos']"></i>
-                      <span class="figcaption__campaign">{{item.company}}</span>
-                      <span class="figcaption__author">{{item.photographer || item.director}}</span>
-                    </div>
-                    <div class="clearfix ">
-                      <span class="figcaption__kind">{{item.kind}}</span>
-                      <span class="figcaption__brand">{{item.agency}}</span>
-                    </div>
-                  </div>
-                </figcaption>
-              </figure>
-            </a>
-            <a (click)="onDelete(item)" >
-                <button class="glyphicon glyphicon-trash btn btn-outline-danger mb-2 mr-2" aria-hidden="true">delete</button>
-            </a>
-         </div>
-         <div class="col-12 bg-grey mt-3">
-           <div class="row">
-             <div class="container mt-3">
-                <div class="row">
-                    <div class="col-3">
-                       <label class="btn btn-primary" for="my-file-selector" [ngClass]="[theImageIsLoaded ? 'hidden--xs-up' : 'show btn btn-primary']">
-                           <input type="file" id="my-file-selector" (change)="fileChangeEvent($event)" type="file" style="display:none;">
-                           Upload image
-                       </label>
-                       <div class="checkbox btn btn-primary" [ngClass]="[theImageIsLoaded ? 'show checkbox btn btn-primary' : 'hidden--xs-up']">
-                           <input type="checkbox" id="aproveImage" (change)="uploadOriginalImage($event)">
-                           <label for="aproveImage">Approved Image</label>
-                       </div>
-                    </div>
-                    <div class="col-3">
-                       <div class="progress mt-2">
-                           <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width]="(uploadProgress | async) + '%'" [attr.aria-valuenow]="(uploadProgress | async)" aria-valuemin="0" aria-valuemax="100"></div>
-                       </div>
-                    </div>
-                    <div [ngClass]="[theImageIsLoaded ? acceptImage ? 'hidden--xs-up' : 'show col-3' : 'hidden--xs-up']">
-                       <button class="btn btn-primary" (click)="addImageInFirebase()" [disabled]="!aspectRatioChecked" >add image</button>
-                    </div>
-                </div>
-                <div class="row">
-                   <div class="col-12">
-                       <div class="btn-group btn-group-sm mt-3 mb-3" [ngClass]="[!acceptImage ? 'btn-group btn-group-sm mt-3 mb-3' : 'hidden--xs-up']" role="group" aria-label="Small button group">
-                           <div class="btn-group btn-group-sm mr-3" role="group" aria-label="Small button group">
-                               <button class="btn btn-secondary ml-1" (click)="rotateLeft()"><i class="icon icon--rotate-left"></i></button>
-                               <button class="btn btn-secondary ml-1"(click)="rotateRight()"><i class="icon icon--rotate-right"></i></button>
-                               <button class="btn btn-secondary ml-1" (click)="flipHorizontal()"><i class="icon icon--flip-horizontal"></i></button>
-                               <button class="btn btn-secondary ml-1" (click)="flipVertical()"><i class="icon icon--flip-vertical"></i></button>
-                           </div>
-                           <button class="btn btn-secondary" (click)="aspectRatio(1.77)">16:9</button>
-                           <button class="btn btn-secondary" (click)="aspectRatio(1.33)">4:3</button>
-                           <button class="btn btn-secondary" (click)="aspectRatio(1)">1:1</button>
-                           <button class="btn btn-secondary" (click)="aspectRatio(0.66)">2:3</button>
-                       </div>
-                     </div>
-                </div>
-             </div>
-           </div>
-           <div [ngClass]="[theImageIsLoaded ? 'show row' : 'hidden--xs-up']">
-              <div class="mt-1 col-4"[ngClass]="!acceptImage ? 'show row' : 'hidden--xs-up'">
-                    <image-cropper
-                        [imageChangedEvent]="imageChangedEvent"
-                        [maintainAspectRatio]="true"
-                        [aspectRatio]=aspectRatioValue
-                        [resizeToWidth]="auto"
-                        [cropperMinWidth]="128"
-                        [onlyScaleDown]="true"
-                        [roundCropper]="false"
-                        format="png"
-                        outputType="base64"
-                        (imageCropped)="imageCropped($event)"
-                        (imageLoaded)="imageLoaded()"
-                        (cropperReady)="cropperReady()"
-                        (loadImageFailed)="loadImageFailed()"
-                        [style.display]="showCropper ? null : 'none'"
-                    ></image-cropper>
-                </div>
-                <div class="mt-1 col-4">
-                  <img [src]="croppedImage" />
-                </div>
-                <div class="admin-item mt-1 col-4">
-                    <h1>Add New Item</h1>
-                    <form (ngSubmit)="itemSubmit()" #addform="ngForm"> 
-                      <div class="row">
-                          <div class="form-group col-6" >
-                              <label for="agency">Agency</label>
-                              <input type="text" [(ngModel)]="model.agency" name="agency" class="form-control" id="agency" required #agency="ngModel">
-                              <div [hidden]="agency.valid || agency.pristine" class="alert alert-danger">
-                                Agency is required
-                              </div>
-                            </div>
-            
-                            <div class="form-group col-6">
-                              <label for="company">Company</label>
-                              <input type="text" [(ngModel)]="model.company" name="company" class="form-control" id="company" required #company="ngModel">
-                              <div [hidden]="company.valid || company.pristine" class="alert alert-danger">
-                                Company is required
-                              </div>
-                            </div>
+                      <div>
+                        <i [ngClass]="[item.kind === 'photographer' ? 'icon icon--pictures' : 'icon icon--videos']"></i>
+                        <span class="figcaption__campaign">{{item.company}}</span>
+                        <span class="figcaption__author">{{item.photographer || item.director || item.author}}</span>
                       </div>
-      
-                      <div class="row">
-                          <div class="form-group col-6">
-                              <label for="kind">kind: </label>
-                              <div>
-                                  <select placeholder="kind" [(ngModel)]="model.kind" name="kind" class="form-control" id="kind" required #kind="ngModel">
-                                      <option value="photographer">photographer</option>
-                                      <option value="director">director</option>
-                                  </select>
-                              </div>
-                              <div [hidden]="kind.valid || kind.pristine" class="alert alert-danger">
-                                  Kind is required
-                              </div>
-                          </div>
-      
-                          <div class="form-group col-6">
-                              <label for="orientation">image orientation: </label>
-                              <div>
-                                  <select [(ngModel)]="model.orientation"  name="orientation" id="orientation" placeholder="orientation" class="form-control" required #orientation="ngModel">
-                                      <option value="16:9">16:9</option>
-                                      <option value="4:3">4:3</option>
-                                      <option value="1:1">1:1</option>
-                                      <option value="2:3">2:3</option>
-                                  </select>
-                              </div>
-                              <div [hidden]="orientation.valid || orientation.pristine" class="alert alert-danger">
-                                  orientation is required
-                              </div>
-                          </div>
-                      </div>             
-      
-                      <div class="form-group">
-                          <label for="authour">{{model.kind === 'director' ? 'director' : 'photographer'}}</label>
-                          <input type="text" [(ngModel)]="model.authour" name="authour" class="form-control" id="authour"  #director="ngModel">
+                      <div class="clearfix ">
+                        <span class="figcaption__kind">{{item.kind}}</span>
+                        <span class="figcaption__brand">{{item.agency}}</span>
                       </div>
-      
-                      <div [ngClass]="[model.kind === 'photographer' ? 'hidden--xs-up' : 'show form-group']">
-                          <label for="img">youtube url</label>
-                          <input type="text" [(ngModel)]="model.img" name="img" class="form-control" id="img" #img="ngModel">
-                          <div [hidden]="img.valid || img.pristine" class="alert alert-danger">
-                              img is required
-                          </div>
-                        </div>
-      
-                      <div [ngClass]="[acceptImage ? 'show form-group' : 'hidden--xs-up']" >
-                        <button type="submit" class="btn btn-primary form-control" [disabled]="!addform.form.valid">Add Item</button>
-                      </div>
-                      <br>  
-                    </form>
-              </div>
-           </div>
-
-
-
+                    </div>
+                  </figcaption>
+                </figure>
+                <div class="position-absolute ml-2">
+                  <app-modal [item]='item'></app-modal>
+                  <button (click)="onDelete(item,$event)" class="glyphicon glyphicon-trash btn btn-outline-danger mb-2 mr-2" aria-hidden="true"><i class="icon icon--erase"></i></button>
+                </div>
+              </a>
+            </div>
+          </ng-masonry-grid-item>
+        </ng-masonry-grid>
+    <div class="col-12 bg-grey mt-3">
+      <div [ngClass]="[!imageAccepted ? 'form-group col-12' : 'hidden--xs-up']">
+        <label for="Choosekind">Choose kind: </label>
+        <div>
+          <select placeholder="Choosekind" class="w-25" [(ngModel)]="Choosekind" name="Choosekind" id="Choosekind" required #kind="ngModel" (change)="chooseWhatKind($event)">
+            <option value="photo">photo</option>
+            <option value="video">video</option>
+          </select>
+        </div>
+      </div>
+      <div [ngClass]="[Choosekind === 'photo' ? 'mt-3' : 'hidden--xs-up']">
+        <div class="row">
+          <div class="progress col-12 mt-2 mb-2">
+            <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width]="(uploadProgress | async) + '%'" [attr.aria-valuenow]="(uploadProgress | async)"  aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+          <div class="ml-3 pl-3">
+            <div class="row">
+                <div class="btn-group" role="group" aria-label="Default button group">
+                    <label class="btn btn-primary" for="my-file-selector" class="btn btn-primary" [ngClass]="[imageAccepted ? 'disabled' : '']"> 
+                        <input type="file" id="my-file-selector" (change)="fileChangeEvent($event)" type="file" style="display:none;" [disabled]="imageAccepted">
+                        Upload image
+                    </label>
+                    <button (click)="uploadOriginalImage()" [ngClass]="[theImageIsLoaded ? 'checkbox btn btn-primary' : 'hidden--xs-up']" [disabled]="imageAccepted">Approved Image</button>
+                    <div [ngClass]="[theImageIsLoaded ? acceptImage ? 'hidden--xs-up' :  this.model.img !== '' ? acceptImage ? 'hidden--xs-up' :'show col-3' : 'hidden--xs-up' : 'hidden--xs-up']">
+                        <button class="btn btn-primary" (click)="addImageInFirebase()" [disabled]="!aspectRatioChecked || imageSmallAccepted">add image</button>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div [ngClass]="[imageAccepted ? 'col-12' : 'hidden--xs-up']">
+            <div class="btn-group btn-group-sm mt-3 mb-3" class="btn-group btn-group-sm mt-3 mb-3" role="group" aria-label="Small button group">
+                <div class="btn-group btn-group-sm mr-3" role="group" aria-label="Small button group">
+                  <button class="btn btn-secondary ml-1" (click)="rotateLeft()"><i class="icon icon--rotate-left"></i></button>
+                  <button class="btn btn-secondary ml-1" (click)="rotateRight()"><i class="icon icon--rotate-right"></i></button>
+                  <button class="btn btn-secondary ml-1" (click)="flipHorizontal()"><i class="icon icon--flip-horizontal"></i></button>
+                  <button class="btn btn-secondary ml-1" (click)="flipVertical()"><i class="icon icon--flip-vertical"></i></button>
+                </div>
+                <button class="btn btn-secondary" (click)="aspectRatio(1.77)">16:9</button>
+                <button class="btn btn-secondary" (click)="aspectRatio(1.33)">4:3</button>
+                <button class="btn btn-secondary" (click)="aspectRatio(1)">1:1</button>
+                <button class="btn btn-secondary" (click)="aspectRatio(0.66)">2:3</button>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="mt-1 col-12">
+            <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true"
+              [aspectRatio]=aspectRatioValue [resizeToWidth]="auto" [cropperMinWidth]="128" [onlyScaleDown]="true"
+              [roundCropper]="false" format="png" outputType="base64" (imageCropped)="imageCropped($event)"
+              (imageLoaded)="imageLoaded()" (cropperReady)="cropperReady()" (loadImageFailed)="loadImageFailed()"
+              [style.display]="showCropper ? null : 'none'"></image-cropper>
           </div>
         </div>
       </div>
-    
-    
-    
-    <div class="container">
-      <ng-template #noData>
-        <hr>
-        <h5>There are no items to display</h5>
-      </ng-template>
+        <div class="row">
+            <div class="admin-item mt-1 col-3">
+                <!--[hidden]="!displayRols"-->
+                <h1>Add New Item</h1>
+                <form (ngSubmit)="itemSubmit()" #addform="ngForm">
+                  <div class="row">
+                    <div class="form-group col-6">
+                      <label for="agency">Agency</label>
+                      <input type="text" [(ngModel)]="model.agency" name="agency" class="form-control" id="agency"  required #agency="ngModel">
+                      <div [hidden]="agency.valid || agency.pristine" class="alert alert-danger">Agency is required</div>
+                    </div>
+  
+                    <div class="form-group col-6">
+                      <label for="company">Company</label>
+                      <input type="text" [(ngModel)]="model.company" name="company" class="form-control" id="company" required #company="ngModel">
+                      <div [hidden]="company.valid || company.pristine" class="alert alert-danger">Company is required</div>
+                    </div>
+                  </div>
+  
+                  <div class="form-group">
+                    <label for="authour">{{model.kind === 'video' ? 'director' : 'photographer'}}</label>
+                    <input type="text" [(ngModel)]="model.authour" name="authour" class="form-control" id="authour" #director="ngModel">
+                  </div>
+  
+                  <div [ngClass]="[model.kind === 'photo' ? 'hidden--xs-up' : 'show form-group']">
+                    <label for="img">youtube url</label>
+                    <input type="text" [(ngModel)]="model.img" name="img" class="form-control" id="img" #img="ngModel">
+                    <div [hidden]="img.valid || img.pristine" class="alert alert-danger">img is required</div>
+                  </div>
+  
+                  <div class="form-group">
+                    <button type="submit" class="btn btn-primary form-control" [disabled]="!addform.form.valid">Add Item</button>
+                  </div>
+                  <br>
+                </form>
+              </div>
+          <div [ngClass]="[Choosekind === 'photo' ? 'mt-1 col-9' : 'hidden--xs-up']">
+            <div  [style.backgroundImage]="'url('+ urlParser(croppedImage) +')'" [ngClass]="[this.model.orientation  === '1.77' ? 'fancybox-imgw grid-item grid-item--width2 grid-item--height4':
+            this.model.orientation  === '1.33' ? 'fancybox-imgw grid-item grid-item--height2' :
+            this.model.orientation  === '1' ? 'fancybox-imgw grid-item grid-item  grid-item--height2' : 'fancybox-imgw grid-item grid-item grid-item--height3']"></div>
+          </div>
+        </div>
     </div>
-    
+  </div>
+
+
+
+  <div class="container">
+    <ng-template #noData>
+      <hr>
+      <h5>There are no items to display</h5>
+    </ng-template>
+  </div>
+
 </div>

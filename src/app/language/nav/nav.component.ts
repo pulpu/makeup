@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ServerService } from './../../server.service';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { DataService } from "../../data.service";
+import { Masonry, MasonryGridItem } from 'ng-masonry-grid';
 
 
 declare var jquery:any;
@@ -34,6 +35,7 @@ export class NavComponent implements OnInit, DoCheck {
   currentState = 'initial';
   ismask: boolean;
   isdevice: string;
+  _masonry: Masonry;
 
   constructor(
     private router: Router, 
@@ -44,10 +46,20 @@ export class NavComponent implements OnInit, DoCheck {
 
 
   changeState() {
-    if(this.isdevice !== 'desktop') {
+    if(this.isdevice !== 'desktop' ) {
       this.currentState = this.currentState === 'initial' ? 'final' : 'initial';
+      this.data.changeMaskState(false) ;
     }
-    this.data.changeMaskState(false) ;
+    if(this.isdevice === 'tablet' &&  window.innerWidth > 1025){
+      this.currentState = this.currentState === 'initial' ? 'final' : 'initial';
+      this.data.changeMaskState(false) ;
+    }
+  }
+
+  reorderItems() {
+    if (this._masonry) {
+        this._masonry.reOrderItems();
+    }
   }
 
   ngOnInit() {
@@ -56,7 +68,7 @@ export class NavComponent implements OnInit, DoCheck {
     this.data.currentMaskState.subscribe(ismask => this.ismask = ismask)
   }
 
-   
+  
   onClickCategory(category) {
 
     let currentUrl = this.router.url; /// this will give you current url
