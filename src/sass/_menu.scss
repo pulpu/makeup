@@ -1,16 +1,18 @@
 @import "mixins";
 .logo {
-  text-align: left;
-    margin: 20px;
-    font-size: 30px;
+  font-family: 'New_Direction';
+  text-align: center;;
+  margin: 19px 6px;
+  font-size: 30px;
 }
 
 .tablet, .mobile {
   .logo {
     display: none;
-    @include breakpoint(medium-landscape-pixel-ratio-two) {
+    @include breakpoint(ipad-pro-landscape) {
       display: block;
     }
+
   }
 }
 nav {
@@ -152,12 +154,13 @@ nav {
     width: auto;
     margin: 0 auto;
   }
-  @include breakpoint(medium-landscape-pixel-ratio-two) {
+  @include breakpoint(ipad-pro-landscape) {
     left: 0px;
     top: 10vh;
-    width: 9%;
+    width: 80%;
     margin: 0 auto;
   }
+  
 
 
 
@@ -166,6 +169,10 @@ nav {
     width: 100%;
     text-transform: capitalize;
 
+    @include breakpoint(large) {
+      padding: 10px 0px 10px 0px;
+      text-align: left;
+    }
     @include breakpoint(small-portrait) {
       padding: 9px 0px 9px 0px;
       text-align: center;
@@ -194,10 +201,6 @@ nav {
       padding: 15px 0px 15px 0px;
       text-align: center;
     }
-    @include breakpoint(large) {
-      padding: 10px 0px 10px 0px;
-      text-align: left;
-    }
   }
 
   &__sub {
@@ -219,11 +222,16 @@ nav {
   }
 
   &__link {
-    color: #c59844; //#C89E2E;
+    color: $text-color; //#C89E2E;
     display: block;
-    font-size: 25px;
+    font-size: 28px;
     width: 100%;
     cursor: pointer;
+
+    &:hover {
+      color: $main-brand-color;
+    }
+
 
     @include breakpoint(small-portrait) {
       font-size: 20px;
@@ -284,7 +292,7 @@ nav {
   position: absolute;
   bottom: 21%;
   font-size: 1.1em;
-  width: 51%;
+  width: 38%;
   left: 0;
   right: 0;
   margin-left: auto;
@@ -335,9 +343,9 @@ nav {
 
   &__link {
     cursor: pointer;
-    color: #c59844;
+    color: $text-color;
     &:hover {
-      color: #222;
+      color: $main-brand-color;
     }
 
     &--active {
@@ -355,13 +363,20 @@ nav {
   .language {
     @include breakpoint(medium-landscape) {
       width: 15%;
+      text-align: center;
     }
+  }
+}
+
+.mobile {
+  .language {
+    text-align: center;
   }
 }
 .social-icon {
   position: absolute;
   bottom: 14%;
-  width: 55%;
+  width: 67%;
   text-align: center;
   left: 0;
   right: 0;
@@ -374,7 +389,7 @@ nav {
 
   @include breakpoint(small-portrait) {
     bottom: 9%;
-    width: 36%;
+    width: 43%;
     text-align: center;
     .icon {
       font-size: 25px;
@@ -420,10 +435,10 @@ nav {
   &__link {
     color: #C5AF86; //#C89E2E;
     padding: 5px;
-  }
-
-  .icon:hover {
-    color: #C59B6E;
+    
+    &:hover {
+      color: $text-color;
+    }
   }
 }
 
@@ -462,14 +477,10 @@ nav {
 
   @include breakpoint(small-portrait) {
     display: inline-block;
-    background: green;
 
     &:after {
       background: #fff;
-      -webkit-box-shadow: 0px 1px 1px -2px rgba(150, 150, 150, 1);
-      -moz-box-shadow: 0px 1px 1px -2px rgba(150, 150, 150, 1);
-      box-shadow: 0px 1px 1px -2px rgba(150, 150, 150, 1);
-      height: 42px;
+      height: 48px;
     }
     .icon {
       font-size: 34px;
@@ -481,10 +492,7 @@ nav {
 
     &:after {
       background: #fff;
-      -webkit-box-shadow: 0px 4px 11px -2px rgba(150, 150, 150, 1);
-      -moz-box-shadow: 0px 4px 11px -2px rgba(150, 150, 150, 1);
-      box-shadow: 0px 4px 11px -2px rgba(150, 150, 150, 1);
-      height: 35px;
+      height: 45px;
     }
     .icon {
       font-size: 36px;
@@ -497,10 +505,7 @@ nav {
     background: black;
     &:after {
       background: #fff;
-      -webkit-box-shadow: 0px 4px 11px -2px rgba(150, 150, 150, 1);
-      -moz-box-shadow: 0px 4px 11px -2px rgba(150, 150, 150, 1);
-      box-shadow: 0px 4px 11px -2px rgba(150, 150, 150, 1);
-      height: 50px;
+      height: 56px;
     }
     .icon {
       font-size: 36px;
@@ -511,10 +516,7 @@ nav {
     display: inline-block;
     &:after {
       background: #fff;
-      -webkit-box-shadow: 0px 4px 11px -2px rgba(150, 150, 150, 1);
-      -moz-box-shadow: 0px 4px 11px -2px rgba(150, 150, 150, 1);
-      box-shadow: 0px 4px 11px -2px rgba(150, 150, 150, 1);
-      height: 50px;
+      height: 56px;
     }
     .icon {
       font-size: 30px;
@@ -528,10 +530,7 @@ nav {
 
     &:after {
       background: #fff;
-      -webkit-box-shadow: 0px 4px 11px -2px rgba(150, 150, 150, 1);
-      -moz-box-shadow: 0px 4px 11px -2px rgba(150, 150, 150, 1);
-      box-shadow: 0px 4px 11px -2px rgba(150, 150, 150, 1);
-      height: 50px;
+      height: 56px;
     }
     .icon {
       font-size: 36px;
@@ -553,11 +552,17 @@ nav {
 }
 
 .logo--xs {
-  width: 29%;
+  width: calc(100% - 32px);;
   padding-top: 8px;
-  margin: 0 auto;
+  margin: 0 0 0 32px;
   display: block;
-  font-size: 17px;
+  font-size: 30px;
+  font-family: 'New_Direction';
+  text-align: center;
+  @include breakpoint(medium-portrait-pixel-ratio-two) {
+    font-size: 45px;
+
+  }
 }
 
 .hamburger-wrapper {

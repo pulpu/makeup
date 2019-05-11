@@ -102,3 +102,9 @@ https://github.com/Shailu4u/ng-masonry-grid-demo/blob/master/src/app/app.compone
    https://www.c-sharpcorner.com/article/simple-way-to-execute-a-function-in-a-component-from-another-component/
 
   /******************** APS-30 ********************/
+   - need to fix the masonry grid in admin page to re init when item is add
+  -  some styling work in gallery page
+
+    /******************** APS-31 ********************/
+    on edit when give image order if you give no. 999 it will be set the lenght + 1 
+    need fix: when click on delete you click on image and not deleting the item

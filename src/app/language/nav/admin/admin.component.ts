@@ -52,7 +52,7 @@ export class AdminComponent implements OnInit {
   masonryItems: any[]; // NgMasonryGrid Grid item list
 
   arr: Item[] = [];
-  model = { id:'',order:'', agency: '', company: '', kind: 'photo', authour: '', orientation:'',img:'', smallImg:'' };
+  model = { id:'',order:'', agency: '', company: '', kind: 'photo', author: '', orientation:'',img:'', smallImg:'' };
 
 
   imageChangedEvent: any = '';
@@ -122,7 +122,7 @@ export class AdminComponent implements OnInit {
     this.imageSmallAccepted = false;
 
     this.model.smallImg = '';
-    this.model.authour = '';
+    this.model.author = '';
     this.model.agency = '';
     this.model.company = '';
     this.model.img = '';

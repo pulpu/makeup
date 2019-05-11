@@ -1,13 +1,11 @@
 <app-paragraph [paragraphs]='paragraphs'></app-paragraph>
-  <div class="container-fluid">
+  <div class="container-fluid  mt-sm-5">
     <ng-masonry-grid
     *ngIf="reRenderGrid"
-      [masonryOptions]="{ gutter: 10, itemSelector: '.grid-item', horizontalOrder: false, verticalOrder: true, useImagesLoaded:true }" 
+      (onNgMasonryInit)="onNgMasonryInit($event)"
+      [masonryOptions]="{ gutter: 10, itemSelector: '.grid-item', horizontalOrder: false, verticalOrder: true}" 
       [useAnimation]="true"
-      [useImagesLoaded]="true"
-      (onNgMasonryInit)="onNgMasonryInit($event)"
-      (onNgMasonryInit)="onNgMasonryInit($event)"
-      (removeComplete)="removeGridItem($event)"
+      [useImagesLoaded]="true" 
       [scrollAnimationOptions]="{ animationEffect: 'effect-4', minDuration : 0.4, maxDuration : 0.7 , viewportFactor : 0}">
       <!-- Masonry Grid Item -->
         <ng-masonry-grid-item id="{{'masonry-item-'+i}}" *ngFor="let item of database | async let i = index;"> 
@@ -24,8 +22,8 @@
                   <figcaption class="figcaption ">
                     <div>
                       <div>
-                        <i [ngClass]="[item.kind === 'photographer' ? 'icon icon--pictures' : 'icon icon--videos']"></i>
-                        <span class="figcaption__campaign">{{item.company}}</span>
+                        <!-- <i [ngClass]="[item.kind === 'photographer' ? 'icon icon--pictures' : 'icon icon--videos']"></i> -->
+                        <span class="figcaption__company">{{item.company}}</span>
                         <span class="figcaption__author">{{item.photographer || item.director || item.author}}</span>
                       </div>
                       <div class="clearfix ">

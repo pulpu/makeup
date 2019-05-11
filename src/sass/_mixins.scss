@@ -114,6 +114,15 @@
         @content;
       }
     }
+    @if $point == ipad-pro-landscape {
+      @media only screen
+      and (min-device-width: 1366px)
+      and (max-device-width: 1366px)
+      and (orientation: landscape) 
+      and (-webkit-min-device-pixel-ratio: 2){
+        @content;
+      }
+    }
     @if $point == android{
       @media only screen and (width : 600px)
       and (orientation: portrait){

@@ -1,7 +1,7 @@
 <app-language></app-language>
 <app-paragraph [paragraphs]='paragraphs'></app-paragraph>
 <div class="layout">
-  <div class="container-fluid" >
+  <div class="container-fluid mt-sm-5" >
         <!-- <app-admin-modal [item]='item'></app-admin-modal> -->
         <ng-masonry-grid
           [masonryOptions]="{ gutter: 10, itemSelector: '.grid-item', horizontalOrder: false, verticalOrder: true }"
@@ -21,8 +21,8 @@
                   <figcaption class="figcaption ">
                     <div>
                       <div>
-                        <i [ngClass]="[item.kind === 'photographer' ? 'icon icon--pictures' : 'icon icon--videos']"></i>
-                        <span class="figcaption__campaign">{{item.company}}</span>
+                        <!-- <i [ngClass]="[item.kind === 'photographer' ? 'icon icon--pictures' : 'icon icon--videos']"></i> -->
+                        <span class="figcaption__company">{{item.company}}</span>
                         <span class="figcaption__author">{{item.photographer || item.director || item.author}}</span>
                       </div>
                       <div class="clearfix ">
@@ -116,8 +116,8 @@
                   </div>
   
                   <div class="form-group">
-                    <label for="authour">{{model.kind === 'video' ? 'director' : 'photographer'}}</label>
-                    <input type="text" [(ngModel)]="model.authour" name="authour" class="form-control" id="authour" #director="ngModel">
+                    <label for="author">{{model.kind === 'video' ? 'director' : 'photographer'}}</label>
+                    <input type="text" [(ngModel)]="model.author" name="author" class="form-control" id="author" #director="ngModel">
                   </div>
   
                   <div [ngClass]="[model.kind === 'photo' ? 'hidden--xs-up' : 'show form-group']">

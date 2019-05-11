@@ -50,7 +50,7 @@ duplicateOrder: any
     this.myForm = this.fb.group({
       agency: [''],
       company: [''],
-      authour: [''],
+      author: [''],
       img: [''],
       smallImg: [''],
       kind: [''],

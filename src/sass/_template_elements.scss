@@ -166,10 +166,10 @@
 	  top: 10px;
 	}
 	@include breakpoint(medium-portrait) {
-	  top: 10px;
+	  top: 22px;
 	}
 	@include breakpoint(medium-portrait-pixel-ratio-two) {
-	  top: 10px;
+	  top: 22px;
 	}
 
 	background: rgba(224, 215, 202, 1);

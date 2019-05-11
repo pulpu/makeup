@@ -16,66 +16,11 @@
   right: 1%;
 }
 
-// .grid-item {
-//   overflow: hidden;
-
-//   &--landscape {
-//     .fancybox {
-//       padding-top: 69%;
-//     }
-//   }
-// }
-
 .admin-item {
   min-height: 450px;
 }
 
-// .fancybox {
-//   display: inline-block;
-//   float: left;
-//   background-size: cover;
-//   background-repeat: no-repeat;
-//   background-position: center top;
-//   width: 100%;
-//   height: 0;
-//   padding-top: 150%;
-//   position: relative;
-//   overflow: hidden;
-
-//   @include breakpoint(small-portrait) {
-//     padding-top: 150%;
-//   }
-//   @include breakpoint(large) {
-//     padding-top: 150%;
-//   }
-
-//   &--large {
-//     padding-top: 71.6%;
-
-//     @include breakpoint(small-portrait) {
-//       padding-top: 150%;
-//     }
-//   }
-
-//   &--video {
-//     // padding-top: 85%;
-//     @include breakpoint(small-portrait) {
-//       padding-top: 85%;
-//     }
-//   }
-
-//   &--video-large {
-//     padding-top: 67.6%;
-
-//     @include breakpoint(small-portrait) {
-//       padding-top: 55%;
-//     }
-//   }
-// }
-
 * { box-sizing: border-box; }
-
-body { font-family: sans-serif; }
 
 /* ---- grid ---- */
 
@@ -92,13 +37,11 @@ body { font-family: sans-serif; }
   display: block;
   clear: both;
 }
-
 /* ---- grid-item ---- */
 
 
 
 /* ---- grid ---- */
-
 .grid {
   background: #fff;
  //  max-width: 100%;
@@ -323,7 +266,7 @@ body { font-family: sans-serif; }
 }
 
 .figcaption {
-  background: rgba(58, 46, 10, 0.9) none repeat scroll 0 0;
+  background: rgba(255, 255, 255, 0.9) none repeat scroll 0 0;
   bottom: 0;
   color: #3c4a50;
   position: absolute;
@@ -367,22 +310,23 @@ body { font-family: sans-serif; }
   }
 
   &__brand {
-    color: #dac6a2;
+    color: $text-color;
     display: inline-block;
-    padding: 0 0 5px 10px;
+    padding: 0 0 5px 15px;
     width: 90%;
     font-size: 16px;
     text-align: left;
   }
 
-  &__campaign {
-    color: #eadabc;
-    width: 88%;
+  &__company {
+    color: $text-color;
+    width: 96%;
     text-align: center;
-    display: inline-block;
-    border-bottom: 1px solid #6f6c65;
+    display: block;
+    border-bottom: 1px solid rgba(111, 108, 101, 0.43137254901960786);
     font-size: 18px !important;
     line-height: 1.5;
+    margin: 0 auto !important;
     @include breakpoint(small) {
       font-size: 7px;
     }
@@ -398,9 +342,9 @@ body { font-family: sans-serif; }
     }
   }
   &__kind {
-    color: #c7c4b8;
+    color: $text-color;
     text-align: right;
-    padding-right: 10px;
+    padding-right: 15px;
     width: 100%;
     display: block;
     @include breakpoint(small) {

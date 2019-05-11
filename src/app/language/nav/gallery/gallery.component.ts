@@ -83,8 +83,6 @@ export class GalleryComponent implements OnInit  {
   onNgMasonryInit($event: Masonry) {
    console.log($event);
    this._masonry = $event;
-   console.log('aici acum rerender ',this._masonry)
-
   }
 
 

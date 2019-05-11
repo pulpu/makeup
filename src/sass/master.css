@@ -130,7 +130,11 @@ table {
 }
 
 a:not([href]):not([tabindex]) {
-  color: #c59844;
+  color: #222;
+}
+
+a:not([href]):not([tabindex]):hover {
+  color: #9c7120;
 }
 
 /*.tooltip {
@@ -277,8 +281,23 @@ body {
 }
 
 /* ------------------------------------------------ typography ------------------------------------------------ */
+@font-face {
+  font-family: 'New_Direction';
+  src: url("../assets/fonts/NewDirection/New_Direction.ttf") format("truetype"), url("../assets/fonts/NewDirection/New_Direction.svg#New_Direction") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Austin_Web';
+  src: url("../assets/fonts/AustinWebLight/austin-web-light.eot");
+  src: url("../assets/fonts/AustinWebLight/austin-web-light.eot?#iefix") format("embedded-opentype"), url("../assets/fonts/AustinWebLight/austin-web-light.woff") format("woff"), url("../assets/fonts/AustinWebLight/austin-web-light.ttf") format("truetype"), url("../assets/fonts/AustinWebLight/austin-web-light.svg#Austin_Web") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
-  font-family: 'Lora', serif;
+  font-family: 'Austin_Web', serif;
   font-size: 0.875em;
   font-style: italic;
   color: #222222;
@@ -315,11 +334,11 @@ body {
    ------------------------------------------------ */
 a {
   text-decoration: none;
-  color: #9c7120;
+  color: #222;
 }
 
 a:hover {
-  color: #222;
+  color: #9c7120;
   text-decoration: none;
 }
 
@@ -585,8 +604,9 @@ blockquote {
 
 */
 .logo {
-  text-align: left;
-  margin: 20px;
+  font-family: 'New_Direction';
+  text-align: center;
+  margin: 19px 6px;
   font-size: 30px;
 }
 
@@ -594,7 +614,7 @@ blockquote {
   display: none;
 }
 
-@media only screen and (min-width: 1024px) and (max-height: 1366px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 1.5) {
+@media only screen and (min-device-width: 1366px) and (max-device-width: 1366px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {
   .tablet .logo, .mobile .logo {
     display: block;
   }
@@ -787,11 +807,11 @@ nav:after {
   }
 }
 
-@media only screen and (min-width: 1024px) and (max-height: 1366px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 1.5) {
+@media only screen and (min-device-width: 1366px) and (max-device-width: 1366px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {
   .menu {
     left: 0px;
     top: 10vh;
-    width: 9%;
+    width: 80%;
     margin: 0 auto;
   }
 }
@@ -800,6 +820,13 @@ nav:after {
   display: block;
   width: 100%;
   text-transform: capitalize;
+}
+
+@media (min-width: 992px) {
+  .menu__item {
+    padding: 10px 0px 10px 0px;
+    text-align: left;
+  }
 }
 
 @media only screen and (min-device-width: 320px) and (max-device-width: 736px) and (orientation: portrait) {
@@ -851,13 +878,6 @@ nav:after {
   }
 }
 
-@media (min-width: 992px) {
-  .menu__item {
-    padding: 10px 0px 10px 0px;
-    text-align: left;
-  }
-}
-
 .menu__sub {
   display: none;
 }
@@ -877,11 +897,15 @@ nav:after {
 }
 
 .menu__link {
-  color: #c59844;
+  color: #222;
   display: block;
-  font-size: 25px;
+  font-size: 28px;
   width: 100%;
   cursor: pointer;
+}
+
+.menu__link:hover {
+  color: #9c7120;
 }
 
 @media only screen and (min-device-width: 320px) and (max-device-width: 736px) and (orientation: portrait) {
@@ -982,7 +1006,7 @@ nav:after {
   position: absolute;
   bottom: 21%;
   font-size: 1.1em;
-  width: 51%;
+  width: 38%;
   left: 0;
   right: 0;
   margin-left: auto;
@@ -1050,11 +1074,11 @@ nav:after {
 
 .language__link {
   cursor: pointer;
-  color: #c59844;
+  color: #222;
 }
 
 .language__link:hover {
-  color: #222;
+  color: #9c7120;
 }
 
 .language__link--active {
@@ -1069,13 +1093,18 @@ nav:after {
 @media only screen and (min-device-width: 768px) and (max-device-width: 1280px) and (orientation: landscape) {
   .tablet .language {
     width: 15%;
+    text-align: center;
   }
+}
+
+.mobile .language {
+  text-align: center;
 }
 
 .social-icon {
   position: absolute;
   bottom: 14%;
-  width: 55%;
+  width: 67%;
   text-align: center;
   left: 0;
   right: 0;
@@ -1090,7 +1119,7 @@ nav:after {
 @media only screen and (min-device-width: 320px) and (max-device-width: 736px) and (orientation: portrait) {
   .social-icon {
     bottom: 9%;
-    width: 36%;
+    width: 43%;
     text-align: center;
   }
   .social-icon .icon {
@@ -1154,8 +1183,8 @@ nav:after {
   padding: 5px;
 }
 
-.social-icon .icon:hover {
-  color: #C59B6E;
+.social-icon__link:hover {
+  color: #222;
 }
 
 .ornament-line {
@@ -1193,13 +1222,10 @@ nav:after {
 @media only screen and (min-device-width: 320px) and (max-device-width: 736px) and (orientation: portrait) {
   .menu--xs {
     display: inline-block;
-    background: green;
   }
   .menu--xs:after {
     background: #fff;
-    -webkit-box-shadow: 0px 1px 1px -2px #969696;
-    box-shadow: 0px 1px 1px -2px #969696;
-    height: 42px;
+    height: 48px;
   }
   .menu--xs .icon {
     font-size: 34px;
@@ -1213,9 +1239,7 @@ nav:after {
   }
   .menu--xs:after {
     background: #fff;
-    -webkit-box-shadow: 0px 4px 11px -2px #969696;
-    box-shadow: 0px 4px 11px -2px #969696;
-    height: 35px;
+    height: 45px;
   }
   .menu--xs .icon {
     font-size: 36px;
@@ -1231,9 +1255,7 @@ nav:after {
   }
   .menu--xs:after {
     background: #fff;
-    -webkit-box-shadow: 0px 4px 11px -2px #969696;
-    box-shadow: 0px 4px 11px -2px #969696;
-    height: 50px;
+    height: 56px;
   }
   .menu--xs .icon {
     font-size: 36px;
@@ -1247,9 +1269,7 @@ nav:after {
   }
   .menu--xs:after {
     background: #fff;
-    -webkit-box-shadow: 0px 4px 11px -2px #969696;
-    box-shadow: 0px 4px 11px -2px #969696;
-    height: 50px;
+    height: 56px;
   }
   .menu--xs .icon {
     font-size: 30px;
@@ -1264,9 +1284,7 @@ nav:after {
   }
   .menu--xs:after {
     background: #fff;
-    -webkit-box-shadow: 0px 4px 11px -2px #969696;
-    box-shadow: 0px 4px 11px -2px #969696;
-    height: 50px;
+    height: 56px;
   }
   .menu--xs .icon {
     font-size: 36px;
@@ -1287,11 +1305,19 @@ nav:after {
 }
 
 .logo--xs {
-  width: 29%;
+  width: calc(100% - 32px);
   padding-top: 8px;
-  margin: 0 auto;
+  margin: 0 0 0 32px;
   display: block;
-  font-size: 17px;
+  font-size: 30px;
+  font-family: 'New_Direction';
+  text-align: center;
+}
+
+@media only screen and (min-width: 1024px) and (max-height: 1366px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 1.5) {
+  .logo--xs {
+    font-size: 45px;
+  }
 }
 
 .hamburger-wrapper {
@@ -1520,13 +1546,13 @@ nav:after {
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1280px) and (orientation: portrait) {
   .paragraph__controller {
-    top: 10px;
+    top: 22px;
   }
 }
 
 @media only screen and (min-width: 1024px) and (max-height: 1366px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 1.5) {
   .paragraph__controller {
-    top: 10px;
+    top: 22px;
   }
 }
 
@@ -1644,10 +1670,6 @@ nav:after {
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-}
-
-body {
-  font-family: sans-serif;
 }
 
 /* ---- grid ---- */
@@ -1961,7 +1983,7 @@ body {
 }
 
 .figcaption {
-  background: rgba(58, 46, 10, 0.9) none repeat scroll 0 0;
+  background: rgba(255, 255, 255, 0.9) none repeat scroll 0 0;
   bottom: 0;
   color: #3c4a50;
   position: absolute;
@@ -2010,41 +2032,42 @@ body {
 }
 
 .figcaption__brand {
-  color: #dac6a2;
+  color: #222;
   display: inline-block;
-  padding: 0 0 5px 10px;
+  padding: 0 0 5px 15px;
   width: 90%;
   font-size: 16px;
   text-align: left;
 }
 
-.figcaption__campaign {
-  color: #eadabc;
-  width: 88%;
+.figcaption__company {
+  color: #222;
+  width: 96%;
   text-align: center;
-  display: inline-block;
-  border-bottom: 1px solid #6f6c65;
+  display: block;
+  border-bottom: 1px solid rgba(111, 108, 101, 0.431373);
   font-size: 18px !important;
   line-height: 1.5;
+  margin: 0 auto !important;
 }
 
 @media (min-width: 992px) {
-  .figcaption__campaign {
+  .figcaption__company {
     font-size: 12px;
     margin: 0px;
   }
 }
 
 @media (min-width: 1600px) {
-  .figcaption__campaign {
+  .figcaption__company {
     font-size: 14px;
   }
 }
 
 .figcaption__kind {
-  color: #c7c4b8;
+  color: #222;
   text-align: right;
-  padding-right: 10px;
+  padding-right: 15px;
   width: 100%;
   display: block;
 }

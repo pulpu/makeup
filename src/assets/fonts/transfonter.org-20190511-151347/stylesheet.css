@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'New Direction';
+    src: url('subset-NewDirection.woff2') format('woff2'),
+        url('subset-NewDirection.woff') format('woff'),
+        url('subset-NewDirection.svg#NewDirection') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
