@@ -128,6 +128,7 @@ export class AdminComponent implements OnInit {
     this.model.img = '';
   }
   onDelete(item,event) {
+    debugger;
     this.serverservice.deleteItem(item, this.category);
     event.stopPropagation();
   }

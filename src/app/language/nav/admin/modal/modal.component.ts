@@ -68,7 +68,8 @@ duplicateOrder: any
   }
 
   openLg(content,event) {
-    
+    debugger;
+
     this.modalService.open(content, { size: 'lg' });
     event.stopPropagation();
 
