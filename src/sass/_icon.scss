@@ -143,3 +143,7 @@
   .icon--idmb:before {
     content: "\e900";
   }
+
+  .icon--fade {
+    transition: all 3s ease;
+  }

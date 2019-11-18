@@ -1,570 +1,233 @@
-@import "mixins";
-.logo {
-  font-family: 'New_Direction';
-  text-align: center;;
-  margin: 19px 6px;
-  font-size: 30px;
-}
-
-.tablet, .mobile {
-  .logo {
-    display: none;
-    @include breakpoint(ipad-pro-landscape) {
-      display: block;
-    }
-
-  }
-}
-nav {
+.sidebar {
   position: fixed;
-  height: 100%;
-  z-index: 2;
+  top: 0;
   left: 0;
-  width: 245px;
+  bottom: 0;
+  width: 80px;
+  border-right: 1px solid #e6e6e6;
+  text-align: center;
+  z-index: 2;
+  background-color: #fff;
 
-  @include breakpoint(small-portrait) {
-    left: -1024px;
-    transform: skew(0deg);
-    width: 100%;
-    max-width: 100%;
-    background: yellow;
-  }
-  @include breakpoint(small-landscape) {
-    left: -1024px;
-    transform: skew(0deg);
-    width: 100%;
-    max-width: 100%;
-    background: yellowgreen;
-  }
-
-  @include breakpoint(large) {
-    left: 0px;
-    transform: skew(0deg);
-    width: 100%;
-    max-width: 100%;
-    width: 245px;
-    background: darkslategray;
-  }
-
-
-
-  @include breakpoint(medium-portrait) {
-    left: -1024px;
-    transform: skew(0deg);
-    width: 100%;
-    max-width: 100%;
-    background: palegreen;
-  }
-
-  @include breakpoint(medium-portrait-pixel-ratio-two) {
-    left: -1024px;
-    transform: skew(0deg);
-    width: 100%;
-    max-width: 100%;
-    background: palegoldenrod;
-  }
-
-  @include breakpoint(medium-landscape) {
-    left: -1024px;
-    transform: skew(0deg);
-    width: 100%;
-    max-width: 100%;
-    background: palegreen;
-  }
-
-  @include breakpoint(extralarge) {
-    left: 0px;
-    transform: skew(0deg);
-    width: 100%;
-    max-width: 100%;
-    width: 245px;
-  }
-
-
-  &:after {
-    background: #fff;
-    bottom: 0;
-    content: '';
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-    z-index: -1;
-    @include breakpoint(small-portrait) {
-      width: 100%;
-      max-width: 100%;
-    }
-    @include breakpoint(medium-portrait) {
-      width: 100%;
-      max-width: 100%;
-    }
-    @include breakpoint(medium-landscape) {
-      width: 100%;
-      max-width: 100%;
-    }
-    @include breakpoint(large) {
-      width: 100%;
-    }
-  }
-}
-
-.tablet {
-  .nav {
-    @include breakpoint(medium-landscape) {
-      display: block;
-    }
-    @include breakpoint(medium-landscape-ipad) {
-      display: block;
-    }
-  }
-}
-
-.menu {
-  position: relative;
-  left: 10%;
-  margin: 0 auto;
-  top: 11vh;
-  left: 10%;
-  width: auto;
-
-  @include breakpoint(small-portrait) {
-    left: 0px;
-    top: 11%;
-    width: 35%;
-    margin: 0 auto;
-  }
-  @include breakpoint(small-landscape) {
-    top: 15%;
-    left: 0;
-    width: auto;
-  }
-  @include breakpoint(medium-portrait) {
-    top: 11vh;
-    left: 0;
-    width: auto;
-  }
-  @include breakpoint(medium-landscape) {
-    top: 11%;
-    left: 0%;
-    width: auto;
-  }
-  @include breakpoint(medium-portrait-pixel-ratio-two) {
-    left: 0%;
-    top: 20%;
-    width: auto;
-    margin: 0 auto;
-  }
-  @include breakpoint(ipad-pro-landscape) {
-    left: 0px;
-    top: 10vh;
-    width: 80%;
-    margin: 0 auto;
+  &__wrapper {
   }
   
+}
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  visibility: hidden;
+  z-index: 5;
+  transition: visibility 1.5s cubic-bezier(.08,.03,.22,.87);
 
+  &--active {
+      visibility: visible;
+      transition: visibility .8s cubic-bezier(.08,.03,.22,.87);
+  }
 
+  &__wrapper {
+      @media (min-width: 992px) {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      }
+  }
 
   &__item {
-    display: block;
-    width: 100%;
-    text-transform: capitalize;
-
-    @include breakpoint(large) {
-      padding: 10px 0px 10px 0px;
-      text-align: left;
-    }
-    @include breakpoint(small-portrait) {
-      padding: 9px 0px 9px 0px;
+      position: relative;
+      width: 25%;
       text-align: center;
-    }
-    @include breakpoint(small-landscape) {
-      padding: 5px 0px 5px 0px;
-      text-align: center;
-    }
-    @include breakpoint(iphone6plusportrait) {
-      padding: 12px 0px 12px 0px;
-      text-align: center;
-    }
-    @include breakpoint(medium-portrait) {
-      padding: 10px 0px 10px 0px;
-      text-align: center;
-    }
-    @include breakpoint( medium-portrait-pixel-ratio-two) {
-      padding: 30px 0px 10px 0px;
-      text-align: center;
-    }
-    @include breakpoint(medium-landscape) {
-      padding: 10px 0px 10px 0px;
-      text-align: center;
-    }
-    @include breakpoint(android) {
-      padding: 15px 0px 15px 0px;
-      text-align: center;
-    }
-  }
+      height: 100%;
+      
 
-  &__sub {
-    display: none;
-
-    &--active {
-      display: block;
-    }
-
-    &-item {
-      width: 100%;
-      padding: 10px 0px 10px 0px;
-      text-transform: capitalize;
-    }
-
-    li:last-of-type {
-      margin-bottom: -16px;
-    }
-  }
-
-  &__link {
-    color: $text-color; //#C89E2E;
-    display: block;
-    font-size: 28px;
-    width: 100%;
-    cursor: pointer;
-
-    &:hover {
-      color: $main-brand-color;
-    }
-
-
-    @include breakpoint(small-portrait) {
-      font-size: 20px;
-    }
-    @include breakpoint(small-landscape) {
-      font-size: 20px;
-    }
-    @include breakpoint(iphone6plusportrait) {
-      font-size: 26px;
-    }
-    @include breakpoint(medium-portrait) {
-      font-size: 32px;
-    }
-    @include breakpoint(medium-portrait-pixel-ratio-two) {
-      font-size: 52px;
-      text-align: center;
-    }
-    @include breakpoint(medium-landscape) {
-      font-size: 22px;
-    }
-    @include breakpoint(android) {
-      font-size: 41px;
-    }
-
-    &--secondary {
-      color: #C5AF86; //#C5AF86;
-      @include breakpoint(small-portrait) {
-        font-size: 15px;
+      &:first-child {
+          .nav__item-outer {
+              @media (min-width: 992px) {
+                  transition: width .8s cubic-bezier(.08,.03,.22,.87) .1s,padding .8s 
+                  cubic-bezier(.08,.03,.22,.87) .1s,background-color 2s 
+                  cubic-bezier(.08,.03,.22,.87),border 1s 
+                  cubic-bezier(.08,.03,.22,.87) .1s;
+                  transition-delay: .2s;
+                  border-right: 1px solid transparent;
+              }
+          }
       }
-      @include breakpoint(small-landscape) {
-        font-size: 20px;
+
+      &:nth-child(2) {
+          .nav__item-outer {
+              @media (min-width: 992px) {
+                  transition: width .8s cubic-bezier(.08,.03,.22,.87) .2s,padding .8s 
+                  cubic-bezier(.08,.03,.22,.87) .2s,background-color 2s 
+                  cubic-bezier(.08,.03,.22,.87),border 1s 
+                  cubic-bezier(.08,.03,.22,.87) .2s;    
+                  transition-delay: .4s; 
+                  border-right: 1px solid transparent;          
+               }
+          }
       }
-      @include breakpoint(iphone6plusportrait) {
-        font-size: 20px;
+
+      &:nth-child(3) {
+          .nav__item-outer {
+              @media (min-width: 992px) {
+                  transition: width .8s cubic-bezier(.08,.03,.22,.87) .3s,padding .8s 
+                  cubic-bezier(.08,.03,.22,.87) .3s,background-color 2s 
+                  cubic-bezier(.08,.03,.22,.87),border 1s 
+                  cubic-bezier(.08,.03,.22,.87) .3s;   
+                  transition-delay: .6s;   
+                  border-right: 1px solid transparent;      
+              }
+          }
       }
-      @include breakpoint(medium-portrait) {
-        font-size: 30px;
+
+      &:nth-child(4) {
+          .nav__item-outer {
+              @media (min-width: 992px) {
+                  transition: width .8s cubic-bezier(.08,.03,.22,.87) .4s,padding .8s 
+                  cubic-bezier(.08,.03,.22,.87) .4s,background-color 2s 
+                  cubic-bezier(.08,.03,.22,.87),border 1s 
+                  cubic-bezier(.08,.03,.22,.87) .4s;   
+                  transition-delay: .8s;  
+                  border-right: 1px solid transparent;          
+              }
+          }
       }
-      @include breakpoint(medium-landscape) {
-        font-size: 30px;
+      &:nth-child(5) {
+          .nav__item-outer {
+              @media (min-width: 992px) {
+                  transition: width .8s cubic-bezier(.08,.03,.22,.87) .5s,padding .8s 
+                  cubic-bezier(.08,.03,.22,.87) .5s,background-color 2s 
+                  cubic-bezier(.08,.03,.22,.87),border 1s 
+                  cubic-bezier(.08,.03,.22,.87) .5s;   
+                  transition-delay: 1s; 
+                  border-right: 1px solid transparent;        
+              }
+          }
       }
-      @include breakpoint(large) {
-        font-size: 21px;
+  }
+
+  &__item-outer {
+      @media (min-width: 992px) {
+          background-color: #f5f5f5;
+          border-right: 0 solid transparent;
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 0;
+          height: 100%;
+          padding: 0;
+          overflow: hidden;
+
+          .nav--active & {
+              width: 100%;
+              padding: 0 12%;
+          }
       }
-      @include breakpoint(android) {
-        font-size: 30px;
+  }
+
+  &__item-inner {
+      position: absolute;
+      height: 280px;
+      top: 50%;
+      left: 100px;
+      -webkit-transform: translate(-50%,-50%);
+      transform: translate(-50%,-50%);
+      opacity: 0;
+      transition: opacity 1s ease;
+      z-index: 2;
+      .nav--active & {
+          opacity: 1;
       }
-    }
-
-    &--active {
-      color: #dcd0af !important;
-      cursor: default;
-    }
-  }
-}
-
-.language {
-  position: absolute;
-  bottom: 21%;
-  font-size: 1.1em;
-  width: 38%;
-  left: 0;
-  right: 0;
-  margin-left: auto;
-  margin-right: auto;
-
-
-  @include breakpoint(small-portrait) {
-    bottom: 15%;
-    font-size: 15px; //left: 31%;
-    width: 38%;
-    text-align: center;
-  }
-  @include breakpoint(small-landscape) {
-    bottom: 11%;
-    font-size: 15px; //left: 31%;
-    width: 38%;
-    text-align: center;
-  }
-  @include breakpoint(medium-portrait) {
-    bottom: 21%;
-    font-size: 20px; //left: 32vw;
-    width: 34vw;
-    text-align: center;
-  }
-  @include breakpoint(medium-portrait-pixel-ratio-two) {
-    bottom: 21%;
-    left: 0;
-    font-size: 2em;
-    width: 100%;
-  }
-  @include breakpoint(medium-landscape) {
-    bottom: 30%;
-    font-size: 1.3em;
-    width: 17%;
-    text-align: left;
-    left: 0;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  @include breakpoint(android) {
-    bottom: 10vh;
-    font-size: 26px;
-    left: 31vw;
-    width: 40vw;
-    text-align: center;
   }
 
-  &__link {
-    cursor: pointer;
-    color: $text-color;
-    &:hover {
-      color: $main-brand-color;
-    }
+  &__title {
+      display: inline-block;
+      font-size: 3vw;
+      font-family: Didot,sans-serif;
+      letter-spacing: .4rem;
+      text-indent: .7rem;
+      margin-bottom: 40px;
+      position: relative;
 
-    &--active {
-      color: #dcd0af;
-      cursor: default;
-
+      &:before {
+          content: "";
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          height: 50%;
+          width: 105%;
+          -webkit-transform-origin: left;
+          transform-origin: left;
+          -webkit-transform: translateX(-50%) scaleX(0);
+          transform: translateX(-50%) scaleX(0);
+          background-color: #fff;
+          transition: -webkit-transform .6s cubic-bezier(.08,.03,.22,.87);
+          transition: transform .6s cubic-bezier(.08,.03,.22,.87);
+          transition: transform .6s cubic-bezier(.08,.03,.22,.87),-webkit-transform .6s cubic-bezier(.08,.03,.22,.87);
+          z-index: -1;
+      }
 
       &:hover {
-        color: #dcd0af;
+          &:before {
+              -webkit-transform: translateX(-50%) scaleX(1);
+              transform: translateX(-50%) scaleX(1);
+          }
       }
-    }
-  }
-}
-.tablet {
-  .language {
-    @include breakpoint(medium-landscape) {
-      width: 15%;
-      text-align: center;
-    }
-  }
-}
 
-.mobile {
-  .language {
-    text-align: center;
-  }
-}
-.social-icon {
-  position: absolute;
-  bottom: 14%;
-  width: 67%;
-  text-align: center;
-  left: 0;
-  right: 0;
-  margin-left: auto;
-  margin-right: auto;
-
-  .icon {
-    font-size: 32px;
+      span {
+          position: relative;
+          z-index: 1;
+      }
   }
 
-  @include breakpoint(small-portrait) {
-    bottom: 9%;
-    width: 43%;
-    text-align: center;
-    .icon {
-      font-size: 25px;
-    }
-  }
-  @include breakpoint(small-landscape) {
-    bottom: 2%;
-    width: 23%;
-    text-align: center;
-    .icon {
-      font-size: 23px;
-    }
-  }
-  @include breakpoint(medium-portrait) {
-    bottom: 19vw;
-    text-align: center;
-    .icon {
-      font-size: 40px;
-    }
-  }
-  @include breakpoint(medium-portrait-pixel-ratio-two) {
-    bottom: 14%;
-    left: 0;
-    width: 100%;
-  }
-  @include breakpoint(medium-landscape) {
-    bottom: 17%;
-    left: 0;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  @include breakpoint(android) {
-    bottom: 3vh;
-    left: 32vw;
-    width: 36vw;
-    text-align: center;
-    .icon {
-      font-size: 40px;
-    }
-  }
+  &__toggle {
+      position: fixed;
+  top: 30px;
+  left: 40px;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  width: 25px;
+  height: 25px;
+  z-index: 10;
 
-  &__link {
-    color: #C5AF86; //#C89E2E;
-    padding: 5px;
-    
-    &:hover {
-      color: $text-color;
-    }
+      &:before {
+          content: "";
+          display: block;
+          width: 100%;
+          height: 2px;
+          background-color: #0b0b0b;
+          margin: 6px 0;
+          transition: background-color .5s,-webkit-transform .8s cubic-bezier(.08,.03,.22,.87);
+          transition: background-color .5s,transform .8s cubic-bezier(.08,.03,.22,.87);
+          transition: background-color .5s,transform .8s cubic-bezier(.08,.03,.22,.87),-webkit-transform .8s cubic-bezier(.08,.03,.22,.87);
+      }
+
+      &:after {
+          content: "";
+          display: block;
+          width: 100%;
+          height: 2px;
+          background-color: #0b0b0b;
+          margin: 6px 0;
+          transition: background-color .5s,-webkit-transform .8s cubic-bezier(.08,.03,.22,.87);
+          transition: background-color .5s,transform .8s cubic-bezier(.08,.03,.22,.87);
+          transition: background-color .5s,transform .8s cubic-bezier(.08,.03,.22,.87),-webkit-transform .8s cubic-bezier(.08,.03,.22,.87);
+      }
+
+      &--active {
+          &:before {
+              transform: rotate(45deg);
+              position: absolute;
+              top: 5px;
+          }
+
+          &:after {
+              transform: rotate(-45deg);
+              position: absolute;
+              top: 5px;
+          }
+      }
   }
-}
-
-.ornament-line {
-  height: 100vh;
-  left: 554px;
-  position: absolute;
-  top: 0px;
-  width: 3px;
-
-
-  &:after {
-    content: '';
-    background-color: rgba(255, 255, 255, 0.5);
-    bottom: 0;
-    left: 0;
-    position: absolute;
-    top: 0;
-    transform: skewX(-10deg);
-    z-index: 9;
-  }
-}
-
-
-/*      *** Menu Mobile ***      */
-
-.menu--xs {
-  height: 26px;
-  display: none;
-  width: 100%;
-  padding: 5px 0px 0px 5px;
-  position: fixed;
-  top: 0px;
-  z-index: 100;
-  left: 0;
-
-  @include breakpoint(small-portrait) {
-    display: inline-block;
-
-    &:after {
-      background: #fff;
-      height: 48px;
-    }
-    .icon {
-      font-size: 34px;
-      color: rgb(53, 51, 51);
-    }
-  }
-  @include breakpoint(small-landscape) {
-    display: inline-block;
-
-    &:after {
-      background: #fff;
-      height: 45px;
-    }
-    .icon {
-      font-size: 36px;
-      color: rgb(53, 51, 51);
-      line-height: 0.7;
-    }
-  }
-  @include breakpoint(medium-portrait) {
-    display: inline-block;
-    background: black;
-    &:after {
-      background: #fff;
-      height: 56px;
-    }
-    .icon {
-      font-size: 36px;
-      color: rgb(53, 51, 51);
-    }
-  }
-  @include breakpoint(medium-landscape) {
-    display: inline-block;
-    &:after {
-      background: #fff;
-      height: 56px;
-    }
-    .icon {
-      font-size: 30px;
-      color: rgb(53, 51, 51);
-      line-height: 0.7;
-    }
-  }
-
-  @include breakpoint(medium-portrait-pixel-ratio-two) {
-    display: inline-block;
-
-    &:after {
-      background: #fff;
-      height: 56px;
-    }
-    .icon {
-      font-size: 36px;
-      color: rgb(53, 51, 51);
-    }
-  }
-  @include breakpoint(medium-landscape-pixel-ratio-two) {
-    //display: none;
-    background: yellow;
-  }
-}
-
-@include breakpoint(medium-portrait) {
-  .tablet {
-    .menu--xs {
-      display: block;
-    }
-  }
-}
-
-.logo--xs {
-  width: calc(100% - 32px);;
-  padding-top: 8px;
-  margin: 0 0 0 32px;
-  display: block;
-  font-size: 30px;
-  font-family: 'New_Direction';
-  text-align: center;
-  @include breakpoint(medium-portrait-pixel-ratio-two) {
-    font-size: 45px;
-
-  }
-}
-
-.hamburger-wrapper {
-  float: left;
 }

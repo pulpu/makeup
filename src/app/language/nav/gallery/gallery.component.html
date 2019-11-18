@@ -13,7 +13,7 @@
             <div>
               <a [ngClass]="[item.orientation === '1.77' ? 'fancybox-imgw grid-item grid-item--width2 grid-item--height3': 
                item.orientation === '1.33' ? 'fancybox-imgw grid-item grid-item--height2' :
-                item.orientation === '1' ? 'fancybox-imgw grid-item grid-item  grid-item--height2' : 'fancybox-imgw grid-item grid-item grid-item--height3']"
+                item.orientation === '1' ? 'fancybox-imgw grid-item grid-item  grid-item--height2' : 'fancybox-imgw grid-item grid-item grid-item--height3', ismask ? 'nograyscale' : 'grayscale']"
                   data-fancybox="gallery" 
                   [style.backgroundImage]="'url('+ urlParser(item.smallImg) +')'" 
                   [href]="item.img">

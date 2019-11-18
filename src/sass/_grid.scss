@@ -1,5 +1,16 @@
 @import "mixins";
-
+.grayscale { 
+  -webkit-filter: grayscale(100%);
+  -moz-filter: grayscale(100%);
+  filter: grayscale(100%);
+  transition: all 3s ease;
+}
+.nograyscale { 
+  -webkit-filter: grayscale(0%);
+  -moz-filter: grayscale(0%);
+  filter: grayscale(0%);
+  transition: all 3s ease;
+}
 .main {
   position: absolute;
   z-index: -10;

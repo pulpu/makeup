@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
 import { Masonry, MasonryGridItem } from 'ng-masonry-grid';
 import { ISubscription } from 'rxjs/Subscription';
 import { EventEmitterService } from '../../../event-emitter.service';    
+import { DataService } from "../../../data.service";
 
 
 @Component({
@@ -27,11 +28,14 @@ export class GalleryComponent implements OnInit  {
   private _removeAllSubscription: ISubscription;
   private _removeItemSubscription: ISubscription;
   private _removeFirstItemSubscription: ISubscription;
+  public ismask: boolean;
+
 
   constructor(
     private route: ActivatedRoute,
     private serverservice: ServerService,
-    private eventEmitterService: EventEmitterService
+    private eventEmitterService: EventEmitterService,
+    private data: DataService
   ) { }
 
   urlParser(url){
@@ -57,6 +61,9 @@ export class GalleryComponent implements OnInit  {
       });    
     }    
 
+    this.data.currentMaskState.subscribe(ismask => this.ismask = ismask)
+
+    
     this.category = this.route.snapshot.params['category']    // here I take the page categori form the page path
 
     //this is a subscribe to the page path change

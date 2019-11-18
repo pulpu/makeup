@@ -1,7 +1,7 @@
   <div class="mask" [ngClass]="[ismask ? 'mask mask--minimize' : 'mask']">
     <div class="paragraph paragraph__wrapper" >
       <div class="paragraph paragraph__controller" (click)="onAnimate()">
-        <i ng-class="icon" class="icon icon--light icon--maximize"></i>
+        <i [ngClass]="[!ismask ? 'icon icon--cross' : 'icon--fade']"></i>
       </div>
       <div class="paragraph__content paragraph__content" [ngClass]="[animate ? 'paragraph__content paragraph__content--disable' : 'paragraph__content']">
         <h2 class="paragraph paragraph__title">{{pagePath}}</h2>

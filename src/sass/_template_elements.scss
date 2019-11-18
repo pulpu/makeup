@@ -1,5 +1,39 @@
 @import "mixins";
+button {
+    background: transparent;
+    border: 0;
+    color: inherit;
+    cursor: pointer;
+    font-family: inherit;
+    letter-spacing: .06em;
+    line-height: 1.14;
+    outline: 0;
+    padding: 0;
+    text-align: left;
+    text-rendering: auto;
+    color: buttontext;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: center;
+    align-items: flex-start;
+}
+button:focus {
+    outline: 0;
+}
 
+.logo {
+	font-family: 'New_Direction';
+	text-align: center;
+	margin: 19px 6px;
+	font-size: 30px;
+    position: fixed;
+    top: 0;
+    left: 80px;
+  }
 .board-cut {
   position: fixed;
   transform: skewX(-10deg);
@@ -10,7 +44,7 @@
   top: 0px;
 }
 .mask {
-  background: rgba(250, 235, 215, 0.9) none repeat scroll 0 0;
+  background: rgba(246, 246, 246, 0.9) none repeat scroll 0 0;
   height: 100%;
   left: 0;
   position: fixed;
@@ -21,11 +55,16 @@
   -ms-transition: left 0.8s ease-in;
   -moz-transition: left 0.8s ease-in;
   -webkit-transition: left 0.8s ease-in;
+  border-right: 1px solid #f6f6f6;
+
 
   &--minimize {
-	left: calc(-100% + 300px);
-	left: -moz-calc(-100% + 300px);
-	left: -webkit-calc(-100% + 300px);
+	left: calc(-100% + 135px);
+	left: -moz-calc(-100% + 135px);
+	left: -webkit-calc(-100% + 135px);
+	background: rgba(246, 246, 246, 0.38) none repeat scroll 0 0;
+	transition: all 2s ease;
+
 
 		@include breakpoint(small-portrait) {
 			left: calc(-100%);
@@ -48,9 +87,9 @@
 		}
 
 		@include breakpoint(medium-landscape) {
-			left: calc(-95% + 235px);
-			left: -moz-calc(-95% + 235px);
-			left: -webkit-calc(-95% + 235px);
+			left: calc(-95% + 135px);
+			left: -moz-calc(-95% + 135px);
+			left: -webkit-calc(-95% + 135px);
 			transition: left 0.8s ease-in;
 			-ms-transition: left 0.8s ease-in;
 			-moz-transition: left 0.8s ease-in;
@@ -172,8 +211,6 @@
 	  top: 22px;
 	}
 
-	background: rgba(224, 215, 202, 1);
-	border: 1px solid #fff;
 	padding: 3px;
 	position: absolute;
 	right: 12px;
@@ -183,7 +220,7 @@
 
 	&:hover {
 	  .icon {
-		color:#c5af86;
+		color:#d5d5d5;
 		-webkit-transition: color 0.9s ease-out;
 		-moz-transition: color 0.9s ease-out;
 		-o-transition: color 0.9s ease-out;

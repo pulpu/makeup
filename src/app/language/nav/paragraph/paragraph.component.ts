@@ -39,6 +39,7 @@ export class ParagraphComponent implements OnInit {
       }
     )
 
+    
     this.pagePath = this.route.snapshot.params['category']
        
     this.route.params.subscribe(

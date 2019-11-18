@@ -2,7 +2,6 @@ import { Component, OnInit, DoCheck, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ServerService } from './../../server.service';
-import { trigger, state, style, animate, transition } from '@angular/animations';
 import { DataService } from "../../data.service";
 import { Masonry, MasonryGridItem } from 'ng-masonry-grid';
 import { EventEmitterService } from '../../event-emitter.service';
@@ -13,18 +12,7 @@ declare var $ :any;
   selector: 'app-nav',
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.css'],
-  animations: [
-    trigger('changeDivSize', [
-      state('initial', style({
-        left: '0px'
-      })),
-      state('final', style({
-        left: '-1100px'
-      })),
-      transition('initial=>final', animate('0.9s 500ms ease-in')),
-      transition('final=>initial', animate('0.9s 500ms ease-out'))
-    ]),
-  ]
+
 })
 
 export class NavComponent implements OnInit, DoCheck {
@@ -36,6 +24,7 @@ export class NavComponent implements OnInit, DoCheck {
   ismask: boolean;
   isdevice: string;
   _masonry: Masonry;
+  statusToggle: boolean = false;
 
   constructor(
     private router: Router, 
@@ -55,6 +44,10 @@ export class NavComponent implements OnInit, DoCheck {
       this.currentState = this.currentState === 'initial' ? 'final' : 'initial';
       this.data.changeMaskState(false) ;
     }
+  }
+
+  navToggle() {
+    return this.statusToggle = !this.statusToggle;       
   }
 
 
@@ -118,6 +111,8 @@ ngDoCheck() {
     });
 
   }
+
+
 
 
 }

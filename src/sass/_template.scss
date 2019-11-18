@@ -33,10 +33,10 @@ body {
 .layout {
 	height: auto;
 	margin: auto 0;
-	margin-left: 299px; //307px;
+	margin-left: 130px; //307px;
 	overflow: hidden;
 	padding: 0px;
-	width: -webkit-calc(100% - 300px); //position: absolute;
+	width: -webkit-calc(100% - 130px); //position: absolute;
 	//top: 20px;
 	@include breakpoint(small-portrait) {
 		width: 100%;
