@@ -1,21 +1,21 @@
 <app-paragraph [paragraphs]='paragraphs'></app-paragraph>
   <div class="container-fluid  mt-sm-5">
-    <ng-masonry-grid
+    <git
     *ngIf="reRenderGrid"
       (onNgMasonryInit)="onNgMasonryInit($event)"
-      [masonryOptions]="{ gutter: 10, itemSelector: '.grid-item', horizontalOrder: false, verticalOrder: true}" 
+      [masonryOptions]="{ gutter: 10, itemSelector: '.grid-item', horizontalOrder: false, verticalOrder: true}"
       [useAnimation]="true"
-      [useImagesLoaded]="true" 
+      [useImagesLoaded]="true"
       [scrollAnimationOptions]="{ animationEffect: 'effect-4', minDuration : 0.4, maxDuration : 0.7 , viewportFactor : 0}">
       <!-- Masonry Grid Item -->
-        <ng-masonry-grid-item id="{{'masonry-item-'+i}}" *ngFor="let item of database | async let i = index;"> 
+        <ng-masonry-grid-item id="{{'masonry-item-'+i}}" *ngFor="let item of database | async let i = index;">
             <!-- Grid Content  -->
             <div>
-              <a [ngClass]="[item.orientation === '1.77' ? 'fancybox-imgw grid-item grid-item--width2 grid-item--height3': 
+              <a [ngClass]="[item.orientation === '1.77' ? 'fancybox-imgw grid-item grid-item--width2 grid-item--height3':
                item.orientation === '1.33' ? 'fancybox-imgw grid-item grid-item--height2' :
                 item.orientation === '1' ? 'fancybox-imgw grid-item grid-item  grid-item--height2' : 'fancybox-imgw grid-item grid-item grid-item--height3']"
-                  data-fancybox="gallery" 
-                  [style.backgroundImage]="'url('+ urlParser(item.smallImg) +')'" 
+                  data-fancybox="gallery"
+                  [style.backgroundImage]="'url('+ urlParser(item.smallImg) +')'"
                   [href]="item.img">
                 <figure class="figure">
                   <span class="figure__action"><i class="icon icon--zoom"></i></span>
@@ -36,6 +36,6 @@
               </a>
             </div>
           </ng-masonry-grid-item>
-    </ng-masonry-grid>
+    </git>
   </div>
 

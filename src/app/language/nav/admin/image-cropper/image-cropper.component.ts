@@ -1,5 +1,5 @@
 import {
-    Component, ElementRef, EventEmitter, HostBinding, HostListener, Input, OnChanges, Output, 
+    Component, ElementRef, EventEmitter, HostBinding, HostListener, Input, OnChanges, Output,
     SimpleChanges, ChangeDetectorRef, ChangeDetectionStrategy, NgZone, ViewChild
 } from '@angular/core';
 import { DomSanitizer, SafeUrl, SafeStyle } from '@angular/platform-browser';
@@ -12,7 +12,7 @@ export type OutputType = 'base64' | 'file' | 'both';
 @Component({
     selector: 'image-cropper',
     templateUrl: './image-cropper.component.html',
-    styleUrls: ['./image-cropper.component.scss'],
+    styleUrls: ['./image-cropper.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ImageCropperComponent implements OnChanges {
